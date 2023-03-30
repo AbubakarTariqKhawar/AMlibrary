@@ -4,7 +4,9 @@ import Login from '../components/login.vue';
 import Home from '../components/home.vue';
 import Register from '../components/register.vue';
 import Dashboard from '../components/dashboard.vue';
-
+import Posts from '../components/posts.vue';
+import AddPost from '../components/AddPost.vue';
+import EditPost from '../components/EditPost.vue';
 
 
 
@@ -29,6 +31,21 @@ export const routes = [
        path: '/dashboard',
        component: Dashboard
    },
+   {
+        name: 'addpost',
+        path: '/post/add',
+        component: AddPost
+    },
+    {
+        name: 'posts',
+        path: '/posts',
+        component: Posts
+    },
+    {
+        name: 'editpost',
+        path: '/posts/edit',
+        component: EditPost
+    },
 ];
 
 
