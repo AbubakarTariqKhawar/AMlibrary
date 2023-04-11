@@ -8,12 +8,10 @@
                     <strong>{{error}}</strong>
                 </div>
 
-
                 <div class="card card-default">
                     <div class="card-header"><h5>Register New User</h5></div>
                     <div class="card-body">
                         <form>
-
 
                             <div class="form-group row">
                                 <label for="name" class="col-sm-4 col-form-label text-md-right">Name</label>
@@ -22,7 +20,6 @@
                                            autofocus autocomplete="off"  placeholder="Enter your name">
                                 </div>
                             </div>
-
 
                             <div class="form-group row mt-1">
                                 <label for="email" class="col-sm-4 col-form-label text-md-right">E-Mail Address</label>
@@ -33,8 +30,6 @@
                             </div>
 
 
-
-
                             <div class="form-group row mt-1">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                                 <div class="col-md-8">
@@ -43,7 +38,6 @@
                                 </div>
                             </div>
 
-
                             <div class="form-group row mt-1 mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-success" @click="register">
@@ -51,7 +45,6 @@
                                     </button>
                                 </div>
                             </div>
-
 
                             <div class="row mt-1">
                                 <div class="col-md-8 offset-md-4">
@@ -63,21 +56,17 @@
                             </div>
 
 
-
-
                         </form>
                     </div>
                 </div>
 
-
             </div>
         </div>
     </div>
- </template>
+</template>
 
-
- <script>
- export default {
+<script>
+export default {
     name: "Register"
     ,data() {
         return {
@@ -112,12 +101,9 @@
         }
     }
 
+}
+</script>
 
- }
- </script>
+<style scoped>
 
-
- <style scoped>
-
-
- </style>
+</style>
