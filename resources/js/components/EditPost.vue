@@ -1,26 +1,13 @@
 <template>
 
+</template>
 
- </template>
+<script>
+export default {
+    name: "EditPost"
+}
+</script>
 
+<style scoped>
 
- <script>
- export default {
-    data() {
-        return {
-
-
-        }
-    },
-    created() {
-
-
-    },
-    methods: {
-
-
-    }
- }
-
-
- </script>
+</style>

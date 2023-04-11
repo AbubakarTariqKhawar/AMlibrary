@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Posts;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -17,21 +17,23 @@ class PostController extends Controller
 
         $request->validate([
             'name'=> 'required',
-            'description'=> 'required',
-            'file'=> 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'description' => 'required',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         $input = $request->all();
         $imageName = NULL;
 
-        if ($image = $request->file('file')) {
+        if($image = $request->file('file')){
             $destinationPath = 'img/';
-            $imageName = date('YmdHis') . ".". $image->getClientOriginalExtension();
+            $imageName = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $imageName);
             $input['image'] = $imageName;
         }
 
         Posts::create($input);
+
         return response()->json(['success' => 'Post creado correctamente.']);
+
     }
 }

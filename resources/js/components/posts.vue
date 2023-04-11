@@ -1,6 +1,5 @@
 <template>
 
-
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between pb-2 mb-2">
@@ -9,7 +8,6 @@
                     <button class="btn btn-success" type="button" @click="this.$router.push('/posts/add')">New Post</button>
                 </div>
             </div>
-
 
             <table class="table table-hover table-sm">
                 <thead class="bg-dark text-light">
@@ -40,19 +38,14 @@
             </table>
 
 
-
-
         </div>
     </div>
 
 
+</template>
 
-
- </template>
-
-
- <script>
- export default {
+<script>
+export default {
     data() {
         return {
             posts: [],
@@ -74,9 +67,7 @@
     },
     methods: {
 
-
     }
- }
+}
 
-
- </script>
+</script>
