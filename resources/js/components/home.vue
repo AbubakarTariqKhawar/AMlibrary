@@ -22,8 +22,8 @@
     <section>
         <div class="container ">
             <div class="row">
-                <div class="card col-12 col-md-3 mt-3 showtext">
-                    <img src="../../books/bookCourt.webp" class="card-img" alt="Book">
+                <div class="cardT col-12 col-md-3 mt-3 showtext">
+                    <img src="../../books/bookCourt.webp"  alt="Book" height="80%" width="90%">
                     <div class=" overlay">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -31,8 +31,8 @@
                     </div>
                 </div>
 
-                <div class="card col-12 col-md-3 mt-3 showtext">
-                    <img src="../../books/bookCourt.webp" class="card-img" alt="Book">
+                <div class="cardT col-12 col-md-3 mt-3 showtext">
+                    <img src="../../books/bookTeias.webp" alt="Book" height="80%" width="90%">
                     <div class=" overlay">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -40,14 +40,24 @@
                     </div>
                 </div>
 
-                <div class="card col-12 col-md-3 mt-3 showtext">
-                    <img src="../../books/bookCourt.webp" class="card-img" alt="Book">
+                <div class="cardT col-12 col-md-3 mt-3 showtext">
+                    <img src="../../books/bookCourt.webp"  alt="Book" height="80%" width="90%">
                     <div class=" overlay">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <p class="card-text"><small>Last updated 3 mins ago</small></p>
                     </div>
                 </div>
+
+                <div class="cardT col-12 col-md-3 mt-3 showtext">
+                    <img src="../../books/bookTeias.webp" alt="Book" height="80%" width="90%">
+                    <div class=" overlay">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small>Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>

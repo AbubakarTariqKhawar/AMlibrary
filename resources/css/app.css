@@ -353,3 +353,44 @@ border-radius: 20px;
     border-radius: 20px;
 }
 
+.card-title{
+    color: black;
+}
+
+.card-text{
+    color: black;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80%;
+    width: 81%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #e0e0e0;
+    margin-left: 5.2%;
+    border-radius: 0.20rem;
+}
+
+.showtext:hover .overlay{
+    opacity: 0.8;
+}
+
+.cardT{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0px solid rgba(0,0,0,.125);
+    border-radius: 1rem;
+    height: auto;
+}
