@@ -466,3 +466,79 @@ border-radius: 20px;
     border: 1px solid rgba(0,0,0,.125);
     border-radius: 0.25rem;
 }
+
+
+
+.aboutus{
+    width: 583px;
+    height: 380px;
+  }
+
+
+  .aboutust{
+    text-align: center;
+    padding-top: 7%;
+  }
+
+  @media (max-width:1418px) {
+    .aboutus{
+      width: 500px;
+      height: 380px;
+      float: left;
+    }
+
+    .aboutust{
+      text-align: center;
+      padding-top: 7%;
+    }
+  }
+
+  @media (max-width:1200px) {
+    .aboutus{
+      width: 420px;
+      height: auto;
+      height: 400px;
+    }
+
+    .aboutust{
+      text-align: center;
+      padding-top: 7%;
+      font-size: small;
+
+    }
+  }
+
+
+  @media (max-width:992px) {
+    .aboutus{
+      width: 100%;
+      height: auto;
+    }
+
+    .imgsizel{
+      width: 330px;
+      height: 330px;
+    }
+
+    .aboutust{
+      text-align: center;
+      padding-top: 7%;
+      font-size: small;
+    }
+}
+
+.content-header {
+    position: relative;
+    background-color: #e3e6ec;
+    background-image: url(../books/overlay.svg), linear-gradient(45deg, #eff3f9 0%, #eff3f9 100%);
+    background-size: cover;
+    z-index: 0;
+    border-radius: 20px;
+}
+
+.a {fill: none;}
+.b {clip-path: url(#a);}
+.c, .d {fill: #f9f9fc;}
+.d {
+    opacity: 0.5;isolation: isolate;
+}
