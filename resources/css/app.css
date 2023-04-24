@@ -530,15 +530,15 @@ border-radius: 20px;
 .content-header {
     position: relative;
     background-color: #e3e6ec;
-    background-image: url(../books/overlay.svg), linear-gradient(45deg, #eff3f9 0%, #eff3f9 100%);
+    background-image: url(../books/overlay.svg), linear-gradient(45deg, #ffffff 0%, #ffffff 100%);
     background-size: cover;
     z-index: 0;
-    border-radius: 20px;
+    border-radius: 30px;
 }
 
 .a {fill: none;}
 .b {clip-path: url(#a);}
-.c, .d {fill: #f9f9fc;}
+.c, .d {fill: #8f8fc5;}
 .d {
     opacity: 0.5;isolation: isolate;
 }
