@@ -41,7 +41,7 @@
                                 <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"></div>
                             </form>
                             -->
-                            <span class="navbar-text"><a href="#" class="login"><b>Log In</b></a></span><a class="btn btn-light action-button" role="button" href="#"><b>Sign Up</b></a></div>
+                            <span class="navbar-text"><a href="/login" class="login"><b>Log In</b></a></span><a class="btn btn-light action-button" role="button" href="/register"><b>Sign Up</b></a></div>
                         </div>
 
 
