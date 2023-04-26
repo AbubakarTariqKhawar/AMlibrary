@@ -7,6 +7,7 @@ import Dashboard from '../components/dashboard.vue';
 import Posts from '../components/posts.vue';
 import AddPost from '../components/AddPost.vue';
 import EditPost from '../components/EditPost.vue';
+import Library from '../components/library.vue';
 
 
 
@@ -45,6 +46,11 @@ export const routes = [
         name: 'editpost',
         path: '/posts/edit',
         component: EditPost
+    },
+    {
+        name: 'library',
+        path: '/library',
+        component: Library
     },
 ];
 
