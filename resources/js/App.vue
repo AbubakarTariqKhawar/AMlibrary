@@ -35,16 +35,20 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="div2d">
+                        <div v-if="!isLoggedin" class="div2d">
                             <!--
                             <form class="form-inline mr-auto" target="_self">
                                 <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"></div>
                             </form>
                             -->
-                            <span class="navbar-text"><a href="/login" class="login"><b>Log In</b></a></span><a class="btn btn-light action-button" role="button" href="/register"><b>Sign Up</b></a></div>
+                            <span class="navbar-text"><a href="/login" class="login"><b>Log In</b></a></span>
+                            <a class="btn btn-light action-button" role="button" href="/register"><b>Sign Up</b></a>
                         </div>
-
-
+                        <div v-if="isLoggedin" class="div2d">
+                            <span class="navbar-text"><a href="/login" class="loginim"><img src="../logo/userblu.svg" alt="AMLibrary" style="height: 40px;"></a></span>
+                            <a class="btn btn-light action-button" role="button" @click="logout"><b>Log Out</b></a>
+                        </div>
+                    </div>
                 </div>
             </nav>
            <!-- <div class="container hero">
