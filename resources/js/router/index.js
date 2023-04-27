@@ -7,7 +7,7 @@ import Dashboard from '../components/dashboard.vue';
 import Posts from '../components/posts.vue';
 import AddPost from '../components/AddPost.vue';
 import EditPost from '../components/EditPost.vue';
-import ReadingInterface from '../components/ReadingInterface.vue';
+import Library from '../components/library.vue';
 
 
 
@@ -48,9 +48,9 @@ export const routes = [
         component: EditPost
     },
     {
-        name: 'ReadingInterface',
-        path: '/ReadingInterface',
-        component: ReadingInterface
+        name: 'library',
+        path: '/library',
+        component: Library
     },
 ];
 

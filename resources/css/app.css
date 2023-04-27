@@ -29,6 +29,12 @@
     background: var(--color2);
   }
 
+  .cartselect{
+    width: 280px;
+    float: left;
+    margin-left: 5%;
+  }
+
   #banner_principal{
     background-image: URL(../logo/bookBanner.webp);
     background-attachment: fixed;
@@ -492,6 +498,12 @@ border-radius: 20px;
       text-align: center;
       padding-top: 7%;
     }
+
+    .cartselect{
+        width: 240px;
+        float: left;
+        margin-left: 5%;
+      }
   }
 
   @media (max-width:1200px) {
@@ -507,6 +519,12 @@ border-radius: 20px;
       font-size: small;
 
     }
+
+    .cartselect{
+        width: 200px;
+        float: left;
+        margin-left: 5%;
+      }
   }
 
 
@@ -526,6 +544,12 @@ border-radius: 20px;
       padding-top: 7%;
       font-size: small;
     }
+
+    .cartselect{
+        width: 300px;
+        float: left;
+        margin-left: 3%;
+      }
 }
 
 .content-header {
@@ -542,4 +566,19 @@ border-radius: 20px;
 .c, .d {fill: #8f8fc5;}
 .d {
     opacity: 0.5;isolation: isolate;
+}
+
+
+
+
+.bg-light{
+    background-color: #424242 !important;
+}
+
+.categoriesS{
+    width: 300%;
+}
+
+.searchabu{
+    float: left; margin-left: 1%; margin-top: 3px; width: 20%;
 }

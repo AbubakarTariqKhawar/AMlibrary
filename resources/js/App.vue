@@ -23,12 +23,12 @@
    <!-- <div>-->
         <div class="header-dark ">
             <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
-                <div class="container"><a class="navbar-brand" href="#"><img src="../logo/amlogow1.svg" alt="AMLibrary" style="height: 50px;"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="container"><router-link class="navbar-brand" to="/"><img src="../logo/amlogow1.svg" alt="AMLibrary" style="height: 50px;"></router-link><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse"
                         id="navcol-1">
                         <div class="div1d">
                             <ul class="nav navbar-nav">
-                                <li class="nav-item" role="presentation"><a class="nav-link" href="#"><b>Library</b></a></li>
+                                <li class="nav-item" role="presentation"><router-link class="nav-link" to="/library"><b>Library</b></router-link></li>
                                 <li class="nav-item" role="presentation"><a class="nav-link" href="#"><b>Contact</b></a></li>
                                 <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><b>Categories</b> </a>
                                     <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
@@ -129,36 +129,39 @@
 
 </template>
 <script>
+import router from './router';
+
 export default {
     name: "App",
     data() {
         return {
             isLoggedin: false,
-        }
+        };
     },
     created() {
-        if(window.Laravel.isLoggedin){
-            this.isLoggedin =true;
+        if (window.Laravel.isLoggedin) {
+            this.isLoggedin = true;
         }
     },
     methods: {
         logout(e) {
-            e.preventDefault()
-            this.$axios.get('/sanctum/csrf-cookie').then(response => {
-                this.$axios.post('api/logout')
+            e.preventDefault();
+            this.$axios.get("/sanctum/csrf-cookie").then(response => {
+                this.$axios.post("api/logout")
                     .then(response => {
-                        if (response.data.success) {
-                            window.location.href = "/"
-                        } else {
-                            console.log(response);
-                        }
-                    })
+                    if (response.data.success) {
+                        window.location.href = "/";
+                    }
+                    else {
+                        console.log(response);
+                    }
+                })
                     .catch(function (error) {
-                        console.error(error);
-                    });
-            })
-
+                    console.error(error);
+                });
+            });
         }
     },
+    components: { router }
 }
 </script>
