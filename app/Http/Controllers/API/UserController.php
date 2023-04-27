@@ -14,8 +14,8 @@ class UserController extends Controller
     public function login(Request $request){
 
         $credentials =[
-            'UseEmail' => $request->email,
-            'UsePassword' => $request->password
+            'email' => $request->email,
+            'password' => $request->password
         ];
 
         if(Auth::attempt($credentials)){
@@ -38,12 +38,12 @@ class UserController extends Controller
 
         try{
             $user = new User();
-            $user->Usename = $request->name;
+            $user->name = $request->name;
             $user->UseSureName='';
             $user->UsePhone=0;
             $user->UseRolId=1;
-            $user->UseEmail = $request->email;
-            $user->UsePassword = Hash::make($request->password);
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
             $user->save();
 
             $success = true;
