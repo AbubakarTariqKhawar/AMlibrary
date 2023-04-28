@@ -28,6 +28,22 @@
 
     </div>
 
+    <div>
+        <div class="container">
+            <div class="book">
+                <div class="front">
+                    <div class="cover">
+                        <img src="../../books/bookCourt.webp" width="146" height="207" >
+
+                    </div>
+                </div>
+                <div class="left-side" >
+                    <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+                </div>
+            </div>
+        </div>
+    </div>
+
 </template>
 
 <script>
@@ -37,5 +53,82 @@ export default {
 </script>
 
 <style scoped>
+
+
+
+.container .book {
+  position: relative;
+  display: block;
+  width: 146px;
+  height: 207px;
+  margin: 3%;
+  border-radius: 2px 4px 4px 2px;
+  background: linear-gradient(45deg,  #DAD5DC 0%, #f2ebf4 100%);
+  font-family: acumin-pro, sans-serif;
+  -webkit-box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
+-moz-box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
+box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
+  font-weight: 400;
+  color: #2b2b2b;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform .5s;
+  -moz-transition: -moz-transform .5s;
+  transition: transform .5s;
+}
+
+.container .book:hover {
+  -webkit-transform: rotate3d(0,1,0,35deg);
+  -moz-transform: rotate3d(0,1,0,35deg);
+  transform: rotate3d(0,1,0,35deg);
+}
+
+.container .book > div,
+.container .front > div {
+  display: block;
+  position: absolute;
+}
+
+
+.container .front {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin: 0% 50%;
+  -moz-transform-origin: 0% 50%;
+  transform-origin: 0% 50%;
+  -webkit-transition: -webkit-transform .5s;
+  -moz-transition: -moz-transform .5s;
+  transition: transform .5s;
+  -webkit-transform: translate3d(0,0,20px);
+  -moz-transform: translate3d(0,0,20px);
+  transform: translate3d(0,0,20px);
+  z-index: 10;
+}
+
+.container .front > div {
+  width: 146px;
+  height: 207px;
+}
+
+.container .left-side{
+  width: 40px;
+  left: -20px;
+  height: 207px;
+  background-color: rgba(232,229,234);
+  -webkit-transform: rotate3d(0,1,0,-90deg);
+  -moz-transform: rotate3d(0,1,0,-90deg);
+  transform: rotate3d(0,1,0,-90deg);
+
+}
+
+/*
+.cover {
+    background-image: url("../../books/bookCourt.webp");
+    background-size: 146px 207px;
+}
+*/
+
 
 </style>

@@ -539,6 +539,14 @@ border-radius: 20px;
       }
   }
 
+  .categoriesS{
+    width: 200%;
+}
+
+.searchabu{
+    float: left; margin-left: 1%; margin-top: 3px; width: 30%;
+}
+
 
   @media (max-width:992px) {
     .aboutus{
@@ -563,7 +571,23 @@ border-radius: 20px;
         margin-left: 3%;
     }
 
+    .categoriesS{
+        width: 100%;
+    }
+
+    .searchabu{
+        margin-left: 3%; margin-top: 3px; width: 55%;
+    }
+
 }
+@media (max-width:768px) {
+    .categoriesS{
+        width: 100%;
+    }
+    .searchabu{
+        margin-left: 3%; margin-top: 3px; width: 83%;
+    }
+  }
 
 .content-header {
     position: relative;
@@ -588,12 +612,6 @@ border-radius: 20px;
     background-color: #424242 !important;
 }
 
-.categoriesS{
-    width: 300%;
-}
 
-.searchabu{
-    float: left; margin-left: 1%; margin-top: 3px; width: 20%;
-}
 
 
