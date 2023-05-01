@@ -29,18 +29,136 @@
     </div>
 
     <div>
-        <div class="container">
-            <div class="book">
-                <div class="front">
-                    <div class="cover">
-                        <img src="../../books/bookCourt.webp" width="146" height="207" >
+        <div class="container ">
+            <div class="row">
 
+                <div class="book ">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="../../books/bookCourt.webp" width="146" height="207" >
+
+                        </div>
+                    </div>
+                    <div class="left-side" >
+                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
                     </div>
                 </div>
-                <div class="left-side" >
-                    <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+
+                <div class="book ">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="../../books/bookCourt.webp" width="146" height="207" >
+
+                        </div>
+                    </div>
+                    <div class="left-side" >
+                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+                    </div>
                 </div>
+
+                <div class="book ">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="../../books/bookCourt.webp" width="146" height="207" >
+
+                        </div>
+                    </div>
+                    <div class="left-side" >
+                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+                    </div>
+                </div>
+                <div class="book ">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="../../books/bookCourt.webp" width="146" height="207" >
+
+                        </div>
+                    </div>
+                    <div class="left-side" >
+                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+                    </div>
+                </div>
+                <div class="book ">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="../../books/bookCourt.webp" width="146" height="207" >
+
+                        </div>
+                    </div>
+                    <div class="left-side" >
+                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+                    </div>
+                </div>
+                <div class="book ">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="../../books/bookCourt.webp" width="146" height="207" >
+
+                        </div>
+                    </div>
+                    <div class="left-side" >
+                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+                    </div>
+                </div>
+                <div class="book ">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="../../books/bookCourt.webp" width="146" height="207" >
+
+                        </div>
+                    </div>
+                    <div class="left-side" >
+                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+                    </div>
+                </div>
+                <div class="book ">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="../../books/bookCourt.webp" width="146" height="207" >
+
+                        </div>
+                    </div>
+                    <div class="left-side" >
+                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+                    </div>
+                </div>
+                <div class="book ">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="../../books/bookCourt.webp" width="146" height="207" >
+
+                        </div>
+                    </div>
+                    <div class="left-side" >
+                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+                    </div>
+                </div>
+                <div class="book ">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="../../books/bookCourt.webp" width="146" height="207" >
+
+                        </div>
+                    </div>
+                    <div class="left-side" >
+                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+                    </div>
+                </div>
+                <div class="book ">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="../../books/bookCourt.webp" width="146" height="207" >
+
+                        </div>
+                    </div>
+                    <div class="left-side" >
+                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+                    </div>
+                </div>
+
+
             </div>
+
         </div>
     </div>
 
@@ -61,7 +179,7 @@ export default {
   display: block;
   width: 146px;
   height: 207px;
-  margin: 3%;
+  margin: 2%;
   border-radius: 2px 4px 4px 2px;
   background: linear-gradient(45deg,  #DAD5DC 0%, #f2ebf4 100%);
   font-family: acumin-pro, sans-serif;
@@ -76,12 +194,14 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
   -webkit-transition: -webkit-transform .5s;
   -moz-transition: -moz-transform .5s;
   transition: transform .5s;
+  padding-left: 0%;
 }
 
 .container .book:hover {
   -webkit-transform: rotate3d(0,1,0,35deg);
   -moz-transform: rotate3d(0,1,0,35deg);
   transform: rotate3d(0,1,0,35deg);
+  cursor: pointer;
 }
 
 .container .book > div,
@@ -129,6 +249,12 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
     background-size: 146px 207px;
 }
 */
+
+@media (max-width:768px) {
+    .container .book {
+        margin: 6%;
+    }
+}
 
 
 </style>

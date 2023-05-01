@@ -20,10 +20,10 @@ class UserController extends Controller
 
         if(Auth::attempt($credentials)){
             $success = true;
-            $message = "Usuario logeado correctamente";
+            $message = "User logged in successfully";
         }else{
             $success = false;
-            $message = "Usuario no autorizado";
+            $message = "Unauthorized user";
         }
 
         $response = [
@@ -47,7 +47,7 @@ class UserController extends Controller
             $user->save();
 
             $success = true;
-            $message = "Usuario registrado correctamente";
+            $message = "User successfully registered";
         }catch(\Illuminate\Database\QueryException $ex){
             $success = false;
             $message = $ex->getMessage();
@@ -69,7 +69,7 @@ class UserController extends Controller
             Session::flush();
 
             $success = true;
-            $message = "Logout correcto";
+            $message = "Successful logout";
         }catch(\Illuminate\Database\QueryException $ex){
             $success = false;
             $message = $ex->getMessage();

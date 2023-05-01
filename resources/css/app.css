@@ -1,6 +1,9 @@
+/*@import "node_modules/font-awesome/scss/font-awesome.scss";*/
 *{
     font-family:'Roboto', sans-serif;
 }
+
+
 
 .header-dark {
     background:url(../../assets/img/mountain_bg.jpg) #212121;
@@ -112,6 +115,7 @@
     color:black;
     border-radius: 20px;
     background-color: #d3d4d5;
+    cursor: pointer;
   }
 
   .header-dark .navbar .navbar-collapse span .loginim {
@@ -515,7 +519,18 @@ border-radius: 20px;
         width: 240px;
         float: left;
         margin-left: 5%;
-      }
+    }
+
+
+  }
+
+  @media (min-width:1418px) {
+    .container {
+        max-width: 1700px;
+    }
+    .div2d {
+        width: 20%;
+    }
   }
 
   @media (max-width:1200px) {
@@ -537,6 +552,8 @@ border-radius: 20px;
         float: left;
         margin-left: 5%;
       }
+
+
   }
 
   .categoriesS{
@@ -589,6 +606,23 @@ border-radius: 20px;
     }
   }
 
+.loginp{
+    font-size: 60%;
+    padding-left: 5%;
+    margin-top: 3%;
+}
+
+@media (min-width:768px) {
+    .modal-content{
+        width: 70%;
+    }
+    .loginp{
+        padding-left: 1%;
+    }
+}
+
+
+
 .content-header {
     position: relative;
     background-color: #e3e6ec;
@@ -612,6 +646,19 @@ border-radius: 20px;
     background-color: #424242 !important;
 }
 
-
+.lgoinbdiv{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 0.3rem;
+    outline: 0;
+}
 
 

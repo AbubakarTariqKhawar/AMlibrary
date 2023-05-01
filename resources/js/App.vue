@@ -41,8 +41,8 @@
                                 <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"></div>
                             </form>
                             -->
-                            <span class="navbar-text"><a href="/login" class="login"><b>Log In</b></a></span>
-                            <a class="btn btn-light action-button" role="button" href="/register"><b>Sign Up</b></a>
+                            <span class="navbar-text"><a class="login" data-bs-toggle="modal" data-bs-target="#login"><b>Log In</b></a></span>
+                            <a class="btn btn-light action-button" role="button"  data-bs-toggle="modal" data-bs-target="#register"><b>Sign Up</b></a>
                         </div>
                         <div v-if="isLoggedin" class="div2d">
                             <span class="navbar-text"><a href="/login" class="loginim"><img src="../logo/userblu.svg" alt="AMLibrary" style="height: 40px;"></a></span>
@@ -59,6 +59,82 @@
                     </div>
                 </div>
             </div>-->
+        </div>
+
+        <div class="modal fade " id="login"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content" style="padding: 3%; border-radius: 20px;!important">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <div class="lgoinbdiv" style="padding: 3%; border: none;">
+                        <img src="../logo/mainlogoblack.svg" height="80" style="padding-left: 6%;">
+                        <div class="mt-4">
+                            <label for="loginemail" class="col-form-label">Email*:</label>
+                            <input type="email" class="form-control" id="loginemail" v-model="logEmail" required autofocus autocomplete="off" placeholder="Enter your email" >
+                        </div>
+                        <div class="mt-3">
+                            <label for="loginpassword" class="col-form-label">Password*:</label>
+                            <input type="password" class="form-control" id="loginpassword" v-model="logPassword" required autofocus autocomplete="off" placeholder="Enter your password" >
+                        </div>
+                        <button type="button" v-if="logEmail == '' || logPassword == '' " class="btn  mt-5" style="background-color: #e0e0e0; color: #EEEEEE; cursor:default" >LogIn</button>
+                        <button type="button" v-if="logEmail != '' && logPassword != '' " class="btn  mt-5" @click="doLogin">LogIn</button>
+                        <p class="loginp">This site is protected and Privacy Policy and Terms of Service apply.</p>
+                    </div>
+                    <div v-if="error !== null" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <strong>{{error}}</strong>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade " id="register" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content" style="padding: 3%; border-radius: 20px;!important">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <div class="lgoinbdiv" style="padding: 3%; border: none;">
+                        <img src="../logo/mainlogoblack.svg" height="80" style="padding-left: 6%;">
+                        <div class="mt-4">
+                            <label for="rename" class="col-form-label">Name/Surname*:</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="rename" v-model="rename" required autofocus autocomplete="off" placeholder="Your name" >
+                            <input type="text" class="form-control" id="resurname" v-model="resurname" required autofocus autocomplete="off" placeholder="Your surname" >
+                        </div>
+                        <div class="mt-3">
+                            <label for="rephone" class="col-form-label">Mobile*:</label>
+                            <input type="number" class="form-control" id="rephone" v-model="rephone" required autofocus autocomplete="off" placeholder="Enter your mobile" >
+                        </div>
+                        <div class="mt-3">
+                            <label for="reemail" class="col-form-label">Email*:</label>
+                            <input type="email" class="form-control" id="reemail" v-model="reemail" required autofocus autocomplete="off" placeholder="Enter your email" >
+                        </div>
+                        <div class="mt-4">
+                            <label for="repassword" class="col-form-label">Password*:</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" v-if="showPassword == false" class="form-control" id="repassword" v-model="repassword" required autofocus autocomplete="off" placeholder="Enter your password" >
+                            <input type="text" v-if="showPassword == true" class="form-control" id="repassword" v-model="repassword" required autofocus autocomplete="off" placeholder="Enter your password" >
+                            <button class="button" style=" border-left-style: none; border-color: #ced4da; background-color: white; border-radius: 0px 5px 5px 0px; border-style: inset;" @click="toggleShow"><span class="icon is-small is-right">
+                                <i class="fa" :class="{ 'fa-eye-slash': showPassword, 'fa-eye': !showPassword }"></i>
+                                </span>
+                            </button>
+                        </div>
+
+                        <button type="button" v-if="reemail == '' || repassword == '' || rephone =='' || resurname == '' || rename == '' " class="btn  mt-4" style="background-color: #e0e0e0; color: #EEEEEE; cursor:default" >Sign Up</button>
+                        <button type="button" v-if="reemail != '' && repassword != '' && rephone !='' && resurname != '' && rename != '' " class="btn  mt-4" @click="register">Sign Up</button>
+                        <p class="loginp">This site is protected and Privacy Policy and Terms of Service apply.</p>
+                    </div>
+                    <div v-if="reerror !== null" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <strong>{{reerror}}</strong>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
         <router-view></router-view>
@@ -140,6 +216,16 @@ export default {
     data() {
         return {
             isLoggedin: false,
+            rename: "",
+            resurname: "",
+            rephone: "",
+            reemail: "",
+            repassword: "",
+            logEmail: "",
+            logPassword: "",
+            showPassword: false,
+            error: null,
+            reerror: null
         };
     },
     created() {
@@ -148,6 +234,70 @@ export default {
         }
     },
     methods: {
+        toggleShow() {
+        this.showPassword = !this.showPassword;
+        },
+        validateEmail(email) {
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                return true;
+            } else {
+                this.reerror = "Email invalid!";
+            }
+        },
+        register(e){
+            e.preventDefault()
+            if(this.repassword.length > 0 && this.validateEmail(this.reemail) == true) {
+                this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                    this.$axios.post('api/register', {
+                        name: this.rename,
+                        email: this.reemail,
+                        password: this.repassword
+                    })
+                        .then(response => {
+                            if (response.data.success) {
+                                /*window.location.href = "/login"*/
+                                this.reerror = response.data.message;
+                                this.rename = "";
+                                this.resurname = "";
+                                this.rephone = "";
+                                this.reemail = "";
+                                this.repassword = "";
+                            } else {
+                                this.reerror = response.data.message
+                            }
+                        })
+                        .catch(function (reerror) {
+                            console.reerror(reerror);
+                        });
+                })
+            }
+        },
+        doLogin(e) {
+            e.preventDefault()
+            if(this.logPassword.length > 0) {
+                this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                    this.$axios.post('api/login', {
+                        email: this.logEmail,
+                        password: this.logPassword
+                    })
+                        .then(response => {
+                            if (response.data.success) {
+                                this.logEmail = "";
+                                this.logPassword = "";
+                                console.error('OK');
+                                window.location.href = "/"
+                            } else {
+                                console.error('No loggin');
+                                this.error = response.data.message
+                            }
+                        })
+                        .catch(function (error) {
+                            console.error(error);
+                        });
+                })
+            }
+        },
+
         logout(e) {
             e.preventDefault();
             this.$axios.get("/sanctum/csrf-cookie").then(response => {
@@ -165,7 +315,20 @@ export default {
                 });
             });
         }
-    },
+    },/*
+    beforeRouteEnter(to, from, next){
+        if(window.Laravel.isLoggedin){
+            return next('dashboard');
+        }
+        next();
+    },*//*
+    watch: {
+    email(value){
+      this.email = value;
+      this.validateEmail(value);
+    }
+  },
+*/
     components: { router }
 }
 </script>

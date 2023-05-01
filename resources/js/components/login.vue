@@ -54,6 +54,44 @@
             </div>
         </div>
     </div>
+
+
+<!-- Button trigger modal
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login">
+  Launch static backdrop modal
+</button>
+-->
+<!-- Modal
+
+<div class="modal fade " id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" style="padding: 3%; border-radius: 20px;!important">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        <div class="lgoinbdiv" style="padding: 3%; border: none;">
+            <img src="../../logo/mainlogoblack.svg" height="80" style="padding-left: 6%;">
+            <div class="mt-4">
+                <label for="loginemail" class="col-form-label">Email*:</label>
+                <input type="email" class="form-control" id="loginemail" v-model="email" required autofocus autocomplete="off" placeholder="Enter your email" >
+            </div>
+            <div class="mt-3">
+                <label for="loginpassword" class="col-form-label">Password*:</label>
+                <input type="password" class="form-control" id="loginpassword" v-model="password" required autofocus autocomplete="off" placeholder="Enter your password" >
+            </div>
+            <button type="button" v-if="email == '' || password == '' " class="btn  mt-5" style="background-color: #e0e0e0; color: #EEEEEE; cursor:default" >LogIn</button>
+            <button type="button" v-if="email != '' && password != '' " class="btn  mt-5" @click="doLogin">LogIn</button>
+            <p class="loginp">This site is protected and Privacy Policy and Terms of Service apply.</p>
+        </div>
+        <div v-if="error !== null" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <strong>{{error}}</strong>
+        </div>
+
+    </div>
+  </div>
+</div>
+-->
+
 </template>
 
 <script>
@@ -65,7 +103,7 @@ export default {
             error: null
         }
     },
-    methods: {
+    methods: {/*
         doLogin(e) {
             e.preventDefault()
             if(this.password.length > 0) {
@@ -88,13 +126,13 @@ export default {
                         });
                 })
             }
-        }
-    },
+        }*/
+    },/*
     beforeRouteEnter(to, from, next){
         if(window.Laravel.isLoggedin){
             return next('dashboard');
         }
         next();
-    }
+    }*/
 }
 </script>
