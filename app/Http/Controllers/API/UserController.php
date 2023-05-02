@@ -39,9 +39,9 @@ class UserController extends Controller
         try{
             $user = new User();
             $user->name = $request->name;
-            $user->UseSureName='';
-            $user->UsePhone=0;
-            $user->UseRolId=1;
+            $user->UseSureName = $request->surname;
+            $user->UsePhone = $request->phone;
+            $user->UseRolId = $request->role;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->save();

@@ -81,7 +81,7 @@
                         <p class="loginp">This site is protected and Privacy Policy and Terms of Service apply.</p>
                     </div>
                     <div v-if="error !== null" class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <!--<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
                         <strong>{{error}}</strong>
                     </div>
 
@@ -92,7 +92,7 @@
 
         <div class="modal fade " id="register" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content" style="padding: 3%; border-radius: 20px;!important">
+                <div class="modal-content" style="padding: 3%; border-radius: 20px; overflow: auto;!important">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                     <div class="lgoinbdiv" style="padding: 3%; border: none;">
@@ -126,10 +126,9 @@
 
                         <button type="button" v-if="reemail == '' || repassword == '' || rephone =='' || resurname == '' || rename == '' " class="btn  mt-4" style="background-color: #e0e0e0; color: #EEEEEE; cursor:default" >Sign Up</button>
                         <button type="button" v-if="reemail != '' && repassword != '' && rephone !='' && resurname != '' && rename != '' " class="btn  mt-4" @click="register">Sign Up</button>
-                        <p class="loginp">This site is protected and Privacy Policy and Terms of Service apply.</p>
                     </div>
                     <div v-if="reerror !== null" class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <!--<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
                         <strong>{{reerror}}</strong>
                     </div>
 
@@ -246,28 +245,48 @@ export default {
         },
         register(e){
             e.preventDefault()
+            console.log('entering register');
             if(this.repassword.length > 0 && this.validateEmail(this.reemail) == true) {
                 this.$axios.get('/sanctum/csrf-cookie').then(response => {
                     this.$axios.post('api/register', {
                         name: this.rename,
+                        surname: this.resurname,
+                        phone: this.rephone,
+                        role: 1,
                         email: this.reemail,
                         password: this.repassword
                     })
                         .then(response => {
                             if (response.data.success) {
                                 /*window.location.href = "/login"*/
-                                this.reerror = response.data.message;
-                                this.rename = "";
-                                this.resurname = "";
-                                this.rephone = "";
-                                this.reemail = "";
-                                this.repassword = "";
+                                    this.$axios.post('api/login', {
+                                        email: this.reemail,
+                                        password: this.repassword
+                                    })
+                                        .then(response => {
+                                            if (response.data.success) {
+                                                this.rename = "";
+                                                this.resurname = "";
+                                                this.rephone = "";
+                                                this.reemail = "";
+                                                this.repassword = "";
+                                                console.error('OK');
+                                                window.location.href = "/"
+                                            } else {
+                                                console.error('No loggin');
+                                                this.reerror = response.data.message
+                                            }
+                                        })
+                                        .catch(function (reerror) {
+                                            console.error(reerror);
+                                        });
+
                             } else {
                                 this.reerror = response.data.message
                             }
                         })
                         .catch(function (reerror) {
-                            console.reerror(reerror);
+                            console.error(reerror);
                         });
                 })
             }
@@ -325,10 +344,10 @@ export default {
     watch: {
     email(value){
       this.email = value;
-      this.validateEmail(value);
+      this.validateEmail(this.reemail);
     }
-  },
-*/
+  },*/
+
     components: { router }
 }
 </script>

@@ -30,7 +30,7 @@
 
     <div>
         <div class="container ">
-            <div class="row">
+            <div class="row" style="margin-right: -15px; margin-left: -29px;!important">
 
                 <div class="book ">
                     <div class="front">
@@ -256,5 +256,16 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
     }
 }
 
+.row{
+    margin-right: -15px !important;
+    margin-left: -29px !important;
+}
+
+@media (max-width:500px) {
+    .row{
+        margin-right: -15px !important;
+        margin-left: -17px !important;
+    }
+}
 
 </style>
