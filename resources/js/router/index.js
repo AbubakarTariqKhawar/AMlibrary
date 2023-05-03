@@ -9,6 +9,7 @@ import AddPost from '../components/AddPost.vue';
 import EditPost from '../components/EditPost.vue';
 import Library from '../components/library.vue';
 import Admin from '../components/admin.vue';
+import Readinterface from '../components/readinterface.vue';
 
 
 
@@ -57,6 +58,11 @@ export const routes = [
         name: 'admin',
         path: '/admin',
         component: Admin
+    },
+    {
+        name: 'readinterface',
+        path: '/readinterface',
+        component: Readinterface
     },
 ];
 
