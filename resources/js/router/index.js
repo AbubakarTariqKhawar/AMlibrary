@@ -8,6 +8,7 @@ import Posts from '../components/posts.vue';
 import AddPost from '../components/AddPost.vue';
 import EditPost from '../components/EditPost.vue';
 import Library from '../components/library.vue';
+import Admin from '../components/admin.vue';
 
 
 
@@ -51,6 +52,11 @@ export const routes = [
         name: 'library',
         path: '/library',
         component: Library
+    },
+    {
+        name: 'admin',
+        path: '/admin',
+        component: Admin
     },
 ];
 
