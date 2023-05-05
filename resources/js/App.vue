@@ -45,8 +45,11 @@
                             <a class="btn btn-light action-button" role="button"  data-bs-toggle="modal" data-bs-target="#register"><b>Sign Up</b></a>
                         </div>
                         <div v-if="isLoggedin" class="div2d">
-                            <span class="navbar-text"><a href="/login" class="loginim"><img src="../logo/userblu.svg" alt="AMLibrary" style="height: 40px;"></a></span>
-                            <a class="btn btn-light action-button" role="button" @click="logout"><b>Log Out</b></a>
+                            <span class="dropdown navbar-text mr-1"><a class="btn btn-light action-button  dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><img src="../logo/userblu.svg" alt="AMLibrary" style="height: 40px;"> </a>
+                                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">Profile</a><a class="dropdown-item" role="presentation" href="#">Log Out</a></div>
+                            </span>
+
+                            <a class="btn btn-light action-button" role="button" @click="logout"><img src="../logo/basket.svg" alt="AMLibrary" style="height: 40px;"></a>
                         </div>
                     </div>
                 </div>

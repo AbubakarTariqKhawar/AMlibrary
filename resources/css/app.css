@@ -619,6 +619,9 @@ border-radius: 20px;
     .loginp{
         padding-left: 1%;
     }
+    .createbookdiv{
+        width: 75% !important;
+    }
 }
 
 
