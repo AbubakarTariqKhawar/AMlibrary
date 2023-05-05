@@ -10,8 +10,9 @@ import EditPost from '../components/EditPost.vue';
 import Library from '../components/library.vue';
 import Admin from '../components/admin.vue';
 import Readinterface from '../components/readinterface.vue';
-
-
+import Bookdetail from '../components/bookdetail.vue';
+import UserProfile from '../components/userProfile.vue';
+import Aboutus from '../components/aboutus.vue';
 
 export const routes = [
     {
@@ -64,6 +65,21 @@ export const routes = [
         path: '/readinterface',
         component: Readinterface
     },
+    {
+        name: 'bookdetail',
+        path: '/bookdetail',
+        component: Bookdetail
+    },
+    {
+    name: 'userProfile',
+    path: '/userProfile',
+    component: UserProfile
+},
+{
+    name: 'aboutus',
+    path: '/aboutus',
+    component: Aboutus
+},
 ];
 
 const router = createRouter({
