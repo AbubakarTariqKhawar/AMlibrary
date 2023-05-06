@@ -31,7 +31,7 @@
                                 <li class="nav-item" role="presentation"><router-link class="nav-link" to="/library"><b>Library</b></router-link></li>
                                 <li class="nav-item" role="presentation"><a class="nav-link" href="#"><b>Contact</b></a></li>
                                 <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><b>Categories</b> </a>
-                                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                                    <div class="dropdown-menu" role="menu"><router-link to="/library"><a class="dropdown-item" role="presentation" href="#">First Item</a></router-link><router-link to="/library"><a class="dropdown-item" role="presentation" href="#">Second Item</a></router-link><router-link to="/library"><a class="dropdown-item" role="presentation" href="#">Third Item</a></router-link></div>
                                 </li>
                             </ul>
                         </div>
@@ -44,12 +44,12 @@
                             <span class="navbar-text"><a class="login" data-bs-toggle="modal" data-bs-target="#login"><b>Log In</b></a></span>
                             <a class="btn btn-light action-button" role="button"  data-bs-toggle="modal" data-bs-target="#register"><b>Sign Up</b></a>
                         </div>
-                        <div v-if="isLoggedin" class="div2d">
+                        <div v-if="isLoggedin" class="div2d ">
                             <span class="dropdown navbar-text mr-1"><a class="btn btn-light action-button  dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><img src="../logo/userblu.svg" alt="AMLibrary" style="height: 40px;"> </a>
-                                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">Profile</a><a class="dropdown-item" role="presentation" href="#">Log Out</a></div>
+                                    <div class="dropdown-menu" role="menu"><router-link to="/userProfile"><a class="dropdown-item" role="presentation" href="#">Profile</a></router-link><a class="dropdown-item" role="presentation" href="#" @click="logout">Log Out</a></div>
                             </span>
 
-                            <a class="btn btn-light action-button" role="button" @click="logout"><img src="../logo/basket.svg" alt="AMLibrary" style="height: 40px;"></a>
+                            <a class="btn btn-light action-button" role="button" ><img src="../logo/basket.svg" alt="AMLibrary" style="height: 40px;"></a>
                         </div>
                     </div>
                 </div>
@@ -72,11 +72,11 @@
                     <div class="lgoinbdiv" style="padding: 3%; border: none;">
                         <img src="../logo/mainlogoblack.svg" height="80" style="padding-left: 6%;">
                         <div class="mt-4">
-                            <label for="loginemail" class="col-form-label">Email*:</label>
+                            <label for="loginemail" class="col-form-label">Email*:</label> <i class="fa fa-envelope" aria-hidden="true"></i>
                             <input type="email" class="form-control" id="loginemail" v-model="logEmail" required autofocus autocomplete="off" placeholder="Enter your email" >
                         </div>
                         <div class="mt-3">
-                            <label for="loginpassword" class="col-form-label">Password*:</label>
+                            <label for="loginpassword" class="col-form-label">Password*:</label> <i class="fa fa-key" aria-hidden="true"></i>
                             <input type="password" class="form-control" id="loginpassword" v-model="logPassword" required autofocus autocomplete="off" placeholder="Enter your password" >
                         </div>
                         <button type="button" v-if="logEmail == '' || logPassword == '' " class="btn  mt-5" style="background-color: #e0e0e0; color: #EEEEEE; cursor:default" >LogIn</button>
@@ -101,22 +101,22 @@
                     <div class="lgoinbdiv" style="padding: 3%; border: none;">
                         <img src="../logo/mainlogoblack.svg" height="80" style="padding-left: 6%;">
                         <div class="mt-4">
-                            <label for="rename" class="col-form-label">Name/Surname*:</label>
+                            <label for="rename" class="col-form-label">Name/Surname*:</label> <i class="fa fa-id-card-o" aria-hidden="true"></i>
                         </div>
                         <div class="input-group">
                             <input type="text" class="form-control" id="rename" v-model="rename" required autofocus autocomplete="off" placeholder="Your name" >
                             <input type="text" class="form-control" id="resurname" v-model="resurname" required autofocus autocomplete="off" placeholder="Your surname" >
                         </div>
                         <div class="mt-3">
-                            <label for="rephone" class="col-form-label">Mobile*:</label>
+                            <label for="rephone" class="col-form-label">Mobile*:</label> <i class="fa fa-phone" aria-hidden="true"></i>
                             <input type="number" class="form-control" id="rephone" v-model="rephone" required autofocus autocomplete="off" placeholder="Enter your mobile" >
                         </div>
                         <div class="mt-3">
-                            <label for="reemail" class="col-form-label">Email*:</label>
+                            <label for="reemail" class="col-form-label">Email*:</label> <i class="fa fa-envelope" aria-hidden="true"></i>
                             <input type="email" class="form-control" id="reemail" v-model="reemail" required autofocus autocomplete="off" placeholder="Enter your email" >
                         </div>
                         <div class="mt-4">
-                            <label for="repassword" class="col-form-label">Password*:</label>
+                            <label for="repassword" class="col-form-label">Password*:</label> <i class="fa fa-key" aria-hidden="true"></i>
                         </div>
                         <div class="input-group">
                             <input type="password" v-if="showPassword == false" class="form-control" id="repassword" v-model="repassword" required autofocus autocomplete="off" placeholder="Enter your password" >

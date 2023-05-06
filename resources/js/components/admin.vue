@@ -511,7 +511,7 @@
                             <input type="number" class="form-control" id="bookprice" v-model="bookprice" required autofocus autocomplete="off" placeholder="Enter Price 5.00€" >
                         </div>
                         <div class="mt-3">
-                            <label for="bookdescription" class="col-form-label">Book Description*:</label> <i class="fa fa-pencil " style="cursor: pointer;" aria-hidden="true"></i>
+                            <label for="bookdescription" class="col-form-label">Book Description*:</label> <i class="fa fa-info" aria-hidden="true"></i>
                             <textarea id="bookdescription" v-model="bookdescription" class="md-textarea form-control" rows="2"></textarea>
                         </div>
 
