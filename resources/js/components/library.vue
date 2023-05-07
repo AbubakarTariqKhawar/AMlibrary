@@ -9,9 +9,9 @@
                 </select>
                 <div class=" rounded rounded-pill searchabu">
                     <div class="input-group">
-                    <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light" style="color: white !important;">
+                    <input type="search" v-model="searchQuery" @keyup.enter="performSearch" placeholder="which Book you searching?" aria-describedby="button-addon1" class="form-control border-0 bg-light" style="color: white !important;">
                     <div class="input-group-append">
-                        <button id="button-addon1" type="submit" class="btn btn-link "><i class="fa fa-search"></i></button>
+                        <button id="button-addon1" @click="performSearch" type="button" class="btn btn-link "><i class="fa fa-search"></i></button>
                     </div>
                     </div>
                 </div>
@@ -32,130 +32,32 @@
         <div class="container ">
             <div class="row" style="margin-right: -15px; margin-left: -29px; justify-content: center; !important!important">
 
-                <div class="book ">
+
+                <div class="book " v-if="searchResults.length" v-for="book in searchResults" :key="book.BooId">
                     <div class="front">
                         <div class="cover">
-                            <img src="../../books/bookCourt.webp" width="146" height="207" >
-
+                            <router-link :to="{ name: 'bookdetail', query: { book: JSON.stringify(book.BooId) } }">
+                                <img :src="`/img/books/${book.BooPicture}`" class="imghight" width="146">
+                            </router-link>
                         </div>
                     </div>
                     <div class="left-side" >
-                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+                        <img :src="`/img/books/${book.BooPicture}`" class="imghight" width="40.1">
                     </div>
                 </div>
 
-                <div class="book ">
+                <div class="book " v-if="!searchResults.length" v-for="book in books" :key="book.BooId">
                     <div class="front">
                         <div class="cover">
-                            <img src="../../books/bookCourt.webp" width="146" height="207" >
-
+                            <router-link :to="{ name: 'bookdetail', query: { book: JSON.stringify(book.BooId) } }">
+                                <img :src="`/img/books/${book.BooPicture}`" class="imghight" width="146">
+                            </router-link>
                         </div>
                     </div>
                     <div class="left-side" >
-                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
+                        <img :src="`/img/books/${book.BooPicture}`" class="imghight" width="40.1">
                     </div>
                 </div>
-
-                <div class="book ">
-                    <div class="front">
-                        <div class="cover">
-                            <img src="../../books/bookCourt.webp" width="146" height="207" >
-
-                        </div>
-                    </div>
-                    <div class="left-side" >
-                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
-                    </div>
-                </div>
-                <div class="book ">
-                    <div class="front">
-                        <div class="cover">
-                            <img src="../../books/bookCourt.webp" width="146" height="207" >
-
-                        </div>
-                    </div>
-                    <div class="left-side" >
-                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
-                    </div>
-                </div>
-                <div class="book ">
-                    <div class="front">
-                        <div class="cover">
-                            <img src="../../books/bookCourt.webp" width="146" height="207" >
-
-                        </div>
-                    </div>
-                    <div class="left-side" >
-                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
-                    </div>
-                </div>
-                <div class="book ">
-                    <div class="front">
-                        <div class="cover">
-                            <img src="../../books/bookCourt.webp" width="146" height="207" >
-
-                        </div>
-                    </div>
-                    <div class="left-side" >
-                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
-                    </div>
-                </div>
-                <div class="book ">
-                    <div class="front">
-                        <div class="cover">
-                            <img src="../../books/bookCourt.webp" width="146" height="207" >
-
-                        </div>
-                    </div>
-                    <div class="left-side" >
-                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
-                    </div>
-                </div>
-                <div class="book ">
-                    <div class="front">
-                        <div class="cover">
-                            <img src="../../books/bookCourt.webp" width="146" height="207" >
-
-                        </div>
-                    </div>
-                    <div class="left-side" >
-                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
-                    </div>
-                </div>
-                <div class="book ">
-                    <div class="front">
-                        <div class="cover">
-                            <img src="../../books/bookCourt.webp" width="146" height="207" >
-
-                        </div>
-                    </div>
-                    <div class="left-side" >
-                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
-                    </div>
-                </div>
-                <div class="book ">
-                    <div class="front">
-                        <div class="cover">
-                            <img src="../../books/bookCourt.webp" width="146" height="207" >
-
-                        </div>
-                    </div>
-                    <div class="left-side" >
-                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
-                    </div>
-                </div>
-                <div class="book ">
-                    <div class="front">
-                        <div class="cover">
-                            <img src="../../books/bookCourt.webp" width="146" height="207" >
-
-                        </div>
-                    </div>
-                    <div class="left-side" >
-                        <img src="../../books/bookCourt.webp" height="207" width="40.1"><!--:src="mivariable"-->
-                    </div>
-                </div>
-
 
             </div>
 
@@ -166,9 +68,53 @@
 
 <script>
 export default {
-    name: "EditPost",
-
-}
+    name: "library",
+    data() {
+        return {
+        books: [],
+        searchQuery: "",
+        searchResults: [],
+        };
+    },
+    mounted() {
+        this.fetchAllBooks();
+    },
+    methods: {
+        fetchAllBooks() {
+        // Make an API request or assign the data directly
+        // For example, using Axios:
+            this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                axios.get('/api/getallbooks')
+                .then(response => {
+                    this.books = response.data.books;
+                    console.log('checking book ');
+                    console.log(this.books);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            })
+        },
+        performSearch() {
+            // Perform search logic here, e.g., make an API call to fetch search results
+            // In this example, we'll just simulate the search results
+            // You can replace this with your actual search implementation
+            this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                this.$axios.post('api/searchbook', {
+                    bookName: this.searchQuery,
+                })
+                .then(response => {
+                    this.searchResults = response.data.books;
+                    console.log('searching books ');
+                    console.log(this.searchResults);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            })
+        },
+    },
+};
 </script>
 
 <style scoped>
@@ -243,7 +189,9 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
   transform: rotate3d(0,1,0,-90deg);
 
 }
-
+.imghight{
+    height: 207px;
+}
 /*
 .cover {
     background-image: url("../../books/bookCourt.webp");

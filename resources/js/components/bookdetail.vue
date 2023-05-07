@@ -1,29 +1,29 @@
 <template>
     <div class="container d-flex justify-content-center " >
         <div class="card  d-flex  " >
-            
+
         <div class="row g-0 d-flex  justify-content-center">
-            
-            <!-- 
+
+            <!--
             <div class="col-md-4">
             <img src="../../books/rickRiordan.webp" class="img-fluid rounded" alt="rick Riordan picture" height="200px">
             </div>-->
             <div class="book  justify-content-center">
                     <div class="front ">
                         <div class="cover">
-                            <img src="../../books/rickRiordan.webp" width="282.13" height="400" >
+                            <img :src="`/img/books/${book.BooPicture}`" width="282.13" height="400" >
 
                         </div>
                     </div>
                     <div class="left-side" >
-                        <img src="../../books/rickRiordan.webp" height="399.9" width="42.29"><!--:src="mivariable"-->
+                        <img :src="`/img/books/${book.BooPicture}`" height="399.9" width="42.29"><!--:src="mivariable"-->
                     </div>
             </div>
             <div class="col-md-8 justify-content-center ">
                 <div class="card-body text-center   mt-3" >
-                    <h5 class="card-title "><b>BOOK TITLE</b></h5>
-                    <p class="card-text text-justify ">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text text-left"><small class="text-body-secondary ">Last updated 3 mins ago</small></p>
+                    <h5 class="card-title "><b>{{ book.BooName }}</b></h5>
+                    <p class="card-text text-justify ">{{ book.BooDescription }}</p>
+                    <p class="card-text text-left"><small class="text-body-secondary ">Category: {{ book.BooCatId }}, Price: {{ book.BooPrice }}</small></p>
                 </div>
             </div>
         </div>
@@ -35,8 +35,42 @@
 
 <script>
     export default {
-        name: "bookdetail"
-    }
+        name: "bookdetail",
+        data() {
+            return {
+            book: [],
+            };
+        },
+        mounted() {
+            const bookParam = this.$route.query.book;
+            if (bookParam) {
+                this.book = JSON.parse(bookParam);
+                console.log('received book');
+                console.log(this.book);
+                this.fetchOneBooks();
+            }
+
+        },
+        methods: {
+            fetchOneBooks() {
+            // Make an API request or assign the data directly
+            // For example, using Axios:
+                this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                    this.$axios.post('api/pickoneBook', {
+                        id: this.book,
+                    })
+                    .then(response => {
+                        this.book = response.data.book;
+                        console.log('checking book ');
+                        console.log(this.book);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+                })
+            },
+        },
+    };
 </script>
 
 <style scoped>
@@ -47,16 +81,16 @@
 }
 
 @media (min-width:992px){
-   
+
     .row{
         margin-right: 0px !important;
     margin-left: 0px !important;
     width: 1159px;
     height: 428px;
         height: auto;
-    } 
-  
-    
+    }
+
+
     .card-title{
         text-align: left;
     }
@@ -68,17 +102,17 @@
         margin: 3%;
         width: 1010px;
         height: auto;
-       
-  
+
+
     }
-    
-   
+
+
 .container .book {
   position: relative;
   display: block;
   width: 282.13px;
   height: 400px;
-  
+
   border-radius: 2px 4px 4px 2px;
   background: linear-gradient(45deg,  #DAD5DC 0%, #f2ebf4 100%);
   font-family: acumin-pro, sans-serif;

@@ -236,6 +236,7 @@ export default {
         }
     },
     methods: {
+
         toggleShow() {
         this.showPassword = !this.showPassword;
         },

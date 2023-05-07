@@ -22,15 +22,18 @@
     <section>
         <div class="container ">
             <div class="row">
-                <div class="card col-12 col-md-3 mt-3 mb-3  showtext">
-                    <img src="../../books/undereHerSkin.webp" class="card-img" alt="Book" height="100%" width="90%">
-                    <div class=" overlay">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small>Last updated 3 mins ago</small></p>
+                <div class="card col-12 col-md-3 mt-3 mb-3  showtext" v-for="book in books" :key="book.BooId"  >
+                    <router-link :to="{ name: 'bookdetail', query: { book: JSON.stringify(book.BooId) } }">
+                        <img :src="`/img/books/${book.BooPicture}`" class="card-img" alt="Book" width="90%">
+                    </router-link>
+
+                    <div class="overlay">
+
+                        <div class="text">{{ book.BooName }}</div>
 
                     </div>
-                </div>
+                </div >
+<!--
 
                 <div class="card col-12 col-md-3 mt-3 mb-3 showtext">
                     <img src="../../books/thehabbit.webp" class="card-img" alt="Book" height="100%" width="90%">
@@ -56,7 +59,7 @@
                         <p class="card-text"><small>Last updated 3 mins ago</small></p>
                     </div>
                 </div>
-
+-->
             </div>
         </div>
     </section>
@@ -273,8 +276,32 @@
 
 <script>
 export default {
-    name: "Home"
-}
+  data() {
+    return {
+      books: [],
+    };
+  },
+  mounted() {
+    this.fetchBooks();
+  },
+  methods: {
+    fetchBooks() {
+      // Make an API request or assign the data directly
+      // For example, using Axios:
+        this.$axios.get('/sanctum/csrf-cookie').then(response => {
+            axios.get('/api/gethomebook')
+            .then(response => {
+                this.books = response.data.books;
+                console.log('checking book ');
+                console.log(this.books);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        })
+    },
+  },
+};
 </script>
 
 <style scoped>
