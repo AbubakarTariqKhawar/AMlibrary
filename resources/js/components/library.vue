@@ -3,10 +3,13 @@
         <label class="mt-3" style="font-size: 25px; ">
             <b>Categories:</b>
             <div class="categoriesS">
-                <select style="margin-top: 2px; float: left;" class="form-select  cartselect arder" name="arder">
-                <option value="allc">All Categories</option>
-                <option value="desc">Horror</option>
+
+
+                <select v-model="selectedCategory" style="margin-top: 2px; float: left; cursor: pointer;" class="form-select  cartselect arder" name="arder">
+                    <option value="allc">All Books</option>
+                    <option v-for="category in categories" :key="category.CatId" :value="category.CatId">{{ category.CatName }}</option>
                 </select>
+
                 <div class=" rounded rounded-pill searchabu">
                     <div class="input-group">
                     <input type="search" v-model="searchQuery" @keyup.enter="performSearch" placeholder="which Book you searching?" aria-describedby="button-addon1" class="form-control border-0 bg-light" style="color: white !important;">
@@ -33,7 +36,7 @@
             <div class="row" style="margin-right: -15px; margin-left: -29px; justify-content: center; !important!important">
 
 
-                <div class="book " v-if="searchResults.length" v-for="book in searchResults" :key="book.BooId">
+                <div class="book " v-if="searchResults" v-for="book in searchResults" :key="book.BooId">
                     <div class="front">
                         <div class="cover">
                             <router-link :to="{ name: 'bookdetail', query: { book: JSON.stringify(book.BooId) } }">
@@ -46,7 +49,20 @@
                     </div>
                 </div>
 
-                <div class="book " v-if="!searchResults.length" v-for="book in books" :key="book.BooId">
+                <div class="book " v-if="books" v-for="book in books" :key="book.BooId">
+                    <div class="front">
+                        <div class="cover">
+                            <router-link :to="{ name: 'bookdetail', query: { book: JSON.stringify(book.BooId) } }">
+                                <img :src="`/img/books/${book.BooPicture}`" class="imghight" width="146">
+                            </router-link>
+                        </div>
+                    </div>
+                    <div class="left-side" >
+                        <img :src="`/img/books/${book.BooPicture}`" class="imghight" width="40.1">
+                    </div>
+                </div>
+
+                <div class="book " v-if="selectedCategoryBooks" v-for="book in selectedCategoryBooks" :key="book.BooId">
                     <div class="front">
                         <div class="cover">
                             <router-link :to="{ name: 'bookdetail', query: { book: JSON.stringify(book.BooId) } }">
@@ -74,21 +90,64 @@ export default {
         books: [],
         searchQuery: "",
         searchResults: [],
+        selectedCategory: "allc",
+        categories: [],
+        selectedCategoryBooks: null,
         };
     },
     mounted() {
         this.fetchAllBooks();
+        this.getAllCategories();
+    },
+    watch: {
+        selectedCategory(newValue) {
+        if (newValue !== "allc") {
+            this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                this.$axios.post('api/getBookByCategory', {
+                    CatId: newValue,
+                })
+                .then(response => {
+                    this.selectedCategoryBooks = response.data.books;
+                    console.log('checking book cate');
+                    console.log(this.selectedCategoryBooks);
+                    this.books = [];
+                    this.searchResults = [];
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+
+            })
+
+        } else {
+            this.selectedCategoryBooks = null;
+            this.fetchAllBooks();
+        }
+        },
     },
     methods: {
         fetchAllBooks() {
-        // Make an API request or assign the data directly
-        // For example, using Axios:
             this.$axios.get('/sanctum/csrf-cookie').then(response => {
                 axios.get('/api/getallbooks')
                 .then(response => {
                     this.books = response.data.books;
                     console.log('checking book ');
                     console.log(this.books);
+                    this.selectedCategoryBooks = null;
+                    this.searchResults = [];
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            })
+        },
+        getAllCategories(){
+            this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                axios.get('/api/getAllCategories')
+                .then(response => {
+                    this.categories = response.data.categories;
+                    console.log('checking categories ');
+                    console.log(this.categories);
                 })
                 .catch(error => {
                     console.error(error);
@@ -96,9 +155,6 @@ export default {
             })
         },
         performSearch() {
-            // Perform search logic here, e.g., make an API call to fetch search results
-            // In this example, we'll just simulate the search results
-            // You can replace this with your actual search implementation
             this.$axios.get('/sanctum/csrf-cookie').then(response => {
                 this.$axios.post('api/searchbook', {
                     bookName: this.searchQuery,
@@ -107,6 +163,8 @@ export default {
                     this.searchResults = response.data.books;
                     console.log('searching books ');
                     console.log(this.searchResults);
+                    this.books = [];
+                    this.selectedCategoryBooks = null;
                 })
                 .catch(error => {
                     console.error(error);

@@ -53,8 +53,6 @@
         },
         methods: {
             fetchOneBooks() {
-            // Make an API request or assign the data directly
-            // For example, using Axios:
                 this.$axios.get('/sanctum/csrf-cookie').then(response => {
                     this.$axios.post('api/pickoneBook', {
                         id: this.book,
@@ -102,9 +100,11 @@
         margin: 3%;
         width: 1010px;
         height: auto;
+        cursor:default;
 
 
     }
+
 
 
 .container .book {

@@ -286,8 +286,6 @@ export default {
   },
   methods: {
     fetchBooks() {
-      // Make an API request or assign the data directly
-      // For example, using Axios:
         this.$axios.get('/sanctum/csrf-cookie').then(response => {
             axios.get('/api/gethomebook')
             .then(response => {
