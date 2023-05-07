@@ -77,7 +77,15 @@
                         </div>
                         <div class="mt-3">
                             <label for="loginpassword" class="col-form-label">Password*:</label> <i class="fa fa-key" aria-hidden="true"></i>
-                            <input type="password" class="form-control" id="loginpassword" v-model="logPassword" required autofocus autocomplete="off" placeholder="Enter your password" >
+                        </div>
+                        <div class="input-group">
+                            <input type="password" v-if="showLogPassword == false" class="form-control" id="loginpassword" v-model="logPassword" required autofocus autocomplete="off" placeholder="Enter your password" >
+                            <input type="text" v-if="showLogPassword == true" class="form-control" id="loginpassword" v-model="logPassword" required autofocus autocomplete="off" placeholder="Enter your password" >
+
+                            <button class="button" style=" border-left-style: none; border-color: #ced4da; background-color: white; border-radius: 0px 5px 5px 0px; border-style: inset;" @click="toggleShowLog"><span class="icon is-small is-right">
+                                <i class="fa" :class="{ 'fa-eye-slash': showLogPassword, 'fa-eye': !showLogPassword }"></i>
+                                </span>
+                            </button>
                         </div>
                         <button type="button" v-if="logEmail == '' || logPassword == '' " class="btn  mt-5" style="background-color: #e0e0e0; color: #EEEEEE; cursor:default" >LogIn</button>
                         <button type="button" v-if="logEmail != '' && logPassword != '' " class="btn  mt-5" @click="doLogin">LogIn</button>
@@ -226,6 +234,7 @@ export default {
             logEmail: "",
             logPassword: "",
             showPassword: false,
+            showLogPassword: false,
             error: null,
             reerror: null
         };
@@ -238,7 +247,10 @@ export default {
     methods: {
 
         toggleShow() {
-        this.showPassword = !this.showPassword;
+            this.showPassword = !this.showPassword;
+        },
+        toggleShowLog(){
+            this.showLogPassword = !this.showLogPassword;
         },
         validateEmail(email) {
             if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
