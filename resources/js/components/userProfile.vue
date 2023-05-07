@@ -1,28 +1,28 @@
 <template>
-    <div class="container my-5 border rounded-5  " >
+    <div class="container my-5 border rounded-5  shadow" >
    <div class="col-xl-7 mx-auto">
-   
+
             <!-- Profile picture -->
-          
-                  
+
+
                     <div class="d-flex justify-content-center shadow border-0 mt-4 mb-5 py-3 " style="width:auto">
-                      
+
                         <img alt="..." src="../../logo/icons8-user-100.png">
-                     
-                    
+
+
                     </div>
-                 
 
 
-                 
 
-             
+
+
+
             <!-- Form -->
             <form class="mb-6">
             <div class="mb-5">
               <h5 class="mb-0">Contact Information</h5>
             </div>
-           
+
               <div class="row mb-5">
                 <div class="col-md-6">
                   <div class="">
@@ -76,8 +76,8 @@
                   </div>
                 </div>
 
-               
-                
+
+
                 <div class="col-md-2">
                   <div class="">
                     <label class="form-label" for="zip">ZIP</label>
@@ -152,13 +152,13 @@
           </div>
         </div>
     </template>
-    
+
     <script>
     export default {
         name: "userProfile"
     }
     </script>
-    
+
     <style scoped>
     .ms-auto {
   position: relative;
@@ -172,4 +172,3 @@
   top: 0;
 }
     </style>
-    
