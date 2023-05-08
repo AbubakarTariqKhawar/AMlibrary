@@ -30,7 +30,7 @@
 
     <div>
         <div class="container ">
-            <div class="row" style="margin-right: -15px; margin-left: -29px;!important">
+            <div class="row" style="margin-right: -15px; margin-left: -29px; justify-content: center; !important!important">
 
                 <div class="book ">
                     <div class="front">
@@ -166,7 +166,8 @@
 
 <script>
 export default {
-    name: "EditPost"
+    name: "EditPost",
+
 }
 </script>
 

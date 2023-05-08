@@ -20,46 +20,58 @@
             <!-- Form -->
             <form class="mb-6">
             <div class="mb-5">
-              <h5 class="mb-0">Contact Information</h5>
+              <h5 class="mb-0">Contact Information <i class="fa fa-user-o" aria-hidden="true"></i></h5>
             </div>
 
               <div class="row mb-5">
                 <div class="col-md-6">
                   <div class="">
-                    <label class="form-label" for="first_name">First name</label>
-                    <input type="text" class="form-control" id="first_name">
+                    <label class="form-label" for="first_nameP" >First name*:</label> <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                    <input type="text" class="form-control" id="first_nameP" v-model="first_nameP">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="">
-                    <label class="form-label" for="last_name">Last name</label>
-                    <input type="text" class="form-control" id="last_name">
+                    <label class="form-label" for="last_nameP" >Last name*:</label> <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                    <input type="text" class="form-control" id="last_nameP" v-model="last_nameP">
                   </div>
                 </div>
               </div>
               <div class="row g-5">
                 <div class="col-md-6">
                   <div class="">
-                    <label class="form-label" for="email">Email</label>
-                    <input type="email" class="form-control" id="email">
+                    <label class="form-label" for="emailP" >Email*:</label> <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <input type="email" class="form-control" id="emailP" v-model="emailP">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="">
-                    <label class="form-label" for="phone_number">Phone number</label>
-                    <input type="tel" class="form-control" id="phone_number">
+                    <label class="form-label" for="phone_numberP" >Phone number*:</label> <i class="fa fa-phone" aria-hidden="true"></i>
+                    <input type="tel" class="form-control" id="phone_numberP" v-model="phone_numberP">
                   </div>
                 </div>
                 <div class="col-12">
+
                   <div class="">
-                    <label class="form-label" for="password">Password</label>
-                    <input type="password" class="form-control" id="password">
+
+                    <label class="form-label" for="passwordP">Password*:</label> <i class="fa fa-key" aria-hidden="true"></i>
+
+                    <input type="password" v-if="showPasswordP == false"  class="form-control" id="passwordP" v-model="passwordP">
+
+                    <input type="text" v-if="showPasswordP == true" class="form-control" id="passwordP" v-model="passwordP">
+
+                    <button class="button" style=" border-left-style: none; border-color: #ced4da; background-color: white; border-radius: 0px 5px 5px 0px; border-style: inset;" @click="toggleShowP">
+                        <span class="icon is-small is-right">
+                            <i class="fa" :class="{ 'fa-eye-slash': showPasswordP, 'fa-eye': !showPasswordP }"></i>
+                        </span>
+                    </button>
+
                   </div>
                 </div>
                 <div class="col-md-12 ">
                   <div class="">
-                    <label class="form-label" for="profilePic">Upload Image</label>
-                    <input type="file" class="form-control" id="profilePic">
+                    <label class="form-label" for="profilePicP" >Upload Image*:</label> <i class="fa fa-file-image-o" aria-hidden="true"></i>
+                    <input type="file" class="form-control" id="profilePicP" >
                   </div>
                 </div>
                 <!--
@@ -96,8 +108,8 @@
 
               </div>
               <div class="text-center mt-5">
-                <button type="button" class="btn text-dark btn-outline-dark mr-2" style="background-color: azure;">Cancel</button>
-                <button type="submit" class="btn ">Save</button>
+                <!--<button type="button" class="btn text-dark btn-outline-dark mr-2" style="background-color: azure;">Cancel</button>-->
+                <button type="button" class="btn ">Save</button>
               </div>
             </form>
             <hr class="my-10" />
@@ -155,7 +167,23 @@
 
     <script>
     export default {
-        name: "userProfile"
+        name: "userProfile",
+        data() {
+            return {
+                showPasswordP: false,
+                first_nameP: '',
+                last_nameP: '',
+                emailP: '',
+                phone_numberP: '',
+                passwordP: '',
+                profilePicP: '',
+            };
+        },
+        methods: {
+            toggleShowP() {
+            this.showPasswordP = !this.showPasswordP;
+            },
+        }
     }
     </script>
 

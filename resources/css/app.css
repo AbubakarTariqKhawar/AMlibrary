@@ -147,6 +147,9 @@
   .header-dark .navbar .navbar-collapse, .header-dark .navbar .form-inline {
     border-color:#b42e2e;
   }
+  .div2d .dropdown a:hover{
+    text-decoration: underline;
+  }
 
   @media (min-width: 500px) {
     #banner_principal{
@@ -239,13 +242,17 @@
     margin-top:-5px;
     box-shadow:0 4px 8px rgba(0,0,0,.1);
     background-color:#fff;
-    border-radius:2px;
+    border-radius:20px;
+  }
+  .dropdown-menu{
+    border-radius: 20px;
   }
 
   .header-dark .navbar .dropdown-menu .dropdown-item:focus, .header-dark .navbar .dropdown-menu .dropdown-item {
     line-height:2;
     font-size:14px;
     color:#37434d;
+    border-radius: 20px;
   }
 
   .header-dark .navbar .dropdown-menu .dropdown-item:focus, .header-dark .navbar .dropdown-menu .drodown-item:hover {
@@ -618,6 +625,9 @@ border-radius: 20px;
     }
     .loginp{
         padding-left: 1%;
+    }
+    .createbookdiv{
+        width: 75% !important;
     }
 }
 

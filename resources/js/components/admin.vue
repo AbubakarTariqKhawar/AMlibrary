@@ -485,7 +485,7 @@
 
     <div class="modal fade " id="createBook" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content" style="padding: 3%; border-radius: 20px; overflow: auto;!important">
+                <div class="modal-content createbookdiv" style="padding: 3%; border-radius: 20px; overflow: auto;!important">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                     <div class="lgoinbdiv" style="padding: 3%; border: none;">
@@ -511,16 +511,16 @@
                             <input type="number" class="form-control" id="bookprice" v-model="bookprice" required autofocus autocomplete="off" placeholder="Enter Price 5.00€" >
                         </div>
                         <div class="mt-3">
-                            <label for="bookdescription" class="col-form-label">Book Description*:</label> <i class="fa fa-pencil " style="cursor: pointer;" aria-hidden="true"></i>
-                            <textarea id="bookdescription" v-model="bookdescription" class="md-textarea form-control" rows="3"></textarea>
+                            <label for="bookdescription" class="col-form-label">Book Description*:</label> <i class="fa fa-info" aria-hidden="true"></i>
+                            <textarea id="bookdescription" v-model="bookdescription" class="md-textarea form-control" rows="2"></textarea>
                         </div>
 
                         <button type="button" v-if="bookname == '' || bookcategory =='' || bookprice == '' || bookdescription == '' " class="btn  mt-4" style="background-color: #e0e0e0; color: #EEEEEE; cursor:default" >Sign Up</button>
                         <button type="button" v-if="bookname != '' && bookcategory !='' && bookprice != '' && bookdescription != '' " class="btn  mt-4" @click="register">Sign Up</button>
                     </div>
-                    <div v-if="reerror !== null" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <div v-if="createbookerror !== null" class="alert alert-danger alert-dismissible fade show" role="alert">
                         <!--<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
-                        <strong>{{reerror}}</strong>
+                        <strong>{{createbookerror}}</strong>
                     </div>
 
                 </div>
@@ -539,7 +539,7 @@ export default {
             bookcategory: "",
             bookprice: null,
             bookdescription: "",
-            reerror: null
+            createbookerror: null
         };
     },
 }
@@ -641,6 +641,8 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
         margin: 6%;
     }
 }
+
+
 
 .row{
     margin-right: -15px !important;
