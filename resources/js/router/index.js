@@ -13,6 +13,8 @@ import Readinterface from '../components/readinterface.vue';
 import Bookdetail from '../components/bookdetail.vue';
 import UserProfile from '../components/userProfile.vue';
 import Aboutus from '../components/aboutus.vue';
+import Contact from '../components/contactus.vue';
+import Cart from '../components/cart.vue';
 
 export const routes = [
     {
@@ -79,6 +81,16 @@ export const routes = [
     name: 'aboutus',
     path: '/aboutus',
     component: Aboutus
+},
+{
+    name: 'contact',
+    path: '/contact',
+    component: Contact
+},
+{
+    name: 'cart',
+    path: '/cart',
+    component: Cart
 },
 ];
 

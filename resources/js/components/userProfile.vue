@@ -1,5 +1,5 @@
 <template>
-    <div class="container my-5 border rounded-5  " >
+    <div class="container my-5 border rounded-5  shadow" >
    <div class="col-xl-7 mx-auto">
 
             <!-- Profile picture -->
