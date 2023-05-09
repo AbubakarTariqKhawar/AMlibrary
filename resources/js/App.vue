@@ -370,3 +370,12 @@ export default {
     components: { router }
 }
 </script>
+
+<style>
+@media (min-width:768px) {
+    .modal{
+        width: 109%;
+    }
+}
+
+</style>
