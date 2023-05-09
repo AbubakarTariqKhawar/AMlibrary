@@ -30,9 +30,12 @@
                             <ul class="nav navbar-nav">
                                 <li class="nav-item" role="presentation"><router-link class="nav-link" to="/library"><b>Library</b></router-link></li>
                                 <li class="nav-item" role="presentation"><a class="nav-link" href="#"><b>Contact</b></a></li>
+                                <li class="nav-item" role="presentation"><a class="nav-link" href="#"><b>About Us</b></a></li>
+<!--
                                 <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><b>Categories</b> </a>
                                     <div class="dropdown-menu" role="menu"><router-link to="/library"><a class="dropdown-item" role="presentation" href="#">First Item</a></router-link><router-link to="/library"><a class="dropdown-item" role="presentation" href="#">Second Item</a></router-link><router-link to="/library"><a class="dropdown-item" role="presentation" href="#">Third Item</a></router-link></div>
                                 </li>
+-->
                             </ul>
                         </div>
                         <div v-if="!isLoggedin" class="div2d">
@@ -367,3 +370,12 @@ export default {
     components: { router }
 }
 </script>
+
+<style>
+@media (min-width:768px) {
+    .modal{
+        width: 109%;
+    }
+}
+
+</style>

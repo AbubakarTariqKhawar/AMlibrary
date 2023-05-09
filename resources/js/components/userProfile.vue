@@ -1,4 +1,5 @@
-<template>
+<template >
+<div v-if="logedin">
     <div class="container my-5 border rounded-5  shadow" >
    <div class="col-xl-7 mx-auto">
 
@@ -18,7 +19,6 @@
 
 
             <!-- Form -->
-            <form class="mb-6">
             <div class="mb-5">
               <h5 class="mb-0">Contact Information <i class="fa fa-user-o" aria-hidden="true"></i></h5>
             </div>
@@ -51,10 +51,12 @@
                   </div>
                 </div>
                 <div class="col-12">
-
-                  <div class="">
-
                     <label class="form-label" for="passwordP">Password*:</label> <i class="fa fa-key" aria-hidden="true"></i>
+
+
+                  <div class="input-group">
+
+
 
                     <input type="password" v-if="showPasswordP == false"  class="form-control" id="passwordP" v-model="passwordP">
 
@@ -111,7 +113,6 @@
                 <!--<button type="button" class="btn text-dark btn-outline-dark mr-2" style="background-color: azure;">Cancel</button>-->
                 <button type="button" class="btn ">Save</button>
               </div>
-            </form>
             <hr class="my-10" />
             <!-- Individual switch cards -->
 
@@ -163,6 +164,10 @@
 
           </div>
         </div>
+
+</div>
+
+
     </template>
 
     <script>
@@ -177,6 +182,14 @@
                 phone_numberP: '',
                 passwordP: '',
                 profilePicP: '',
+                logedin: false,
+            };
+        },
+        mounted(){
+            this.logedin = window.Laravel.isLoggedin;
+            if(!window.Laravel.isLoggedin){
+                console.log('im in ');
+                window.location.href = "/"
             };
         },
         methods: {
