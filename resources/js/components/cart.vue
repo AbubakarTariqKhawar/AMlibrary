@@ -9,8 +9,8 @@
             <div class="row ">
 
               <div class="col-lg-7 sticky">
-                <h2 class="mb-3"><a href="#!" class="text-body"><i
-                      class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h2>
+                <h4 class="mb-3"><a href="#!" class="text-body">
+                    <i class="fa fa-arrow-left me-2"></i>Continue shopping</a></h4>
                 <hr>
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -21,7 +21,7 @@
                  <!--<div>
                     <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"
                         class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>
-                  </div>--> 
+                  </div>-->
                 </div>
                 <hr>
                 <div class="card mb-3">
@@ -30,7 +30,7 @@
                       <div class="d-flex flex-row align-items-center">
                         <div>
                           <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                            src="../../books/comic.webp"
                             class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                         </div>
                         <div class="ms-3">
@@ -192,38 +192,42 @@
                 <div class="card  text-white rounded-3" style="background-color: #212121;">
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                      <h2 class="mb-0">Card details</h2>
-                      
+                      <h4 class="mb-0">Card details</h4>
+
                     </div>
 
-                  
+
 
                     <form class="mt-4">
                       <div class="form-outline form-white mb-4">
+                        <label class="form-label" for="typeName">Cardholder's Name</label>
                         <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
                           placeholder="Cardholder's Name" />
-                        <label class="form-label" for="typeName">Cardholder's Name</label>
+
                       </div>
 
                       <div class="form-outline form-white mb-4">
+                        <label class="form-label" for="typeText">Card Number</label>
                         <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
                           placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
-                        <label class="form-label" for="typeText">Card Number</label>
+
                       </div>
 
                       <div class="row mb-4">
                         <div class="col-md-6">
                           <div class="form-outline form-white">
+                            <label class="form-label" for="typeExp">Expiration</label>
                             <input type="text" id="typeExp" class="form-control form-control-lg"
                               placeholder="MM/YYYY" size="7" minlength="7" maxlength="7" />
-                            <label class="form-label" for="typeExp">Expiration</label>
+
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-outline form-white">
+                            <label class="form-label" for="typeText">Cvv</label>
                             <input type="password" id="typeText" class="form-control form-control-lg"
                               placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
-                            <label class="form-label" for="typeText">Cvv</label>
+
                           </div>
                         </div>
                       </div>
@@ -283,9 +287,18 @@ height: 100% !important;
 }
 
 .sticky {
-   
-   height: 62vh;
+
+   height: 93vh;
 
     overflow: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .sticky {
+
+height: 62vh;
+
+ overflow: auto;
+}
 }
 </style>
