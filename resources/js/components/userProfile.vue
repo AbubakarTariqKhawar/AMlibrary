@@ -1,5 +1,5 @@
 <template >
-<div v-if="logedin">
+<div >
     <div class="container my-5 border rounded-5  shadow" >
    <div class="col-xl-7 mx-auto">
 
@@ -184,14 +184,14 @@
                 profilePicP: '',
                 logedin: false,
             };
-        },
+        },/*
         mounted(){
             this.logedin = window.Laravel.isLoggedin;
             if(!window.Laravel.isLoggedin){
                 console.log('im in ');
                 window.location.href = "/"
             };
-        },
+        },*/
         methods: {
             toggleShowP() {
             this.showPasswordP = !this.showPasswordP;

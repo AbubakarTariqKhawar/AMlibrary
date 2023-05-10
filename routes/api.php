@@ -42,6 +42,13 @@ Route::group(['prefix' => 'posts', 'middleware' => 'auth:sanctum'], function (){
     Route::post('add', [PostController::class, 'add']);
 });
 
+Route::get('/authenticated', function () {
+    return response()->json(['authenticated' => auth()->check()]);
+})->middleware('auth:sanctum');
+
+Route::get('/user/role', function () {
+    return response()->json(['role' => auth()->user()->UseRolId]);
+})->middleware('auth:sanctum');
 /*
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

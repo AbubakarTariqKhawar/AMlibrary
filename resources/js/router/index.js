@@ -16,6 +16,7 @@ import Aboutus from '../components/aboutus.vue';
 import Contact from '../components/contactus.vue';
 import Cart from '../components/cart.vue';
 
+
 export const routes = [
     {
         name: 'home',
@@ -35,7 +36,8 @@ export const routes = [
     {
         name: 'dashboard',
         path: '/dashboard',
-        component: Dashboard
+        component: Dashboard,
+        meta: { requiresAuth: true }
     },
     {
         name: 'addpost',
@@ -60,7 +62,9 @@ export const routes = [
     {
         name: 'admin',
         path: '/admin',
-        component: Admin
+        component: Admin,
+        meta: { requiresAuth: true,  roles: [2]}
+       
     },
     {
         name: 'readinterface',
@@ -75,7 +79,8 @@ export const routes = [
     {
     name: 'userProfile',
     path: '/userProfile',
-    component: UserProfile
+    component: UserProfile,
+    meta: { requiresAuth: true,  roles: [1, 2]  }
 },
 {
     name: 'aboutus',
@@ -98,5 +103,80 @@ const router = createRouter({
    history:createWebHistory(),
    routes: routes,
 });
+
+
+
+/*import axios from 'axios';
+
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) { // check if route requires authentication
+    axios.get('/api/authenticated').then(response => {
+      if (!window.Laravel.isLoggedin) { // replace with your API response
+        console.log("no logeado");
+        next({
+
+          name: 'home',
+          query: { redirect: to.fullPath } // save the original request url for redirection after login
+        });
+      } else {
+        console.log("logeado");
+        next();
+      }
+    }).catch(() => {
+      next({
+        name: 'home',
+        query: { redirect: to.fullPath } // save the original request url for redirection after login
+      });
+    });
+  } else {
+    next();
+  }
+});*/
+import axios from 'axios';
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    axios.get('/api/authenticated').then(authResponse => {
+      if (!authResponse.data.authenticated) {
+        // User is not logged in, redirect to login page
+        next({
+          name: 'home',
+          query: { redirect: to.fullPath }
+        });
+      } else {
+        // User is logged in, check their role
+        axios.get('/api/user/role').then(roleResponse => {
+          const userRole = roleResponse.data.role; // Assuming the API response includes the user's role
+          if (to.matched.some(record => record.meta.roles.includes(userRole))) {
+            // User has the required role to access this route
+            next();
+          } else {
+            // User does not have the required role to access this route, redirect to home page
+            next({
+              name: 'home'
+            });
+          }
+        }).catch(() => {
+          // Error retrieving user role, redirect to home page
+          next({
+            name: 'home',
+            query: { redirect: to.fullPath }
+          });
+        });
+      }
+    }).catch(() => {
+      // Error retrieving authentication status, redirect to home page
+      next({
+        name: 'home',
+        query: { redirect: to.fullPath }
+      });
+    });
+  } else {
+    // Route does not require authentication, allow access
+    next();
+  }
+});
+
 
 export default router;
