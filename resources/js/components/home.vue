@@ -9,7 +9,7 @@
                 </div>
                 <div class="container d-flex">
                     <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="button" onclick="location.href='<?=base_url.'pizza/menu'?>'" class="btn ">Read Now</button>
+                        <router-link to="/library"><button type="button" class="btn ">Read Now</button></router-link>
                     </h2>
                 </div>
             </div>
@@ -33,33 +33,7 @@
 
                     </div>
                 </div >
-<!--
 
-                <div class="card col-12 col-md-3 mt-3 mb-3 showtext">
-                    <img src="../../books/thehabbit.webp" class="card-img" alt="Book" height="100%" width="90%">
-                    <div class=" overlay">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small>Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-
-                <div class="card col-12 col-md-3 mt-3 mb-3 showtext">
-                    <img src="../../books/horrorbo.webp" class="card-img"  alt="Book" height="100%" width="90%">
-                    <div class="overlay">
-                        <div class="text">Hello World</div>
-                    </div>
-                </div>
-
-                <div class="card col-12 col-md-3 mt-3 mb-3 showtext">
-                    <img src="../../books/goodwishgonebad.webp" class="card-img" alt="Book" height="100%" width="90%">
-                    <div class=" overlay">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small>Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
--->
             </div>
         </div>
     </section>
@@ -100,7 +74,7 @@
                             <ul class='page'>
                                 <li></li>
                                 <li>
-                                    <a class="btn" href="#">Read</a>
+                                    <a class="btn" href="/library">Read</a>
                                 </li>
                                 <li></li>
                                 <li></li>
@@ -141,7 +115,7 @@
                             <ul class='page'>
                                 <li></li>
                                 <li>
-                                    <a class="btn" href="#">Read</a>
+                                    <a class="btn" href="/library">Read</a>
                                 </li>
                                 <li></li>
                                 <li></li>
@@ -182,7 +156,7 @@
                             <ul class='page'>
                                 <li></li>
                                 <li>
-                                    <a class="btn" href="#">Read</a>
+                                    <a class="btn" href="/library">Read</a>
                                 </li>
                                 <li></li>
                                 <li></li>
@@ -223,7 +197,7 @@
                             <ul class='page'>
                                 <li></li>
                                 <li>
-                                    <a class="btn" href="#">Read</a>
+                                    <a class="btn" href="/library">Read</a>
                                 </li>
                                 <li></li>
                                 <li></li>

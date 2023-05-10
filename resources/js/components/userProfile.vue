@@ -8,7 +8,7 @@
 
                     <div class="d-flex justify-content-center shadow border-0 mt-4 mb-5 py-3 " style="width:auto">
 
-                        <img alt="..." src="../../logo/icons8-user-100.png">
+                        <img alt="..." :src="`/img/user/${user.UsePic}`" style="height: 100px; border-radius: 50%; width: 100px;">
 
 
                     </div>
@@ -47,7 +47,7 @@
                 <div class="col-md-6">
                   <div class="">
                     <label class="form-label" for="phone_numberP" >Phone number*:</label> <i class="fa fa-phone" aria-hidden="true"></i>
-                    <input type="tel" class="form-control" id="phone_numberP" v-model="phone_numberP">
+                    <input type="number" class="form-control" id="phone_numberP" v-model="phone_numberP">
                   </div>
                 </div>
                 <div class="col-12">
@@ -73,7 +73,7 @@
                 <div class="col-md-12 ">
                   <div class="">
                     <label class="form-label" for="profilePicP" >Upload Image*:</label> <i class="fa fa-file-image-o" aria-hidden="true"></i>
-                    <input type="file" class="form-control" id="profilePicP" >
+                    <input type="file" class="form-control" id="profilePicP" ref="profilePicP" >
                   </div>
                 </div>
                 <!--
@@ -111,7 +111,9 @@
               </div>
               <div class="text-center mt-5">
                 <!--<button type="button" class="btn text-dark btn-outline-dark mr-2" style="background-color: azure;">Cancel</button>-->
-                <button type="button" class="btn ">Save</button>
+
+                <button type="button" v-if="first_nameP == '' || last_nameP == '' || emailP == '' || phone_numberP == '' || passwordP == '' " @click="saveInfoP" class="btn " style="background-color: #e0e0e0; color: #EEEEEE; cursor:default">Save</button>
+                <button type="button" v-if="first_nameP != '' && last_nameP != '' && emailP != '' && phone_numberP != '' && passwordP != '' " @click="saveInfoP" class="btn ">Save</button>
               </div>
             <hr class="my-10" />
             <!-- Individual switch cards -->
@@ -183,21 +185,96 @@
                 passwordP: '',
                 profilePicP: '',
                 logedin: false,
+                user: [],
+                UseId: null,
+                Perror: null,
             };
         },
         mounted(){
             this.logedin = window.Laravel.isLoggedin;
-            if(!window.Laravel.isLoggedin){
-                console.log('im in ');
-                window.location.href = "/"
+            if(window.Laravel.isLoggedin){
+                this.UseId = window.Laravel.user.UseId;
+                this.user = window.Laravel.user;
+                this.first_nameP = window.Laravel.user.name;
+                this.last_nameP = window.Laravel.user.UseSureName;
+                this.emailP = window.Laravel.user.email;
+                this.phone_numberP = window.Laravel.user.UsePhone;
+                this.profilePicP = window.Laravel.user.UsePic;
+                console.log(this.user);
             };
         },
         methods: {
             toggleShowP() {
-            this.showPasswordP = !this.showPasswordP;
+                this.showPasswordP = !this.showPasswordP;
             },
-        }
+            validateEmail(email) {
+                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                    return true;
+                } else {
+                    this.Perror = "Email invalid!";
+                }
+            },
+            saveInfoP() {
+                let file = this.$refs.profilePicP.files[0];
+                if(file){
+                    console.log('checking file pic');
+                    console.log(file);
+
+                    const formData = new FormData();
+                    formData.append('profilePic', file);
+                    formData.append('UseId', this.UseId);
+
+                    axios.post('/upload-profile-pic', formData)
+                    .then(response => {
+
+                        const fileName = response.data.fileName;
+                        console.log('checking file name');
+                        console.log(fileName);
+
+                        if(this.validateEmail(this.emailP) == true) {
+                            this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                                this.$axios.post('api/updateUser', {
+                                    userId: this.UseId,
+                                    name: this.first_nameP,
+                                    surname: this.last_nameP,
+                                    email: this.emailP,
+                                    phone: this.phone_numberP,
+                                    password: this.passwordP,
+                                    profilePic: fileName,
+                                })
+                                .then(response => {
+                                    console.log('updated');
+                                    let userServer = response.data.user[0];
+
+                                    window.Laravel.user.UsePhone = userServer.UsePhone;
+                                    window.Laravel.user.UsePic = userServer.UsePic;
+                                    window.Laravel.user.UseSureName = userServer.UseSureName;
+                                    window.Laravel.user.email = userServer.email;
+                                    window.Laravel.user.name = userServer.name;
+                                    window.Laravel.user.updated_at = userServer.updated_at;
+
+                                    window.location.reload();
+                                })
+                                .catch(function (Perror) {
+                                    console.error(Perror);
+                                });
+                            })
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error uploading profile picture:', error);
+                    });
+
+
+
+                }else{
+                    console.log('nothing')
+                }
+
+            },
+        },
     }
+
     </script>
 
     <style scoped>

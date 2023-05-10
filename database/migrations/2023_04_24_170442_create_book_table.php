@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('BooName');
             $table->string('BooDescription');
             $table->string('BooPicture');
+            $table->text('BooLink');
             $table->integer('BooPrice');
             $table->foreign('BooCatId')
             ->references('CatId')->on('category');

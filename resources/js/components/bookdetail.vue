@@ -11,7 +11,9 @@
             <div class="book  justify-content-center">
                     <div class="front ">
                         <div class="cover">
-                            <img :src="`/img/books/${book.BooPicture}`" width="282.13" height="400" >
+                            <router-link :to="{ name: 'readinterface', query: { book: JSON.stringify(book.BooId) } }">
+                                <img :src="`/img/books/${book.BooPicture}`" width="282.13" height="400" >
+                            </router-link>
 
                         </div>
                     </div>
@@ -24,7 +26,10 @@
                     <h5 class="card-title "><b>{{ book.BooName }}</b></h5>
                     <p class="card-text text-justify ">{{ book.BooDescription }}</p>
                     <p class="card-text text-left"><small class="text-body-secondary ">Category: {{ book.BooCatId }}, Price: {{ book.BooPrice }}</small></p>
+                    <router-link :to="{ name: 'readinterface', query: { book: JSON.stringify(book.BooId) } }"><button type="button" class="btn ">Read Now</button></router-link>
+                    <router-link :to="{ name: 'readinterface', query: { book: JSON.stringify(book.BooId) } }"><button type="button" class="btn ml-2">Borrow</button></router-link>
                 </div>
+
             </div>
         </div>
     </div>
