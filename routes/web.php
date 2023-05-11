@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\API\ProfilePicController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,9 @@ use App\Http\Controllers\API\BookController;
 Route::get('{any}', function () {
     return view('app');
 })->where('any','.*');
+
+
+Route::post('upload-profile-pic',[ProfilePicController::class,'uploadProfilePic']);
 
 /*
 Route::get('{any}', [BookController::class, 'gethomebook'])->where('any','.*');

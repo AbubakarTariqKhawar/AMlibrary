@@ -27,12 +27,14 @@ use Illuminate\Support\Facades\Route;
 Route::post('login',[UserController::class,'login']);
 Route::post('register',[UserController::class,'register']);
 Route::post('logout',[UserController::class,'logout'])->middleware(['auth:sanctum']);
+Route::post('updateUser',[UserController::class,'updateUser'])->middleware(['auth:sanctum']);
 
 Route::get('gethomebook',[BookController::class,'gethomebook']);
 Route::post('pickoneBook',[BookController::class,'pickoneBook']);
 Route::get('getallbooks',[BookController::class,'getallbooks']);
 Route::post('searchbook',[BookController::class,'searchbook']);
 Route::post('getBookByCategory',[BookController::class,'getBookByCategory']);
+Route::post('getBookLink',[BookController::class,'getBookLink']);
 
 Route::get('getAllCategories',[CategoryController::class,'getAllCategories']);
 

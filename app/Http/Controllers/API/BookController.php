@@ -113,4 +113,24 @@ class BookController extends Controller
         }
     }
 
+    public function getBookLink(Request $request){
+
+        try {
+            $bookId = $request->bookId;
+            $book = Book::where('BooId', $bookId)->get();
+            $data = compact('book');
+            return response()->json($data);
+
+        } catch(\Illuminate\Database\QueryException $ex) {
+
+            $success = false;
+            $message = $ex->getMessage();
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+            return response()->json($response);
+        }
+    }
+
 }

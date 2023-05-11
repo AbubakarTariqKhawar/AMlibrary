@@ -29,8 +29,8 @@
                         <div class="div1d">
                             <ul class="nav navbar-nav">
                                 <li class="nav-item" role="presentation"><router-link class="nav-link" to="/library"><b>Library</b></router-link></li>
-                                <li class="nav-item" role="presentation"><a class="nav-link" href="#"><b>Contact</b></a></li>
-                                <li class="nav-item" role="presentation"><a class="nav-link" href="#"><b>About Us</b></a></li>
+                                <li class="nav-item" role="presentation"><router-link class="nav-link" to="/contact"><b>Contact</b></router-link></li>
+                                <li class="nav-item" role="presentation"><router-link class="nav-link" to="/aboutus"><b>About Us</b></router-link></li>
 <!--
                                 <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><b>Categories</b> </a>
                                     <div class="dropdown-menu" role="menu"><router-link to="/library"><a class="dropdown-item" role="presentation" href="#">First Item</a></router-link><router-link to="/library"><a class="dropdown-item" role="presentation" href="#">Second Item</a></router-link><router-link to="/library"><a class="dropdown-item" role="presentation" href="#">Third Item</a></router-link></div>
@@ -48,7 +48,7 @@
                             <a class="btn btn-light action-button" role="button"  data-bs-toggle="modal" data-bs-target="#register"><b>Sign Up</b></a>
                         </div>
                         <div v-if="isLoggedin" class="div2d ">
-                            <span class="dropdown navbar-text mr-1"><a class="btn btn-light action-button  dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><img src="../logo/userblu.svg" alt="AMLibrary" style="height: 40px;"> </a>
+                            <span class="dropdown navbar-text mr-1"><a class="btn btn-light action-button  dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><img :src="`/img/user/${UsePic}`" alt="AMLibrary" style="height: 40px; border-radius: 50%; width: 40px;"> </a>
                                     <div class="dropdown-menu" role="menu"><router-link to="/userProfile"><a class="dropdown-item" role="presentation" href="#">Profile</a></router-link><a class="dropdown-item" role="presentation" href="#" @click="logout">Log Out</a></div>
                             </span>
 
@@ -184,7 +184,7 @@
             <div class="widget no-box">
             <h5 class="widget-title">Get Started<span></span></h5>
             <p>Start your reading habbit.</p>
-            <a class=" btn format" href="#" target="_blank" role="button"><b>Register now</b></a>
+            <!--<a class=" btn format" href="#" target="_blank" role="button"><b>Register now</b></a>-->
             </div>
             </div>
 
@@ -239,12 +239,14 @@ export default {
             showPassword: false,
             showLogPassword: false,
             error: null,
-            reerror: null
+            reerror: null,
+            UsePic: null,
         };
     },
     created() {
         if (window.Laravel.isLoggedin) {
             this.isLoggedin = true;
+            this.UsePic = window.Laravel.user.UsePic;
         }
     },
     methods: {

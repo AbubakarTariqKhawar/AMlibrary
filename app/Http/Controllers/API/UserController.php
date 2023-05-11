@@ -82,4 +82,44 @@ class UserController extends Controller
 
         return response()->json($response);
     }
+
+    public function updateUser(Request $request){
+
+        try {
+            $userId = $request->userId;
+            $name = $request->name;
+            $surname = $request->surname;
+            $email = $request->email;
+            $phone = $request->phone;
+            $password = $request->password;
+            $profilePic = $request->profilePic;
+
+            $userUpdate = User::where('UseId', $userId)->first(); // Retrieve the user by UserId
+
+            // Update the user's attributes
+            $userUpdate->name = $name;
+            $userUpdate->UseSureName = $surname;
+            $userUpdate->email = $email;
+            $userUpdate->UsePhone = $phone;
+            $userUpdate->password = Hash::make($password);
+            $userUpdate->UsePic = $request->profilePic;
+
+            $userUpdate->save();
+
+            $user = User::all();
+
+            $data = compact('user');
+            return response()->json($data);
+
+        } catch(\Illuminate\Database\QueryException $ex) {
+
+            $success = false;
+            $message = $ex->getMessage();
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+            return response()->json($response);
+        }
+    }
 }
