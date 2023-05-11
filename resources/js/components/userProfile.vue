@@ -189,7 +189,7 @@
                 UseId: null,
                 Perror: null,
             };
-        },/*
+        },
         mounted(){
             this.logedin = window.Laravel.isLoggedin;
             if(window.Laravel.isLoggedin){
@@ -202,7 +202,7 @@
                 this.profilePicP = window.Laravel.user.UsePic;
                 console.log(this.user);
             };
-        },*/
+        },
         methods: {
             toggleShowP() {
                 this.showPasswordP = !this.showPasswordP;
