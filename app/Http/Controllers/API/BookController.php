@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 use App\Models\Book;
+use App\Models\Renting_detail;
 
 class BookController extends Controller
 {
@@ -145,18 +146,92 @@ class BookController extends Controller
 
             // Create a new book using the received data
             $book = new Book();
-            $book->bookname = $bookname;
-            $book->bookcategory = $bookcategory;
-            $book->bookprice = $bookprice;
-            $book->booklink = $booklink;
-            $book->bookdescription = $bookdescription;
-            $book->bookpicture = $bookpicture;
+            $book->BooName = $bookname;
+            $book->BooCatId = $bookcategory;
+            $book->BooPrice = $bookprice;
+            $book->BooLink = $booklink;
+            $book->BooDescription = $bookdescription;
+            $book->BooPicture = $bookpicture;
 
             // Save the book to the database
             $book->save();
 
             // Optionally, you can return the created book as a response
-            return response()->json('Book Is been Created');
+            return response()->json('The book has been created');
+
+        } catch(\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+            return response()->json($response);
+        }
+
+    }
+
+    public function deleteBook(Request $request){
+
+        try {
+            $bookId = $request->bookId;
+
+            $book = Book::find($bookId);
+
+            if ($book) {
+                $RentBook = Renting_detail::where('RedBooId', $bookId)->first();
+                if($RentBook){
+                    return response()->json('This book cannot be deleted because it has been borrowed.');
+                }else{
+                    $book->delete();
+
+                    return response()->json('The Book has been deleted successfully');
+                }
+
+            } else {
+                return response()->json('The Book does not exist', 404);
+            }
+
+        } catch(\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+            return response()->json($response);
+        }
+    }
+
+
+    public function editBook(Request $request){
+
+        try {
+            $bookId = $request->bookId;
+            $bookname = $request->bookname;
+            $bookcategory = $request->bookcategory;
+            $bookprice = $request->bookprice;
+            $booklink = $request->booklink;
+            $bookdescription = $request->bookdescription;
+            $bookpicture = $request->bookpicture;
+
+            $book = Book::find($bookId);
+
+            if ($book) {
+
+                $book->BooName = $bookname;
+                $book->BooCatId = $bookcategory;
+                $book->BooPrice = $bookprice;
+                $book->BooLink = $booklink;
+                $book->BooDescription = $bookdescription;
+                $book->BooPicture = $bookpicture;
+
+                $book->save();
+
+                return response()->json('The book has been edited');
+            } else {
+                return response()->json('The book does not exist', 404);
+            }
 
         } catch(\Illuminate\Database\QueryException $ex) {
             $success = false;

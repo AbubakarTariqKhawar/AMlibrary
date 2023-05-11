@@ -44,6 +44,7 @@ class UserController extends Controller
             $user->UseRolId = $request->role;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
+            $user->UsePic = $request->userPic;
             $user->save();
 
             $success = true;

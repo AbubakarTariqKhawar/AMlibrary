@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('BooPrice');
             $table->foreign('BooCatId')
             ->references('CatId')->on('category');
+            $table->timestamps();
         });
     }
 

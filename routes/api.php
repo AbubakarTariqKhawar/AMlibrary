@@ -36,6 +36,8 @@ Route::post('searchbook',[BookController::class,'searchbook']);
 Route::post('getBookByCategory',[BookController::class,'getBookByCategory']);
 Route::post('getBookLink',[BookController::class,'getBookLink']);
 Route::post('createBook',[BookController::class,'createBook']);
+Route::post('deleteBook',[BookController::class,'deleteBook']);
+Route::post('editBook',[BookController::class,'editBook']);
 
 Route::get('getAllCategories',[CategoryController::class,'getAllCategories']);
 
