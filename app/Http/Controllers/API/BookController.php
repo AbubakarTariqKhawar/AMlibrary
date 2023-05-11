@@ -133,4 +133,41 @@ class BookController extends Controller
         }
     }
 
+    public function createBook(Request $request){
+
+        try {
+            $bookname = $request->bookname;
+            $bookcategory = $request->bookcategory;
+            $bookprice = $request->bookprice;
+            $booklink = $request->booklink;
+            $bookdescription = $request->bookdescription;
+            $bookpicture = $request->bookpicture;
+
+            // Create a new book using the received data
+            $book = new Book();
+            $book->bookname = $bookname;
+            $book->bookcategory = $bookcategory;
+            $book->bookprice = $bookprice;
+            $book->booklink = $booklink;
+            $book->bookdescription = $bookdescription;
+            $book->bookpicture = $bookpicture;
+
+            // Save the book to the database
+            $book->save();
+
+            // Optionally, you can return the created book as a response
+            return response()->json('Book Is been Created');
+
+        } catch(\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+            return response()->json($response);
+        }
+
+    }
+
 }

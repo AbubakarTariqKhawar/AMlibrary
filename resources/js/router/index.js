@@ -8,7 +8,7 @@ import Posts from '../components/posts.vue';
 import AddPost from '../components/AddPost.vue';
 import EditPost from '../components/EditPost.vue';
 import Library from '../components/library.vue';
-import Admin from '../components/admin.vue';
+import Editbook from '../components/editbook.vue';
 import Readinterface from '../components/readinterface.vue';
 import Bookdetail from '../components/bookdetail.vue';
 import UserProfile from '../components/userProfile.vue';
@@ -60,11 +60,11 @@ export const routes = [
         component: Library
     },
     {
-        name: 'admin',
-        path: '/admin',
-        component: Admin,
+        name: 'editbook',
+        path: '/editbook',
+        component: Editbook,
         meta: { requiresAuth: true,  roles: [2]}
-       
+
     },
     {
         name: 'readinterface',

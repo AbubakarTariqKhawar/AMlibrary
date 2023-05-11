@@ -35,6 +35,7 @@ Route::get('getallbooks',[BookController::class,'getallbooks']);
 Route::post('searchbook',[BookController::class,'searchbook']);
 Route::post('getBookByCategory',[BookController::class,'getBookByCategory']);
 Route::post('getBookLink',[BookController::class,'getBookLink']);
+Route::post('createBook',[BookController::class,'createBook']);
 
 Route::get('getAllCategories',[CategoryController::class,'getAllCategories']);
 
