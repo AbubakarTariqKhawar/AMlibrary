@@ -15,7 +15,7 @@ import UserProfile from '../components/userProfile.vue';
 import Aboutus from '../components/aboutus.vue';
 import Contact from '../components/contactus.vue';
 import Cart from '../components/cart.vue';
-
+import UsersManager from '../components/usersManager.vue';
 
 export const routes = [
     {
@@ -91,6 +91,11 @@ export const routes = [
     name: 'contact',
     path: '/contact',
     component: Contact
+},
+{
+  name: 'usersManager',
+  path: '/usersManager',
+  component: UsersManager
 },
 {
     name: 'cart',
