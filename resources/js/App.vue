@@ -377,7 +377,7 @@ export default {
 <style>
 @media (min-width:768px) {
     .modal{
-        width: 109%;
+        width: 108%;
     }
 }
 
