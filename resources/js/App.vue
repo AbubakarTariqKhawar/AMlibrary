@@ -275,7 +275,8 @@ export default {
                         phone: this.rephone,
                         role: 1,
                         email: this.reemail,
-                        password: this.repassword
+                        password: this.repassword,
+                        userPic: 'userblu.svg',
                     })
                         .then(response => {
                             if (response.data.success) {

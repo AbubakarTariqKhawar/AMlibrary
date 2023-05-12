@@ -24,6 +24,7 @@ return new class extends Migration
               ->references('BooId')->on('book');
               $table->integer('RedQuantity');
               $table->integer('RedPrice');
+              $table->timestamps();
         });
     }
 

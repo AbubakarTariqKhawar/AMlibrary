@@ -74,6 +74,7 @@
                   <div class="">
                     <label class="form-label" for="profilePicP" >Upload Image*:</label> <i class="fa fa-file-image-o" aria-hidden="true"></i>
                     <input type="file" class="form-control" id="profilePicP" ref="profilePicP" >
+                    <small v-if="Perror != null" style="color: red;">{{ Perror }}</small>
                   </div>
                 </div>
                 <!--
@@ -217,58 +218,96 @@
             saveInfoP() {
                 let file = this.$refs.profilePicP.files[0];
                 if(file){
-                    console.log('checking file pic');
-                    console.log(file);
+                    const allowedTypes = ['image/jpeg', 'image/svg', 'image/webp', 'image/png'];
 
-                    const formData = new FormData();
-                    formData.append('profilePic', file);
-                    formData.append('UseId', this.UseId);
+                    if (allowedTypes.includes(file.type)) {
+                        console.log('checking file pic');
+                        console.log(file);
 
-                    axios.post('/upload-profile-pic', formData)
-                    .then(response => {
+                        const formData = new FormData();
+                        formData.append('profilePic', file);
+                        formData.append('UseId', this.UseId);
 
-                        const fileName = response.data.fileName;
-                        console.log('checking file name');
-                        console.log(fileName);
+                        axios.post('/upload-profile-pic', formData)
+                        .then(response => {
 
-                        if(this.validateEmail(this.emailP) == true) {
-                            this.$axios.get('/sanctum/csrf-cookie').then(response => {
-                                this.$axios.post('api/updateUser', {
-                                    userId: this.UseId,
-                                    name: this.first_nameP,
-                                    surname: this.last_nameP,
-                                    email: this.emailP,
-                                    phone: this.phone_numberP,
-                                    password: this.passwordP,
-                                    profilePic: fileName,
+                            const fileName = response.data.fileName;
+                            console.log('checking file name');
+                            console.log(fileName);
+
+                            if(this.validateEmail(this.emailP) == true) {
+                                this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                                    this.$axios.post('api/updateUser', {
+                                        userId: this.UseId,
+                                        name: this.first_nameP,
+                                        surname: this.last_nameP,
+                                        email: this.emailP,
+                                        phone: this.phone_numberP,
+                                        password: this.passwordP,
+                                        profilePic: fileName,
+                                    })
+                                    .then(response => {
+                                        console.log('updated');
+                                        let userServer = response.data.user[0];
+
+                                        window.Laravel.user.UsePhone = userServer.UsePhone;
+                                        window.Laravel.user.UsePic = userServer.UsePic;
+                                        window.Laravel.user.UseSureName = userServer.UseSureName;
+                                        window.Laravel.user.email = userServer.email;
+                                        window.Laravel.user.name = userServer.name;
+                                        window.Laravel.user.updated_at = userServer.updated_at;
+
+                                        window.location.reload();
+                                    })
+                                    .catch(function (Perror) {
+                                        console.error(Perror);
+                                    });
                                 })
-                                .then(response => {
-                                    console.log('updated');
-                                    let userServer = response.data.user[0];
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error uploading profile picture:', error);
+                        });
 
-                                    window.Laravel.user.UsePhone = userServer.UsePhone;
-                                    window.Laravel.user.UsePic = userServer.UsePic;
-                                    window.Laravel.user.UseSureName = userServer.UseSureName;
-                                    window.Laravel.user.email = userServer.email;
-                                    window.Laravel.user.name = userServer.name;
-                                    window.Laravel.user.updated_at = userServer.updated_at;
 
-                                    window.location.reload();
-                                })
-                                .catch(function (Perror) {
-                                    console.error(Perror);
-                                });
-                            })
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error uploading profile picture:', error);
-                    });
+
+                    } else {
+                        this.Perror = 'Invalid file type. Please select a JPG, SVG, PNG, or WebP file.';
+                    }
+
 
 
 
                 }else{
-                    console.log('nothing')
+                    if(this.validateEmail(this.emailP) == true) {
+                        this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                            this.$axios.post('api/updateUser', {
+                                userId: this.UseId,
+                                name: this.first_nameP,
+                                surname: this.last_nameP,
+                                email: this.emailP,
+                                phone: this.phone_numberP,
+                                password: this.passwordP,
+                                profilePic: this.profilePicP,
+                            })
+                            .then(response => {
+                                console.log('updated');
+                                let userServer = response.data.user[0];
+
+                                window.Laravel.user.UsePhone = userServer.UsePhone;
+                                window.Laravel.user.UsePic = userServer.UsePic;
+                                window.Laravel.user.UseSureName = userServer.UseSureName;
+                                window.Laravel.user.email = userServer.email;
+                                window.Laravel.user.name = userServer.name;
+                                window.Laravel.user.updated_at = userServer.updated_at;
+
+                                window.location.reload();
+                            })
+                            .catch(function (Perror) {
+                                console.error(Perror);
+                            });
+                        })
+                    }
                 }
 
             },

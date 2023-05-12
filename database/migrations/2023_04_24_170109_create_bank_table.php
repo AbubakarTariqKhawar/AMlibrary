@@ -24,6 +24,7 @@ return new class extends Migration
 
             $table->foreign('BanUseId')
             ->references('UseId')->on('users');
+            $table->timestamps();
         });
     }
 

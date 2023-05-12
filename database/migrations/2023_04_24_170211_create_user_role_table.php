@@ -22,6 +22,7 @@ return new class extends Migration
             ->references('UseId')->on('users');
             $table->foreign('UsrRolId')
               ->references('RolId')->on('role');
+              $table->timestamps();
         });
     }
 

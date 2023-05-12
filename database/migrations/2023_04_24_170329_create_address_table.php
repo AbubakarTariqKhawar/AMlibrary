@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('AddAddres');
             $table->foreign('AddUseId')
             ->references('UseId')->on('users');
+            $table->timestamps();
         });
     }
 
