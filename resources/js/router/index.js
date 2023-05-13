@@ -55,7 +55,7 @@ export const routes = [
     name: 'userProfile',
     path: '/userProfile',
     component: UserProfile,
-    meta: { requiresAuth: true,  roles: [1,6,3,4]  }
+    meta: { requiresAuth: true,  roles: [1,2,6,3,4]  }
 },
 {
     name: 'aboutus',
