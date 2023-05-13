@@ -123,4 +123,14 @@ class UserController extends Controller
             return response()->json($response);
         }
     }
+
+
+
+    public function getUserRoles()
+    {
+        $user = Auth::user();
+        $roles = $user->roles;
+        
+        return response()->json(['roles' => $roles]);
+    }
 }

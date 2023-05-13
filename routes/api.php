@@ -51,9 +51,12 @@ Route::get('/authenticated', function () {
     return response()->json(['authenticated' => auth()->check()]);
 })->middleware('auth:sanctum');
 
-Route::get('/user/role', function () {
+Route::get('/user/roles', [UserController::class, 'getUserRoles'])->middleware('auth:sanctum');
+
+
+/*Route::get('/user/role', function () {
     return response()->json(['role' => auth()->user()->UseRolId]);
-})->middleware('auth:sanctum');
+})->middleware('auth:sanctum');*/
 /*
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

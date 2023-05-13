@@ -18,7 +18,7 @@
                     </div>
                     </div>
                 </div>
-                <button class="btn btn-light action-button" style="margin-left: 10px;" role="button" data-bs-toggle="modal" data-bs-target="#createBook" @click="CreateBValue()"><b>Create Book</b></button>
+                <button class="btn btn-light action-button" style="margin-left: 10px;" role="button" data-bs-toggle="modal" data-bs-target="#createBook" @click="CreateBValue()" v-if="canAddBook()"><b>Create Book</b></button>
 
             </div>
 
@@ -54,8 +54,8 @@
 
                     </div>
                     <div class="mt-3 " style="text-align: center;">
-                        <i class="fa fa-pencil fa-lg " data-bs-toggle="modal" data-bs-target="#editBook" @click="putEditValue(book); bookEdit = null;" style="cursor: pointer;" aria-hidden="true"></i>
-                        <i class="fa fa-trash fa-lg ml-4 " data-bs-toggle="modal" data-bs-target="#deleteBook" @click="deleteBvalue = book.BooId; bookDelete = null;" style="cursor: pointer;" aria-hidden="true"></i>
+                        <i class="fa fa-pencil fa-lg " data-bs-toggle="modal" data-bs-target="#editBook" @click="putEditValue(book); bookEdit = null;" style="cursor: pointer;" aria-hidden="true" v-if="editarBook()"></i>
+                        <i class="fa fa-trash fa-lg ml-4 " data-bs-toggle="modal" data-bs-target="#deleteBook" @click="deleteBvalue = book.BooId; bookDelete = null;" style="cursor: pointer;" aria-hidden="true" v-if="canDeleteBook()"></i>
 
                     </div>
                 </div>
@@ -75,8 +75,8 @@
                     </div>
                     </div>
                     <div class="mt-3 " style="text-align: center;">
-                        <i class="fa fa-pencil fa-lg " data-bs-toggle="modal" data-bs-target="#editBook" @click="putEditValue(book); bookEdit = null;" style="cursor: pointer;" aria-hidden="true"></i>
-                        <i class="fa fa-trash fa-lg ml-4 " data-bs-toggle="modal" data-bs-target="#deleteBook" @click="deleteBvalue = book.BooId; bookDelete = null;" style="cursor: pointer;" aria-hidden="true"></i>
+                        <i class="fa fa-pencil fa-lg " data-bs-toggle="modal" data-bs-target="#editBook" @click="putEditValue(book); bookEdit = null;" style="cursor: pointer;" aria-hidden="true" v-if="editarBook()"></i>
+                        <i class="fa fa-trash fa-lg ml-4 " data-bs-toggle="modal" data-bs-target="#deleteBook" @click="deleteBvalue = book.BooId; bookDelete = null;" style="cursor: pointer;" aria-hidden="true" v-if="canDeleteBook()"></i>
 
                     </div>
                 </div>
@@ -98,8 +98,8 @@
 
                     </div>
                     <div class="mt-3 " style="text-align: center;">
-                        <i class="fa fa-pencil fa-lg " data-bs-toggle="modal" data-bs-target="#editBook" @click="putEditValue(book); bookEdit = null;" style="cursor: pointer;" aria-hidden="true"></i>
-                        <i class="fa fa-trash fa-lg ml-4 " data-bs-toggle="modal" data-bs-target="#deleteBook" @click="deleteBvalue = book.BooId; bookDelete = null;" style="cursor: pointer;" aria-hidden="true"></i>
+                        <i class="fa fa-pencil fa-lg " data-bs-toggle="modal" data-bs-target="#editBook" @click="putEditValue(book); bookEdit = null;" style="cursor: pointer;" aria-hidden="true" v-if="editarBook()"></i>
+                        <i class="fa fa-trash fa-lg ml-4 " data-bs-toggle="modal" data-bs-target="#deleteBook" @click="deleteBvalue = book.BooId; bookDelete = null;" style="cursor: pointer;" aria-hidden="true" v-if="canDeleteBook()"></i>
 
                     </div>
                 </div>
@@ -274,11 +274,15 @@ export default {
             efileSelected: false,
             eselectedbookcategory: null,
             eebookpicture: null,
+            userRoles: [],
+          
+           
         };
     },
     mounted() {
         this.fetchAllBooks();
         this.getAllCategories();
+        this.getUserRoles();
     },
     watch: {
         selectedCategory(newValue) {
@@ -307,6 +311,36 @@ export default {
         },
     },
     methods: {
+        
+        getUserRoles() {
+    axios.get('/api/user/roles')
+      .then(response => {
+        this.userRoles = response.data.roles;
+        console.log('User Roles:', this.userRoles);
+      })
+      .catch(() => {
+        console.error('Failed to retrieve user roles');
+      });
+  },
+  canAddBook() {
+    const userRoleIds = this.userRoles.map(role => role.RolId);
+    console.log('User Role IDs:', userRoleIds);
+    return userRoleIds.includes(3) || userRoleIds.includes(1);
+  },
+  canDeleteBook() {
+    const userRoleIds = this.userRoles.map(role => role.RolId);
+    console.log('User Role IDs:', userRoleIds);
+    return userRoleIds.includes(4) || userRoleIds.includes(1);
+  },
+  editarBook() {
+    const userRoleIds = this.userRoles.map(role => role.RolId);
+    console.log('User Role IDs:', userRoleIds);
+    return userRoleIds.includes(5) || userRoleIds.includes(1);
+  },
+ 
+
+
+
         fetchAllBooks() {
             this.$axios.get('/sanctum/csrf-cookie').then(response => {
                 axios.get('/api/getallbooks')
@@ -521,8 +555,19 @@ export default {
                 })
             }
         },
+
+
+
+
+
+
+
     },
 }
+
+
+
+
 </script>
 
 <style scoped>

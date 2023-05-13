@@ -63,7 +63,7 @@ export const routes = [
         name: 'editbook',
         path: '/editbook',
         component: Editbook,
-        meta: { requiresAuth: true,  roles: [2]}
+        meta: { requiresAuth: true,  roles: [1,3,4,5]}
 
     },
     {
@@ -80,7 +80,7 @@ export const routes = [
     name: 'userProfile',
     path: '/userProfile',
     component: UserProfile,
-    meta: { requiresAuth: true,  roles: [1, 2]  }
+    meta: { requiresAuth: true,  roles: [1,6,3,4]  }
 },
 {
     name: 'aboutus',
@@ -138,7 +138,9 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });*/
-import axios from 'axios';
+
+/*
+
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
@@ -182,6 +184,63 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+*/
+
+import axios from 'axios';
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    axios.get('/api/authenticated')
+      .then(response => {
+        if (!response.data.authenticated) {
+          // User is not logged in, redirect to login page
+          next({
+            name: 'home',
+            query: { redirect: to.fullPath }
+          });
+        } else {
+          // User is logged in, check their roles
+          axios.get('/api/user/roles')
+            .then(response => {
+             
+              const userRoles = response.data.roles;
+              const requiredRoles = to.meta.roles;
+              const hasRequiredRole = userRoles.some(role => requiredRoles.includes(role.RolId));
+
+              if (hasRequiredRole) {
+                // User has the required role, allow access
+                next();
+              } else {
+                console.log(response.data.roles);
+                // User doesn't have the required role, redirect to home page
+                next({
+                  name: 'home',
+                  query: { redirect: to.fullPath }
+                });
+              }
+            })
+            .catch(() => {
+              // Error retrieving user roles, redirect to home page
+              next({
+                name: 'home',
+                query: { redirect: to.fullPath }
+              });
+            });
+        }
+      })
+      .catch(() => {
+        // Error retrieving authentication status, redirect to home page
+        next({
+          name: 'home',
+          query: { redirect: to.fullPath }
+        });
+      });
+  } else {
+    // Route does not require authentication, allow access
+    next();
+  }
+});
+
 
 
 export default router;

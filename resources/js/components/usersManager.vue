@@ -1,5 +1,5 @@
 <template>
-  <div class="container border my-5">
+  <div class="container  my-5 border rounded-5  shadow py-3">
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -24,7 +24,7 @@
                   <tbody>
                     <tr>
                       <td class="pl-4">1</td>
-                      <td><img src="../../logo/icons8-user-100.png"  style="height: 40px; border-radius: 50%; width: 40px;"/></td>
+                      <td><img src="../../logo/icons8-user-100.png"  style="height: 40px; border-radius: 50%; width: 40px;"/><br><span>name extralargehghggh</span></td>
                       <td>
                           <h5 class="font-medium mb-0">Daniel Kristeen</h5>
                           <span class="text-muted">Texas, Unitedd states</span>
@@ -46,7 +46,7 @@
                         </select>
                       </td>
                       <td >
-                        <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle"><i class="fa fa-key"></i> </button>
+                        <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle mb-1"><i class="fa fa-key"></i> </button>
                         <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
 
                       </td>
@@ -69,14 +69,15 @@
                           <span class="text-muted">10: 55 AM</span>
                       </td>
                       <td>
-                        <select class="form-control category-select  text-center" id="exampleFormControlSelect1">
-                          <option>librarian</option>
-                          <option>Admin</option>
-                          <option>User</option>
-                        </select>
+         
+                        <select class="selectpicker" multiple data-max-options="2">
+  <option>Mustard</option>
+  <option>Ketchup</option>
+  <option>Relish</option>
+</select>
                       </td>
                       <td >
-                        <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle"><i class="fa fa-key"></i> </button>
+                        <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle mb-1"><i class="fa fa-key"></i> </button>
                         <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
 
                       </td>
@@ -107,7 +108,7 @@
                         </select>
                       </td>
                       <td >
-                        <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle"><i class="fa fa-key"></i> </button>
+                        <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle mb-1"><i class="fa fa-key"></i> </button>
                         <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
 
                       </td>
@@ -126,6 +127,7 @@
     export default {
         name: "useusersManager"
     }
+
     </script>
 
     <style scoped>
