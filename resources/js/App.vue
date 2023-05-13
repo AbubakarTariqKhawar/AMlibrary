@@ -49,10 +49,15 @@
                         </div>
                         <div v-if="isLoggedin" class="div2d ">
                             <span class="dropdown navbar-text mr-1"><a class="btn btn-light action-button  dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><img :src="`/img/user/${UsePic}`" alt="AMLibrary" style="height: 40px; border-radius: 50%; width: 40px;"> </a>
-                                    <div class="dropdown-menu" role="menu"><router-link to="/userProfile"><a class="dropdown-item" role="presentation" href="#">Profile</a></router-link><a class="dropdown-item" role="presentation" href="#" @click="logout">Log Out</a></div>
+                                    <div class="dropdown-menu" role="menu">
+                                        <router-link to="/userProfile"><a class="dropdown-item" role="presentation" href="#">Profile</a></router-link>
+                                        <router-link :to="{name:'editbook'}"><a class="dropdown-item" role="presentation" href="#">Edit Books</a></router-link>
+                                        <router-link to="/usersManager"><a class="dropdown-item" role="presentation" href="#">Users Manager</a></router-link>
+                                        <a class="dropdown-item" role="presentation" href="#" @click="logout">Log Out</a>
+                                    </div>
                             </span>
 
-                            <a class="btn btn-light action-button" role="button" ><img src="../logo/basket.svg" alt="AMLibrary" style="height: 40px;"></a>
+                            <a class="btn btn-light action-button" role="button" @click="this.$router.push('/cart')" ><img src="../logo/basket.svg" alt="AMLibrary" style="height: 40px;"></a>
                         </div>
                     </div>
                 </div>
@@ -377,7 +382,7 @@ export default {
 <style>
 @media (min-width:768px) {
     .modal{
-        width: 109%;
+        width: 108%;
     }
 }
 

@@ -118,7 +118,7 @@
                 <div class="modal-content createbookdiv" style="padding: 3%; border-radius: 20px; overflow: auto;!important">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-                    <div class="lgoinbdiv" style="padding: 3%; border: none;">
+                    <div class="lgoinbdiv" style="padding: 2%; border: none;">
                         <img src="../../logo/mainlogoblack.svg" height="80" style="padding-left: 6%;">
                         <div class="mt-4">
                             <label for="ebookname" class="col-form-label">Book Name* / Book Category*:</label> <i class="fa fa-book" aria-hidden="true"></i>
@@ -194,7 +194,7 @@
                 <div class="modal-content createbookdiv" style="padding: 3%; border-radius: 20px; overflow: auto;!important">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-                    <div class="lgoinbdiv" style="padding: 3%; border: none;">
+                    <div class="lgoinbdiv" style="padding: 2%; border: none;">
                         <img src="../../logo/mainlogoblack.svg" height="80" style="padding-left: 6%;">
                         <div class="mt-4">
                             <label for="bookname" class="col-form-label">Book Name* / Book Category*:</label> <i class="fa fa-book" aria-hidden="true"></i>

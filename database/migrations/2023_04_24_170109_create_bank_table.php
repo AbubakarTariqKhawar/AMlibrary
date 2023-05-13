@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('bank', function (Blueprint $table) {
             $table->id('BanID');
             $table->unsignedBigInteger('BanUseId');
-            $table->bigInteger('BanCardNumber');
+            $table->string('BanCardNumber');
             $table->string('BanOwenrName');
             $table->integer('BanExpireMonth');
             $table->integer('BanExpireYear');
-            $table->integer('CVV');
+            $table->string('CVV');
 
             $table->foreign('BanUseId')
             ->references('UseId')->on('users');

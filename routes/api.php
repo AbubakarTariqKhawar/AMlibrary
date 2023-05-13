@@ -29,6 +29,14 @@ Route::post('register',[UserController::class,'register']);
 Route::post('logout',[UserController::class,'logout'])->middleware(['auth:sanctum']);
 Route::post('updateUser',[UserController::class,'updateUser'])->middleware(['auth:sanctum']);
 
+Route::post('pickalladdress',[AddressController::class,'pickalladdress'])->middleware(['auth:sanctum']);
+Route::post('updateaddress',[AddressController::class,'updateaddress'])->middleware(['auth:sanctum']);
+Route::post('deletemyaddress',[AddressController::class,'deletemyaddress'])->middleware(['auth:sanctum']);
+
+Route::post('pickallBankp',[BankController::class,'pickallBankp'])->middleware(['auth:sanctum']);
+Route::post('deletebank',[BankController::class,'deletebank'])->middleware(['auth:sanctum']);
+Route::post('updatebankinfo',[BankController::class,'updatebankinfo'])->middleware(['auth:sanctum']);
+
 Route::get('gethomebook',[BookController::class,'gethomebook']);
 Route::post('pickoneBook',[BookController::class,'pickoneBook']);
 Route::get('getallbooks',[BookController::class,'getallbooks']);
