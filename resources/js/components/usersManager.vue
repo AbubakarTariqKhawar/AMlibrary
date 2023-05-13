@@ -39,11 +39,23 @@
                           <span class="text-muted">10: 55 AM</span>
                       </td>
                       <td>
-                        <select class="form-control category-select  text-center" id="exampleFormControlSelect1">
-                          <option>librarian</option>
-                          <option>Admin</option>
-                          <option>User</option>
-                        </select>
+                        <div class="dropdown">
+                          <button class="dropdown-toggle form-control category-select  text-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select Options
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">
+                              <input type="checkbox" value="option1"> Option 1
+                            </a>
+                            <a class="dropdown-item" href="#">
+                              <input type="checkbox" value="option2"> Option 2
+                            </a>
+                            <a class="dropdown-item" href="#">
+                              <input type="checkbox" value="option3"> Option 3
+                            </a>
+                            <!-- Add more options here -->
+                          </div>
+                        </div>
                       </td>
                       <td >
                         <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle mb-1"><i class="fa fa-key"></i> </button>
@@ -69,12 +81,35 @@
                           <span class="text-muted">10: 55 AM</span>
                       </td>
                       <td>
-         
-                        <select class="selectpicker" multiple data-max-options="2">
-  <option>Mustard</option>
-  <option>Ketchup</option>
-  <option>Relish</option>
-</select>
+                        <div class="dropdown">
+                          <button class="dropdown-toggle form-control category-select  text-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select Options
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">
+                              <input type="checkbox" value="option1"> Option 1
+                            </a>
+                            <a class="dropdown-item" href="#">
+                              <input type="checkbox" value="option2"> Option 2
+                            </a>
+                            <a class="dropdown-item" href="#">
+                              <input type="checkbox" value="option3"> Option 3
+                            </a>
+
+                            <a class="dropdown-item" href="#">
+                              <input type="checkbox" value="option1"> Option 1
+                            </a>
+                            <a class="dropdown-item" href="#">
+                              <input type="checkbox" value="option2"> Option 2
+                            </a>
+                            <a class="dropdown-item" href="#">
+                              <input type="checkbox" value="option3"> Option 3
+                            </a>
+                            
+                            <!-- Add more options here -->
+                          </div>
+                        </div>
+
                       </td>
                       <td >
                         <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle mb-1"><i class="fa fa-key"></i> </button>
@@ -101,12 +136,24 @@
                           <span class="text-muted">10: 55 AM</span>
                       </td>
                       <td>
-                        <select class="form-control category-select text-center" id="exampleFormControlSelect1">
-                          <option>librarian</option>
-                          <option>Admin</option>
-                          <option>User</option>
-                        </select>
-                      </td>
+                        <div class="dropdown">
+                          <button class="dropdown-toggle form-control category-select  text-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select Options
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">
+                              <input type="checkbox" value="option1"> Option 1
+                            </a>
+                            <a class="dropdown-item" href="#">
+                              <input type="checkbox" value="option2"> Option 2
+                            </a>
+                            <a class="dropdown-item" href="#">
+                              <input type="checkbox" value="option3"> Option 3
+                            </a>
+                            <!-- Add more options here -->
+                          </div>
+                        </div>
+                                              </td>
                       <td >
                         <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle mb-1"><i class="fa fa-key"></i> </button>
                         <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
@@ -127,6 +174,35 @@
     export default {
         name: "useusersManager"
     }
+    document.addEventListener('DOMContentLoaded', function() {
+  var dropdownToggle = document.querySelector('.dropdown-toggle');
+  var dropdownMenu = document.querySelector('.dropdown-menu');
+
+  dropdownToggle.addEventListener('click', function() {
+    dropdownMenu.classList.toggle('show');
+  });
+
+  var checkboxes = document.querySelectorAll('.dropdown-menu input[type="checkbox"]');
+  var selectedOptions = [];
+
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      var optionValue = this.value;
+      
+      if (this.checked) {
+        selectedOptions.push(optionValue);
+      } else {
+        var index = selectedOptions.indexOf(optionValue);
+        if (index > -1) {
+          selectedOptions.splice(index, 1);
+        }
+      }
+
+      // Perform any necessary actions with the selected options
+      console.log(selectedOptions);
+    });
+  });
+});
 
     </script>
 
