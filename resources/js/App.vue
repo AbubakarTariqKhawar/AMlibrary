@@ -51,10 +51,10 @@
                             <span class="dropdown navbar-text mr-1"><a class="btn btn-light action-button  dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><img :src="`/img/user/${UsePic}`" alt="AMLibrary" style="height: 40px; border-radius: 50%; width: 40px;"> </a>
                                     <div class="dropdown-menu" role="menu">
                                         <router-link to="/userProfile"><a class="dropdown-item" role="presentation" href="#">Profile</a></router-link>
-                                        <router-link :to="{name:'editbook'}"><a class="dropdown-item" role="presentation" href="#">Edit Books</a></router-link>
-                                        <router-link to="/usersManager"><a class="dropdown-item" role="presentation" href="#">Users Manager</a></router-link>
+                                        <router-link :to="{name:'editbook'}"><a class="dropdown-item" role="presentation" href="#" v-if="canEditBooks()">Edit Books</a></router-link>
+                                        <router-link to="/usersManager"><a class="dropdown-item" role="presentation" href="#" v-if="canEditUsers()">Users Manager</a></router-link>
                                         <router-link to="/userBooks"><a class="dropdown-item" role="presentation" href="#">My Books</a></router-link>
-                                        <router-link to="/adminBooksRented"><a class="dropdown-item" role="presentation" href="#">All Rented Books</a></router-link>
+                                        <router-link to="/adminBooksRented"><a class="dropdown-item" role="presentation" href="#" v-if="isSuperAdmin()">All Rented Books</a></router-link>
                                         <a class="dropdown-item" role="presentation" href="#" @click="logout">Log Out</a>
                                     </div>
                             </span>
@@ -177,10 +177,10 @@
             <h5 class="widget-title">Quick Links<span></span></h5>
             <ul class="thumbnail-widget">
             <li>
-            <div class="thumb-content"><a href="#.">Privacy Policy</a></div>
+            <div class="thumb-content"><router-link class="nav-link" to="/PrivacyPolicy"><a href="#.">Privacy Policy</a></router-link></div>
             </li>
             <li>
-            <div class="thumb-content"><a href="#.">Cockies</a></div>
+            <div class="thumb-content"><router-link class="nav-link" to="/PrivacyPolicy"><a href="#.">Cockies</a></router-link></div>
             </li>
 
             </ul>
@@ -248,8 +248,14 @@ export default {
             error: null,
             reerror: null,
             UsePic: null,
+            userRoles: [],
         };
     },
+    mounted(){
+           
+            this.getUserRoles();
+
+        },
     created() {
         if (window.Laravel.isLoggedin) {
             this.isLoggedin = true;
@@ -257,6 +263,41 @@ export default {
         }
     },
     methods: {
+
+
+
+        getUserRoles() {
+            axios.get('/api/user/roles')
+              .then(response => {
+                this.userRoles = response.data.roles;
+                console.log('User Roles:', this.userRoles);
+              })
+              .catch(() => {
+                console.error('Failed to retrieve user roles');
+              });
+          },
+        canEditBooks() {
+          const userRoleIds = this.userRoles.map(role => role.RolId);
+          console.log('User Role IDs:', userRoleIds);
+          return userRoleIds.includes(3) || userRoleIds.includes(4) || userRoleIds.includes(5) || userRoleIds.includes(1);
+        },
+        canEditUsers() {
+          const userRoleIds = this.userRoles.map(role => role.RolId);
+          console.log('User Role IDs:', userRoleIds);
+          return userRoleIds.includes(6) || userRoleIds.includes(7) || userRoleIds.includes(1);
+        },
+        isSuperAdmin() {
+          const userRoleIds = this.userRoles.map(role => role.RolId);
+          console.log('User Role IDs:', userRoleIds);
+          return  userRoleIds.includes(1);
+        },
+        
+
+
+
+
+
+
 
         toggleShow() {
             this.showPassword = !this.showPassword;

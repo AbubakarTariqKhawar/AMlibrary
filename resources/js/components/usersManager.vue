@@ -40,19 +40,19 @@
                       </td>
                       <td>
                         <div class="dropdown">
-                          <button class="dropdown-toggle form-control category-select  text-center" type="button" id="selectRolesforUsers" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 20px;">
+                          <button class="dropdown-toggle form-control category-select  text-center" type="button" id="selectRolesforUsers" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 20px;" >
                             Select Roles
                           </button>
-                          <div class="dropdown-menu" aria-labelledby="selectRolesforUsers">
-                            <a class="dropdown-item" v-if="allRoles" v-for="role in allRoles" :key="role.RolId">
+                          <div class="dropdown-menu" aria-labelledby="selectRolesforUsers" v-if="canEditUsers()">
+                            <a class="dropdown-item" v-if="allRoles" v-for="role in allRoles" :key="role.RolId" >
                               <input type="checkbox" :key="role.RolId" :value="role.RolId" :checked="isRoleSelected(user.UseId, role.RolId)" @change="toggleRoleUser(user.UseId, role.RolId, $event.target.checked)"> {{ role.RolName }}
                             </a>
                           </div>
                         </div>
                       </td>
                       <td >
-                        <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle mb-1" @click="putteditPass(user); editpadderror = null;" data-bs-toggle="modal" data-bs-target="#editUserR" ><i class="fa fa-key"></i> </button>
-                        <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" @click="deleteUserRvalue = user.UseId; userRDelete = null;"  data-bs-toggle="modal" data-bs-target="#deleteUserR"><i class="fa fa-trash"></i> </button>
+                        <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle mb-1" @click="putteditPass(user); editpadderror = null;" data-bs-toggle="modal" data-bs-target="#editUserR" v-if="canEditUsers()"><i class="fa fa-key"></i> </button>
+                        <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" @click="deleteUserRvalue = user.UseId; userRDelete = null;"  data-bs-toggle="modal" data-bs-target="#deleteUserR" v-if="canDeletetUsers()"><i class="fa fa-trash"></i> </button>
 
                       </td>
                     </tr>
@@ -152,6 +152,7 @@
 
 
                 selectedRoles: [],
+                userRoles: [],
 
             };
         },
@@ -159,9 +160,37 @@
             this.pickAllUsers();
             this.pickAllRoles();
             this.pickAllRoleUser();
+            this.getUserRoles();
 
         },
         methods: {
+          getUserRoles() {
+            axios.get('/api/user/roles')
+              .then(response => {
+                this.userRoles = response.data.roles;
+                console.log('User Roles:', this.userRoles);
+              })
+              .catch(() => {
+                console.error('Failed to retrieve user roles');
+              });
+          },
+        canEditUsers() {
+          const userRoleIds = this.userRoles.map(role => role.RolId);
+          console.log('User Role IDs:', userRoleIds);
+          return userRoleIds.includes(6) || userRoleIds.includes(1);
+        },
+        canDeletetUsers() {
+          const userRoleIds = this.userRoles.map(role => role.RolId);
+          console.log('User Role IDs:', userRoleIds);
+          return userRoleIds.includes(7) || userRoleIds.includes(1);
+        },
+        
+      
+
+
+
+
+
             isRoleSelected(userId, roleId) {
                 //console.log('checking user role slected');
                 //console.log(this.allRoleUser);

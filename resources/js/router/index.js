@@ -14,6 +14,7 @@ import Cart from '../components/cart.vue';
 import UsersManager from '../components/usersManager.vue';
 import UserBooks from '../components/userBooks.vue';
 import AdminBooksRented from '../components/adminBooksRented.vue';
+import PrivacyPolicy from '../components/PrivacyPolicy.vue';
 export const routes = [
     {
         name: 'home',
@@ -56,7 +57,7 @@ export const routes = [
     name: 'userProfile',
     path: '/userProfile',
     component: UserProfile,
-    meta: { requiresAuth: true,  roles: [1,2,6,3,4,5]  }
+    meta: { requiresAuth: true,  roles: [1,2,6,3,4,5,7]  }
 },
 {
     name: 'aboutus',
@@ -71,7 +72,8 @@ export const routes = [
 {
   name: 'usersManager',
   path: '/usersManager',
-  component: UsersManager
+  component: UsersManager,
+  meta: { requiresAuth: true,  roles: [1,6,7]  }
 },
 {
     name: 'cart',
@@ -81,12 +83,19 @@ export const routes = [
 {
   name: 'userBooks',
   path: '/userBooks',
-  component: UserBooks
+  component: UserBooks,
+  meta: { requiresAuth: true,  roles: [1,2,6,3,4,5,7]  }
 },
 {
   name: 'adminBooksRented',
   path: '/adminBooksRented',
-  component: AdminBooksRented
+  component: AdminBooksRented,
+  meta: { requiresAuth: true,  roles: [1]  }
+},
+{
+  name: 'PrivacyPolicy',
+  path: '/PrivacyPolicy',
+  component: PrivacyPolicy
 },
 ];
 
