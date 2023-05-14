@@ -9,7 +9,7 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\RentingController;
 use App\Http\Controllers\API\RentingDetailController;
 use App\Http\Controllers\API\RoleController;
-use App\Http\Controllers\API\UserRoleController;
+use App\Http\Controllers\API\RoleUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +28,10 @@ Route::post('login',[UserController::class,'login']);
 Route::post('register',[UserController::class,'register']);
 Route::post('logout',[UserController::class,'logout'])->middleware(['auth:sanctum']);
 Route::post('updateUser',[UserController::class,'updateUser'])->middleware(['auth:sanctum']);
+Route::get('getallUsers',[UserController::class,'getallUsers'])->middleware(['auth:sanctum']);
+Route::post('deleteUSer',[UserController::class,'deleteUSer'])->middleware(['auth:sanctum']);
+Route::post('editUSerPass',[UserController::class,'editUSerPass'])->middleware(['auth:sanctum']);
+Route::post('addClientRole',[UserController::class,'addClientRole']);
 
 Route::post('pickalladdress',[AddressController::class,'pickalladdress'])->middleware(['auth:sanctum']);
 Route::post('updateaddress',[AddressController::class,'updateaddress'])->middleware(['auth:sanctum']);
@@ -36,6 +40,12 @@ Route::post('deletemyaddress',[AddressController::class,'deletemyaddress'])->mid
 Route::post('pickallBankp',[BankController::class,'pickallBankp'])->middleware(['auth:sanctum']);
 Route::post('deletebank',[BankController::class,'deletebank'])->middleware(['auth:sanctum']);
 Route::post('updatebankinfo',[BankController::class,'updatebankinfo'])->middleware(['auth:sanctum']);
+
+Route::get('getAllRoles',[RoleController::class,'getAllRoles'])->middleware(['auth:sanctum']);
+
+Route::get('getAllRoleUser',[RoleUserController::class,'getAllRoleUser'])->middleware(['auth:sanctum']);
+Route::post('updateUserRole',[RoleUserController::class,'updateUserRole'])->middleware(['auth:sanctum']);
+Route::post('deleteUserRole',[RoleUserController::class,'deleteUserRole'])->middleware(['auth:sanctum']);
 
 Route::get('gethomebook',[BookController::class,'gethomebook']);
 Route::post('pickoneBook',[BookController::class,'pickoneBook']);

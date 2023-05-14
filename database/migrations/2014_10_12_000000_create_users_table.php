@@ -22,9 +22,6 @@ return new class extends Migration
             $table->string('password');
             $table->bigInteger('UsePhone');
             $table->string("UsePic")->nullable();
-            $table->unsignedBigInteger('UseRolId');
-            $table->foreign('UseRolId')
-              ->references('RolId')->on('role');
             $table->rememberToken();
             $table->timestamps();
         });

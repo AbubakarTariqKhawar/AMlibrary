@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Models\Bank;
+use App\Models\Renting;
+use App\Models\Role_user;
 
 class UserController extends Controller
 {
@@ -41,7 +44,6 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->UseSureName = $request->surname;
             $user->UsePhone = $request->phone;
-            $user->UseRolId = $request->role;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->UsePic = $request->userPic;
@@ -124,13 +126,138 @@ class UserController extends Controller
         }
     }
 
+    public function getallUsers(){
+
+        try {
+            $users = User::all();
+            $data = compact('users');
+            return response()->json($data);
+
+        } catch(\Illuminate\Database\QueryException $ex) {
+
+            $success = false;
+            $message = $ex->getMessage();
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+            return response()->json($response);
+        }
+
+
+    }
+
+
+    public function deleteUSer(Request $request){
+
+        try {
+            $userid = $request->id;
+
+            $user = User::find($userid);
+
+            if ($user) {
+                $RentBook = Renting::where('RenUseId', $userid)->first();
+                $Bank = Bank::where('BanUseId', $userid)->first();
+                $Role_user = Role_user::where('user_UseId', $userid)->first();
+
+                if($RentBook || $Bank || $Role_user){
+                    return response()->json('This User cannot be deleted because it has being used.');
+                }else{
+                    $user->delete();
+
+                    return response()->json('The User has been deleted successfully');
+                }
+
+            } else {
+                return response()->json('The User does not exist', 404);
+            }
+
+        } catch(\Illuminate\Database\QueryException $ex) {
+
+            $success = false;
+            $message = $ex->getMessage();
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+            return response()->json($response);
+        }
+    }
+
+    public function editUSerPass(Request $request){
+
+        try {
+            $id = $request->id;
+            $pass = $request->pass;
+
+
+            $user = User::find($id);
+
+            if ($user) {
+
+                $user->password = Hash::make($pass);
+
+                $user->save();
+
+                return response()->json('The User has been edited');
+            } else {
+                return response()->json('The User does not exist', 404);
+            }
+
+        } catch(\Illuminate\Database\QueryException $ex) {
+
+            $success = false;
+            $message = $ex->getMessage();
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+            return response()->json($response);
+        }
+    }
+
+
+    public function addClientRole(Request $request){
+
+        try {
+            $userEmail = $request->email;
+            $roleId = $request->roleId;
+
+            $user = User::where('email', $userEmail)->first();
+
+            if ($user) {
+
+                $userId = $user->UseId;
+
+                $newRoleUser = new Role_user();
+                $newRoleUser->user_UseId = $userId;
+                $newRoleUser->role_RolId = $roleId;
+                $newRoleUser->save();
+
+                return response()->json('The New RoleUser has been added');
+            } else {
+
+                return response()->json('The User doesnt  exists', 404);
+            }
+        } catch(\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+            return response()->json($response);
+        }
+    }
+
+
 
 
     public function getUserRoles()
     {
         $user = Auth::user();
         $roles = $user->roles;
-        
+
         return response()->json(['roles' => $roles]);
     }
 }

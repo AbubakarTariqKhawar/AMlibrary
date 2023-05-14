@@ -116,7 +116,7 @@
                         </thead>
                         <tbody>
                             <tr v-if="allAddressp" v-for="address in allAddressp" :key="address.AddId">
-                                <td class="pl-4 pt-3">1</td>
+                                <td class="pl-4 pt-3">{{address.AddId}}</td>
                                 <td><img src="../../logo/homeicon.svg"  style="height: 40px;  width: 40px;"/></td>
                                 <td>
                                     <h5 class="font-medium pt-2">{{address.AddAddres}}</h5>
@@ -157,7 +157,7 @@
                     </thead>
                     <tbody>
                         <tr v-if="allBankp" v-for="bank in allBankp" :key="bank.BanID">
-                            <td class="pl-4 pt-4">1</td>
+                            <td class="pl-4 pt-4">{{ bank.BanID }}</td>
                             <td><img src="../../logo/cardp.png"  style="height: 40px; width: 40px;"/></td>
                             <td class="pt-4">
                                 <span class="text-muted">{{ bank.BanCardNumber }}</span>

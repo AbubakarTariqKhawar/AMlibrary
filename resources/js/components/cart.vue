@@ -31,7 +31,7 @@
                         <div class="book  justify-content-center mr-5 ">
                           <div class="front ">
                               <div class="cover">
-                                  
+
                                       <img src="../../books/comic.webp" width=" 64" height="90.78" >
                               </div>
                           </div>
@@ -45,7 +45,7 @@
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center">
-                        
+
                         <div style="width: 80px;">
                           <h5 class="mb-0">$900</h5>
                         </div>
@@ -62,7 +62,7 @@
                         <div class="book  justify-content-center mr-5 ">
                           <div class="front ">
                               <div class="cover">
-                                  
+
                                       <img src="../../books/comic.webp" width=" 64" height="90.78" >
                               </div>
                           </div>
@@ -76,7 +76,7 @@
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center">
-                       
+
                         <div style="width: 80px;">
                           <h5 class="mb-0">$900</h5>
                         </div>
@@ -93,7 +93,7 @@
                         <div class="book  justify-content-center mr-5 ">
                           <div class="front ">
                               <div class="cover">
-                                  
+
                                       <img src="../../books/comic.webp" width=" 64" height="90.78" >
                               </div>
                           </div>
@@ -107,7 +107,7 @@
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center">
-                      
+
                         <div style="width: 80px;">
                           <h5 class="mb-0">$1199</h5>
                         </div>
@@ -124,7 +124,7 @@
                         <div class="book  justify-content-center mr-5 ">
                           <div class="front ">
                               <div class="cover">
-                                  
+
                                       <img src="../../books/comic.webp" width=" 64" height="90.78" >
                               </div>
                           </div>
@@ -138,7 +138,7 @@
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center">
-                       
+
                         <div style="width: 80px;">
                           <h5 class="mb-0">$1799</h5>
                         </div>
@@ -155,7 +155,7 @@
                         <div class="book  justify-content-center mr-5 ">
                           <div class="front ">
                               <div class="cover">
-                                  
+
                                       <img src="../../books/comic.webp" width=" 64" height="90.78" >
                               </div>
                           </div>
@@ -169,7 +169,9 @@
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center">
-                        
+                        <div style="width: 50px;">
+                          <h5 class="fw-normal mb-0">2</h5>
+                        </div>
                         <div style="width: 80px;">
                           <h5 class="mb-0">$1799</h5>
                         </div>
@@ -186,7 +188,7 @@
                         <div class="book  justify-content-center mr-5 ">
                           <div class="front ">
                               <div class="cover">
-                                  
+
                                       <img src="../../books/comic.webp" width=" 64" height="90.78" >
                               </div>
                           </div>
@@ -200,7 +202,7 @@
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center">
-                       
+
                         <div style="width: 80px;">
                           <h5 class="mb-0">$1799</h5>
                         </div>
@@ -215,7 +217,7 @@
 
                 <div class="card  text-white rounded-3" style="background-color: #212121;">
                   <div class="card-body">
-                    
+
                     <div class="d-flex justify-content-between align-items-center mb-4">
                       <h4 class="mb-0">Card details</h4>
 
@@ -224,10 +226,10 @@
 
 
                               <div class="row mb-4 " style="padding-left: 16px; padding-right: 16px; ">
-                                  
+
                                 <div class="form-outline form-white mb-4 col-md-8" >
-                                
-                                  <select class="form-control form-control-lg" 
+
+                                  <select class="form-control form-control-lg"
                                     placeholder="1234 NW Bobcat Lane, St. Robert"  >
                                       <option value="">1234 5678 9012 3457</option>
                                       <option value="">1234 5678 9012 3457</option>
@@ -241,7 +243,7 @@
                               </div>
 
 
-                    
+
 
 
                     <form class="mt-4">
@@ -287,8 +289,8 @@
                       <div class="row mb-4" style="padding-left: 16px; padding-right: 16px; ">
                         <label class="form-label" for="typeText">Address</label>
                       <div class="form-outline form-white mb-4 col-md-8" >
-                      
-                        <select class="form-control form-control-lg" 
+
+                        <select class="form-control form-control-lg"
                           placeholder="1234 NW Bobcat Lane, St. Robert"  >
                             <option value="">1234 NW Bobcat Lane, St. Robert</option>
                             <option value="">1234 N</option>
@@ -374,7 +376,7 @@ height: 62vh;
     margin-left: 1%;
     margin-top: 3px;
     width: 30%;
-} 
+}
 
 
 
@@ -384,7 +386,7 @@ height: 62vh;
 .container .book {
   position: relative;
   display: block;
-  width:64px; 
+  width:64px;
   height:90.78px;
 
   border-radius: 2px 4px 4px 2px;
