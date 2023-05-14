@@ -131,7 +131,7 @@
     <script>
 
     export default {
-        name: "useusersManager",
+        name: "usersManager",
         data() {
             return {
                 allUsers: [],
