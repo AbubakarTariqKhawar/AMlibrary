@@ -53,6 +53,8 @@
                                         <router-link to="/userProfile"><a class="dropdown-item" role="presentation" href="#">Profile</a></router-link>
                                         <router-link :to="{name:'editbook'}"><a class="dropdown-item" role="presentation" href="#">Edit Books</a></router-link>
                                         <router-link to="/usersManager"><a class="dropdown-item" role="presentation" href="#">Users Manager</a></router-link>
+                                        <router-link to="/userBooks"><a class="dropdown-item" role="presentation" href="#">My Books</a></router-link>
+                                        <router-link to="/adminBooksRented"><a class="dropdown-item" role="presentation" href="#">All Rented Books</a></router-link>
                                         <a class="dropdown-item" role="presentation" href="#" @click="logout">Log Out</a>
                                     </div>
                             </span>

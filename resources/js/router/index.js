@@ -12,7 +12,8 @@ import Aboutus from '../components/aboutus.vue';
 import Contact from '../components/contactus.vue';
 import Cart from '../components/cart.vue';
 import UsersManager from '../components/usersManager.vue';
-
+import UserBooks from '../components/userBooks.vue';
+import AdminBooksRented from '../components/adminBooksRented.vue';
 export const routes = [
     {
         name: 'home',
@@ -55,7 +56,7 @@ export const routes = [
     name: 'userProfile',
     path: '/userProfile',
     component: UserProfile,
-    meta: { requiresAuth: true,  roles: [1,2,6,3,4]  }
+    meta: { requiresAuth: true,  roles: [1,2,6,3,4,5]  }
 },
 {
     name: 'aboutus',
@@ -76,6 +77,16 @@ export const routes = [
     name: 'cart',
     path: '/cart',
     component: Cart
+},
+{
+  name: 'userBooks',
+  path: '/userBooks',
+  component: UserBooks
+},
+{
+  name: 'adminBooksRented',
+  path: '/adminBooksRented',
+  component: AdminBooksRented
 },
 ];
 
