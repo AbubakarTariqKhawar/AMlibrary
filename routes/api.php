@@ -9,6 +9,7 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\RentingController;
 use App\Http\Controllers\API\RentingDetailController;
 use App\Http\Controllers\API\RoleController;
+use App\Http\Controllers\API\RoleUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,10 @@ Route::post('deletebank',[BankController::class,'deletebank'])->middleware(['aut
 Route::post('updatebankinfo',[BankController::class,'updatebankinfo'])->middleware(['auth:sanctum']);
 
 Route::get('getAllRoles',[RoleController::class,'getAllRoles'])->middleware(['auth:sanctum']);
+
+Route::get('getAllRoleUser',[RoleUserController::class,'getAllRoleUser'])->middleware(['auth:sanctum']);
+Route::post('updateUserRole',[RoleUserController::class,'updateUserRole'])->middleware(['auth:sanctum']);
+Route::post('deleteUserRole',[RoleUserController::class,'deleteUserRole'])->middleware(['auth:sanctum']);
 
 Route::get('gethomebook',[BookController::class,'gethomebook']);
 Route::post('pickoneBook',[BookController::class,'pickoneBook']);

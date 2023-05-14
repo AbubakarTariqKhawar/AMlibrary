@@ -2,7 +2,7 @@
   <div class="container  my-5 border rounded-5  shadow py-3">
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
+        <div class="card" style="cursor: default; !important">
             <div class="card-body">
                 <h3 class=""><b>Manage Users</b></h3>
             </div>
@@ -44,16 +44,9 @@
                             Select Roles
                           </button>
                           <div class="dropdown-menu" aria-labelledby="selectRolesforUsers">
-                            <a class="dropdown-item">
-                              <input type="checkbox" value="option1"> Option 1
+                            <a class="dropdown-item" v-if="allRoles" v-for="role in allRoles" :key="role.RolId">
+                              <input type="checkbox" :key="role.RolId" :value="role.RolId" :checked="isRoleSelected(user.UseId, role.RolId)" @change="toggleRoleUser(user.UseId, role.RolId, $event.target.checked)"> {{ role.RolName }}
                             </a>
-                            <a class="dropdown-item" >
-                              <input type="checkbox" value="option2"> Option 2
-                            </a>
-                            <a class="dropdown-item" href="#">
-                              <input type="checkbox" value="option3"> Option 3
-                            </a>
-                            <!-- Add more options here -->
                           </div>
                         </div>
                       </td>
@@ -144,6 +137,9 @@
                 allUsers: [],
                 allRoles: [],
 
+                //role_user
+                allRoleUser: [],
+
                 //edit pass
                 userIdeditr: null,
                 userPassr: '',
@@ -155,14 +151,60 @@
                 userRDelete: null,
 
 
+                selectedRoles: [],
+
             };
         },
         mounted(){
             this.pickAllUsers();
             this.pickAllRoles();
+            this.pickAllRoleUser();
 
         },
         methods: {
+            isRoleSelected(userId, roleId) {
+                //console.log('checking user role slected');
+                //console.log(this.allRoleUser);
+                return this.allRoleUser.some(item => item.user_UseId === userId && item.role_RolId === roleId);
+
+            },
+            toggleRoleUser(userId, roleId, isChecked) {
+                //const index = this.allRoleUser.findIndex(item => item.user_UseId === userId && item.role_RolId === roleId);
+                if (isChecked) {
+                    console.log(`Checked: User ID - ${userId}, Role ID - ${roleId}`);
+
+                    this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                        this.$axios.post('api/updateUserRole', {
+                            userid: userId,
+                            roleid: roleId,
+                        })
+                        .then(response => {
+                            console.log('Insert new Role');
+                            console.log(response.data);
+
+                            this.pickAllRoleUser();
+                        })
+
+                    })
+
+                } else {
+                    console.log(`Unchecked: User ID - ${userId}, Role ID - ${roleId}`);
+
+                    this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                        this.$axios.post('api/deleteUserRole', {
+                            userid: userId,
+                            roleid: roleId,
+                        })
+                        .then(response => {
+                            console.log('Deleted Role from user');
+                            console.log(response.data);
+
+                            this.pickAllRoleUser();
+                        })
+
+                    })
+                }
+            },
             edituserRpas(){
                 this.$axios.get('/sanctum/csrf-cookie').then(response => {
                     this.$axios.post('api/editUSerPass', {
@@ -205,6 +247,19 @@
                         this.allUsers = response.data.users;
                         console.log('checking users ');
                         console.log(this.allUsers);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+                })
+            },
+            pickAllRoleUser(){
+                this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                    axios.get('/api/getAllRoleUser')
+                    .then(response => {
+                        this.allRoleUser = response.data.roles;
+                        console.log('checking RolesUser ');
+                        console.log(this.allRoleUser);
                     })
                     .catch(error => {
                         console.error(error);
