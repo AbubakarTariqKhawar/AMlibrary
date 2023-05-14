@@ -44,7 +44,6 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->UseSureName = $request->surname;
             $user->UsePhone = $request->phone;
-            $user->UseRolId = $request->role;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->UsePic = $request->userPic;
@@ -207,6 +206,40 @@ class UserController extends Controller
 
         } catch(\Illuminate\Database\QueryException $ex) {
 
+            $success = false;
+            $message = $ex->getMessage();
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+            return response()->json($response);
+        }
+    }
+
+
+    public function addClientRole(Request $request){
+
+        try {
+            $userEmail = $request->email;
+            $roleId = $request->roleId;
+
+            $user = User::where('email', $userEmail)->first();
+
+            if ($user) {
+
+                $userId = $user->UseId;
+
+                $newRoleUser = new Role_user();
+                $newRoleUser->user_UseId = $userId;
+                $newRoleUser->role_RolId = $roleId;
+                $newRoleUser->save();
+
+                return response()->json('The New RoleUser has been added');
+            } else {
+
+                return response()->json('The User doesnt  exists', 404);
+            }
+        } catch(\Illuminate\Database\QueryException $ex) {
             $success = false;
             $message = $ex->getMessage();
             $response = [

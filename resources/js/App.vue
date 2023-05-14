@@ -278,35 +278,47 @@ export default {
                         name: this.rename,
                         surname: this.resurname,
                         phone: this.rephone,
-                        role: 1,
                         email: this.reemail,
                         password: this.repassword,
                         userPic: 'userblu.svg',
                     })
                         .then(response => {
                             if (response.data.success) {
-                                /*window.location.href = "/login"*/
+
+                                this.$axios.post('api/addClientRole', {
+                                    email: this.reemail,
+                                    roleId: 2,
+                                })
+                                .then(response => {
+                                    console.log('checking user role client');
+                                    console.log(response.data);
+
+
+                                    /*window.location.href = "/login"*/
                                     this.$axios.post('api/login', {
                                         email: this.reemail,
                                         password: this.repassword
                                     })
-                                        .then(response => {
-                                            if (response.data.success) {
-                                                this.rename = "";
-                                                this.resurname = "";
-                                                this.rephone = "";
-                                                this.reemail = "";
-                                                this.repassword = "";
-                                                console.error('OK');
-                                                window.location.href = "/"
-                                            } else {
-                                                console.error('No loggin');
-                                                this.reerror = response.data.message
-                                            }
-                                        })
-                                        .catch(function (reerror) {
-                                            console.error(reerror);
-                                        });
+                                    .then(response => {
+                                        if (response.data.success) {
+                                            this.rename = "";
+                                            this.resurname = "";
+                                            this.rephone = "";
+                                            this.reemail = "";
+                                            this.repassword = "";
+                                            console.error('OK');
+                                            window.location.href = "/"
+                                        } else {
+                                            console.error('No loggin');
+                                            this.reerror = response.data.message
+                                        }
+                                    })
+                                    .catch(function (reerror) {
+                                        console.error(reerror);
+                                    });
+
+                                })
+
 
                             } else {
                                 this.reerror = response.data.message

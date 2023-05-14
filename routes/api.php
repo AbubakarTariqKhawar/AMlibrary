@@ -31,6 +31,7 @@ Route::post('updateUser',[UserController::class,'updateUser'])->middleware(['aut
 Route::get('getallUsers',[UserController::class,'getallUsers'])->middleware(['auth:sanctum']);
 Route::post('deleteUSer',[UserController::class,'deleteUSer'])->middleware(['auth:sanctum']);
 Route::post('editUSerPass',[UserController::class,'editUSerPass'])->middleware(['auth:sanctum']);
+Route::post('addClientRole',[UserController::class,'addClientRole']);
 
 Route::post('pickalladdress',[AddressController::class,'pickalladdress'])->middleware(['auth:sanctum']);
 Route::post('updateaddress',[AddressController::class,'updateaddress'])->middleware(['auth:sanctum']);
