@@ -208,6 +208,25 @@
         </div>
 
 
+        <!----------------------------Your order have been created-------------------------------------------->
+
+        <div class="modal fade " id="ordersucceful" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content createbookdiv" style="padding: 3%; border-radius: 20px; overflow: auto;!important">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <div class="lgoinbdiv" style="padding: 3%; border: none;">
+                        <div style="text-align: center;">
+                            Your order have been created successfully.
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
         <!----------------------------CreateAddress-------------------------------------------->
 
         <div class="modal fade " id="createaddressc" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -382,14 +401,6 @@ export default {
                         bankyear: this.incardYea,
                         bankcvv: this.incardCvv,
                     })
-                    .then(response => {
-                        this.$axios.get('api/getlastbankId', {})
-                        .then(response => {
-                            console.log('last bank ');
-                            console.log(response.data.bank);
-                            this.lastbank = response.data.bank;
-                        })
-                    })
                 })
 
             },
@@ -399,14 +410,6 @@ export default {
                         userid: this.UseId,
                         address: this.inadddressc,
                     })
-                    .then(response => {
-                        this.$axios.get('api/getlastaddressId', {})
-                        .then(response => {
-                            console.log('last address');
-                            console.log(response.data.address);
-                            this.lastaddress = response.data.address;
-                        })
-                    })
                 })
 
             },
@@ -414,6 +417,7 @@ export default {
                 this.lastbank = null;
                 this.lastaddress = null;
 
+                ////////////////have select
                     if(this.userAllCardsH != null && this.userAllAddressH != null){
                         console.log('seleted card id');
                         console.log(this.selectedbankCard);
@@ -424,6 +428,7 @@ export default {
                         this.$axios.post('api/rentbookorder', {
                             rentuserId: this.UseId,
                             rentaddId: this.selectedaddresCard,
+                            paidPrice: this.itemtotalprice,
                             RenPaid: 1,
                             BooRecived: 1,
                         })
@@ -444,7 +449,207 @@ export default {
                                         rentId: lastRentId,
                                         bookId: book.BooId,
                                         cantatity: 1,
-                                        bookprice: book.BooPrice,
+                                        bookprice: book.BooPrice
+                                    })
+                                    .then(response => {
+                                        console.log('added rent detail');
+                                        console.log(response.data);
+
+
+                                    })
+                                }
+
+                                localStorage.removeItem('books');
+                                const modal = new bootstrap.Modal(document.getElementById('ordersucceful'));
+                                modal.show();
+
+
+                                setTimeout(() => {
+                                    window.location.href = '/userBooks';
+                                }, 6000);
+
+
+                            })
+
+                        })
+
+
+
+                    }
+
+                    ///////////dont have select
+                    if(this.userAllCardsH == null && this.userAllAddressH == null){
+
+                        //this.createdefaultaddress();
+                        this.createdefaultbank();
+
+                        this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                            this.$axios.post('api/createaddress', {
+                                userid: this.UseId,
+                                address: this.inadddressc,
+                            })
+                            .then(response => {
+                                this.$axios.get('api/getlastaddressId', {})
+                                .then(response => {
+                                    console.log('last address');
+                                    console.log(response.data.address);
+                                    let lasttadID = response.data.address;
+
+                                    console.log('checking last address ');
+                                    console.log(lasttadID);
+
+                                    this.$axios.post('api/rentbookorder', {
+                                        rentuserId: this.UseId,
+                                        rentaddId: lasttadID,
+                                        paidPrice: this.itemtotalprice,
+                                        RenPaid: 1,
+                                        BooRecived: 1,
+                                    })
+                                    .then(response => {
+                                        console.log('create rent');
+                                        console.log(response.data);
+
+                                        this.$axios.get('api/getlastRentId', {})
+                                        .then(response => {
+                                            console.log('last rent');
+                                            console.log(response.data.rent);
+                                            let lastRentId = response.data.rent;
+
+                                            let books = JSON.parse(localStorage.getItem('books'));
+
+                                            for(let book of books){
+                                                this.$axios.post('api/rentdetailorder', {
+                                                    rentId: lastRentId,
+                                                    bookId: book.BooId,
+                                                    cantatity: 1,
+                                                    bookprice: book.BooPrice
+                                                })
+                                                .then(response => {
+                                                    console.log('added rent detail');
+                                                    console.log(response.data);
+                                                })
+                                            }
+
+
+                                        })
+                                    })
+
+                                })
+
+                            })
+                        })
+
+
+
+
+
+
+                    }
+
+                    ///////// select bank not address
+                    if(this.userAllCardsH != null && this.userAllAddressH == null){
+                        //this.createdefaultaddress();
+                        console.log('seleted card id');
+                        console.log(this.selectedbankCard);
+
+                        this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                            this.$axios.post('api/createaddress', {
+                                userid: this.UseId,
+                                address: this.inadddressc,
+                            })
+                            .then(response => {
+                                this.$axios.get('api/getlastaddressId', {})
+                                .then(response => {
+                                    console.log('last address');
+                                    console.log(response.data.address);
+                                    let lasttadID = response.data.address;
+
+                                    console.log('checking last address ');
+                                    console.log(lasttadID);
+
+                                    this.$axios.post('api/rentbookorder', {
+                                        rentuserId: this.UseId,
+                                        rentaddId: lasttadID,
+                                        paidPrice: this.itemtotalprice,
+                                        RenPaid: 1,
+                                        BooRecived: 1,
+                                    })
+                                    .then(response => {
+                                        console.log('create rent');
+                                        console.log(response.data);
+
+                                        this.$axios.get('api/getlastRentId', {})
+                                        .then(response => {
+                                            console.log('last rent');
+                                            console.log(response.data.rent);
+                                            let lastRentId = response.data.rent;
+
+                                            let books = JSON.parse(localStorage.getItem('books'));
+
+                                            for(let book of books){
+                                                this.$axios.post('api/rentdetailorder', {
+                                                    rentId: lastRentId,
+                                                    bookId: book.BooId,
+                                                    cantatity: 1,
+                                                    bookprice: book.BooPrice
+                                                })
+                                                .then(response => {
+                                                    console.log('added rent detail');
+                                                    console.log(response.data);
+                                                })
+                                            }
+
+
+                                        })
+                                    })
+
+                                })
+
+                            })
+                        })
+
+
+
+
+
+
+                    }
+
+                    ///////// select addres not bank
+                    if(this.userAllCardsH == null && this.userAllAddressH != null){
+                        this.createdefaultbank();
+                        console.log('seleted address id');
+                        console.log(this.selectedaddresCard);
+
+                        this.$axios.post('api/rentbookorder', {
+                            rentuserId: this.UseId,
+                            rentaddId: this.selectedaddresCard,
+                            paidPrice: this.itemtotalprice,
+                            RenPaid: 1,
+                            BooRecived: 1,
+                        })
+                        .then(response => {
+                            console.log('create rent');
+                            console.log(response.data);
+
+                            this.$axios.get('api/getlastRentId', {})
+                            .then(response => {
+                                console.log('last rent');
+                                console.log(response.data.rent);
+                                let lastRentId = response.data.rent;
+
+                                let books = JSON.parse(localStorage.getItem('books'));
+
+                                for(let book of books){
+                                    this.$axios.post('api/rentdetailorder', {
+                                        rentId: lastRentId,
+                                        bookId: book.BooId,
+                                        cantatity: 1,
+                                        bookprice: book.BooPrice
+                                    })
+                                    .then(response => {
+                                        console.log('added rent detail');
+                                        console.log(response.data);
                                     })
                                 }
 
@@ -452,9 +657,11 @@ export default {
                             })
                         })
 
-
-
                     }
+
+
+
+
 
             },
             editBankc(){

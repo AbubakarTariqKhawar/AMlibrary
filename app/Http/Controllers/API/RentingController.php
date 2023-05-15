@@ -14,6 +14,7 @@ class RentingController extends Controller
 
             $rentuserId = $request->rentuserId;
             $rentaddId = $request->rentaddId;
+            $paidPrice = $request->paidPrice;
             $RenPaid = $request->RenPaid;
             $BooRecived = $request->BooRecived;
 
@@ -21,6 +22,8 @@ class RentingController extends Controller
 
             $rent->RenUseId = $rentuserId;
             $rent->RenAddId = $rentaddId;
+            $rent->RenPaidPrice = $paidPrice;
+            $rent->RenCreatedDate = now();
             $rent->RenPaid = $RenPaid;
             $rent->BooRecived = $BooRecived;
 

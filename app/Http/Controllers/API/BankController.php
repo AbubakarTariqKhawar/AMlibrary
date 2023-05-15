@@ -145,7 +145,7 @@ class BankController extends Controller
 
         try {
 
-            $bank = Bank::latest()->value('BanID');
+            $bank = Bank::sum('BanID') - 1;
             $data = compact('bank');
             return response()->json($data);
 

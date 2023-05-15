@@ -8,19 +8,23 @@ use App\Models\Renting_detail;
 
 class RentingDetailController extends Controller
 {
-    public function rentbookorder(Request $request){
+    public function rentdetailorder(Request $request){
 
         try {
 
-            $rentuserId = $request->rentuserId;
-            $rentaddId = $request->rentaddId;
+            $rentId = $request->rentId;
+            $bookId = $request->bookId;
+            $cantatity = $request->cantatity;
+            $bookprice = $request->bookprice;
 
-            $rent = new Renting_detail();
+            $rentD = new Renting_detail();
 
-            $rent->RenUseId = $rentuserId;
-            $rent->RenAddId = $rentaddId;
+            $rentD->RedRenId = $rentId;
+            $rentD->RedBooId = $bookId;
+            $rentD->RedQuantity = $cantatity;
+            $rentD->RedPrice = $bookprice;
 
-            $rent->save();
+            $rentD->save();
 
             return response()->json('The rent has been created');
 

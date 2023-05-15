@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('RenAddId');
             $table->timestamp('RenCreatedDate')->nullable();
             $table->timestamp('RenReturnedDate')->nullable();
+            $table->decimal('RenPaidPrice');
             $table->integer('RenPaid');
             $table->integer('BooRecived');
             $table->foreign('RenUseId')
