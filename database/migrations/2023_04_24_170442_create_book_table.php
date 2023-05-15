@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('BooDescription');
             $table->string('BooPicture');
             $table->text('BooLink');
-            $table->integer('BooPrice');
+            $table->decimal('BooPrice');
             $table->foreign('BooCatId')
             ->references('CatId')->on('category');
             $table->timestamps();
