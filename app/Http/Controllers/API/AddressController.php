@@ -94,4 +94,51 @@ class AddressController extends Controller
             return response()->json($response);
         }
     }
+
+
+    public function createaddress(Request $request){
+
+        try {
+            $userid = $request->userid;
+            $addresss = $request->address;
+
+            $address = new Address();
+            $address->AddUseId = $userid;
+            $address->AddAddres = $addresss;
+
+            $address->save();
+
+            return response()->json('The address has been created');
+
+        } catch(\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+            return response()->json($response);
+        }
+
+    }
+
+    public function getlastaddressId(){
+
+        try {
+
+            $address = Address::latest()->value('AddId');
+            $data = compact('address');
+            return response()->json($data);
+
+        } catch(\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+            return response()->json($response);
+        }
+
+    }
 }

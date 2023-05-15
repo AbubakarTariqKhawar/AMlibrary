@@ -27,7 +27,8 @@
                     <p class="card-text text-justify ">{{ book.BooDescription }}</p>
                     <p class="card-text text-left"><small class="text-body-secondary ">Category: {{ book.BooCatId }}, Price: {{ book.BooPrice }}</small></p>
                     <router-link :to="{ name: 'readinterface', query: { book: JSON.stringify(book.BooId) } }"><button type="button" class="btn ">Read Now</button></router-link>
-                    <router-link :to="{ name: 'readinterface', query: { book: JSON.stringify(book.BooId) } }"><button type="button" class="btn ml-2">Borrow</button></router-link>
+                    <button type="button" class="btn ml-2" v-if="!logedin" data-bs-toggle="modal" data-bs-target="#borrrowLog" style="background-color: #e0e0e0; color: #EEEEEE;">Borrow</button>
+                    <button type="button" class="btn ml-2" v-if="logedin" @click="saveBookIncart(book)">Borrow</button>
                 </div>
 
             </div>
@@ -35,6 +36,43 @@
     </div>
 
     </div>
+
+        <!----------------------------Borrorw -------------------------------------------->
+
+        <div class="modal fade " id="borrrowLog" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content createbookdiv" style="padding: 3%; border-radius: 20px; overflow: auto;!important">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <div class="lgoinbdiv" style="padding: 3%; border: none;">
+                        <div style="text-align: center;">
+                            You need to be loged in. To Borrow.
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!----------------------------Borrorw already exits-------------------------------------------->
+
+        <div class="modal fade " id="bookExCart" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content createbookdiv" style="padding: 3%; border-radius: 20px; overflow: auto;!important">
+                    <!---<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+
+                    <div class="lgoinbdiv mt-1" style="padding: 4%; border: none;">
+                        <div style="text-align: center;">
+                            You can only borrow one copy of each book and This Book Already Exists in cart.
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
 </template>
 
@@ -44,6 +82,7 @@
         data() {
             return {
             book: [],
+            logedin: false,
             };
         },
         mounted() {
@@ -55,8 +94,37 @@
                 this.fetchOneBooks();
             }
 
+            this.logedin = window.Laravel.isLoggedin;
+
         },
         methods: {
+            saveBookIncart(book){
+                // Remove the "book" value from local storage
+                //localStorage.removeItem('books');
+
+                let books = JSON.parse(localStorage.getItem('books'));
+
+                if (books) {
+
+                    const isBookExists = books.some(item => item.BooId === book.BooId);
+
+                    if (isBookExists) {
+                        console.log('A book with the same ID already exists in storage');
+                        const modal = new bootstrap.Modal(document.getElementById('bookExCart'));
+                        modal.show();
+                    } else {
+                        console.log('There are books in storage, but not with the same ID');
+
+                        books.push(book);
+                        localStorage.setItem('books', JSON.stringify(books));
+                    }
+                } else {
+                    console.log('There are no books in storage');
+
+                    localStorage.setItem('books', JSON.stringify([book]));
+                }
+
+            },
             fetchOneBooks() {
                 this.$axios.get('/sanctum/csrf-cookie').then(response => {
                     this.$axios.post('api/pickoneBook', {

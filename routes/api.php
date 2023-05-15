@@ -36,16 +36,25 @@ Route::post('addClientRole',[UserController::class,'addClientRole']);
 Route::post('pickalladdress',[AddressController::class,'pickalladdress'])->middleware(['auth:sanctum']);
 Route::post('updateaddress',[AddressController::class,'updateaddress'])->middleware(['auth:sanctum']);
 Route::post('deletemyaddress',[AddressController::class,'deletemyaddress'])->middleware(['auth:sanctum']);
+Route::post('createaddress',[AddressController::class,'createaddress'])->middleware(['auth:sanctum']);
+Route::get('getlastaddressId',[AddressController::class,'getlastaddressId'])->middleware(['auth:sanctum']);
 
 Route::post('pickallBankp',[BankController::class,'pickallBankp'])->middleware(['auth:sanctum']);
 Route::post('deletebank',[BankController::class,'deletebank'])->middleware(['auth:sanctum']);
 Route::post('updatebankinfo',[BankController::class,'updatebankinfo'])->middleware(['auth:sanctum']);
+Route::post('createbankinfo',[BankController::class,'createbankinfo'])->middleware(['auth:sanctum']);
+Route::get('getlastbankId',[BankController::class,'getlastbankId'])->middleware(['auth:sanctum']);
 
 Route::get('getAllRoles',[RoleController::class,'getAllRoles'])->middleware(['auth:sanctum']);
 
 Route::get('getAllRoleUser',[RoleUserController::class,'getAllRoleUser'])->middleware(['auth:sanctum']);
 Route::post('updateUserRole',[RoleUserController::class,'updateUserRole'])->middleware(['auth:sanctum']);
 Route::post('deleteUserRole',[RoleUserController::class,'deleteUserRole'])->middleware(['auth:sanctum']);
+
+Route::post('rentdetailorder',[RentingDetailController::class,'rentdetailorder'])->middleware(['auth:sanctum']);
+
+Route::post('rentbookorder',[RentingController::class,'rentbookorder'])->middleware(['auth:sanctum']);
+Route::get('getlastRentId',[RentingController::class,'getlastRentId'])->middleware(['auth:sanctum']);
 
 Route::get('gethomebook',[BookController::class,'gethomebook']);
 Route::post('pickoneBook',[BookController::class,'pickoneBook']);
