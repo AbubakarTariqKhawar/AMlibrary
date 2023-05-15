@@ -610,4 +610,9 @@ td {  text-align: center;}
   right: 0;
   top: 0;
 }
+@media (min-width: 1200px){
+    .container {
+    max-width: 1400px;
+}
+}
     </style>
