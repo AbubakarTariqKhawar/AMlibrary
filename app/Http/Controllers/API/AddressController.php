@@ -126,7 +126,7 @@ class AddressController extends Controller
 
         try {
 
-            $address = Address::sum('AddId') - 1;
+            $address = Address::latest()->value('AddId');
             $data = compact('address');
             return response()->json($data);
 
