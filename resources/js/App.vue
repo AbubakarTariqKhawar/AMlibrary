@@ -252,7 +252,7 @@ export default {
         };
     },
     mounted(){
-           
+
             this.getUserRoles();
 
         },
@@ -291,7 +291,7 @@ export default {
           console.log('User Role IDs:', userRoleIds);
           return  userRoleIds.includes(1);
         },
-        
+
 
 
 
@@ -402,6 +402,7 @@ export default {
         logout(e) {
             e.preventDefault();
             this.$axios.get("/sanctum/csrf-cookie").then(response => {
+                localStorage.removeItem('books');
                 this.$axios.post("api/logout")
                     .then(response => {
                     if (response.data.success) {

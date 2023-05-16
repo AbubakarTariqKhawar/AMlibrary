@@ -213,11 +213,10 @@
         <div class="modal fade " id="ordersucceful" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content createbookdiv" style="padding: 3%; border-radius: 20px; overflow: auto;!important">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                     <div class="lgoinbdiv" style="padding: 3%; border: none;">
                         <div style="text-align: center;">
-                            Your order have been created successfully.
+                            Your order have been created successfully. wait 8 scounds
                         </div>
 
                     </div>
@@ -320,7 +319,7 @@ export default {
                 UseId: null,
                 logedin: false,
                 allbooks: [],
-                itemtotal: null,
+                itemtotal: 0,
                 itemSubtotalprice: null,
                 itemtotalprice: null,
                 shippingprice: 5,
@@ -447,9 +446,12 @@ export default {
                                 for(let book of books){
                                     this.$axios.post('api/rentdetailorder', {
                                         rentId: lastRentId,
+                                        RedUseId: this.UseId,
                                         bookId: book.BooId,
                                         cantatity: 1,
-                                        bookprice: book.BooPrice
+                                        bookprice: book.BooPrice,
+                                        RedReturned: 0,
+                                        AddId: this.selectedaddresCard,
                                     })
                                     .then(response => {
                                         console.log('added rent detail');
@@ -520,15 +522,28 @@ export default {
                                             for(let book of books){
                                                 this.$axios.post('api/rentdetailorder', {
                                                     rentId: lastRentId,
+                                                    RedUseId: this.UseId,
                                                     bookId: book.BooId,
                                                     cantatity: 1,
-                                                    bookprice: book.BooPrice
+                                                    bookprice: book.BooPrice,
+                                                    RedReturned: 0,
+                                                    AddId: lasttadID,
+
                                                 })
                                                 .then(response => {
                                                     console.log('added rent detail');
                                                     console.log(response.data);
                                                 })
                                             }
+
+                                            localStorage.removeItem('books');
+                                            const modal = new bootstrap.Modal(document.getElementById('ordersucceful'));
+                                            modal.show();
+
+
+                                            setTimeout(() => {
+                                                window.location.href = '/userBooks';
+                                            }, 6000);
 
 
                                         })
@@ -589,15 +604,28 @@ export default {
                                             for(let book of books){
                                                 this.$axios.post('api/rentdetailorder', {
                                                     rentId: lastRentId,
+                                                    RedUseId: this.UseId,
                                                     bookId: book.BooId,
                                                     cantatity: 1,
-                                                    bookprice: book.BooPrice
+                                                    bookprice: book.BooPrice,
+                                                    RedReturned: 0,
+                                                    AddId: lasttadID,
+
                                                 })
                                                 .then(response => {
                                                     console.log('added rent detail');
                                                     console.log(response.data);
                                                 })
                                             }
+
+                                            localStorage.removeItem('books');
+                                            const modal = new bootstrap.Modal(document.getElementById('ordersucceful'));
+                                            modal.show();
+
+
+                                            setTimeout(() => {
+                                                window.location.href = '/userBooks';
+                                            }, 6000);
 
 
                                         })
@@ -643,15 +671,27 @@ export default {
                                 for(let book of books){
                                     this.$axios.post('api/rentdetailorder', {
                                         rentId: lastRentId,
+                                        RedUseId: this.UseId,
                                         bookId: book.BooId,
                                         cantatity: 1,
-                                        bookprice: book.BooPrice
+                                        bookprice: book.BooPrice,
+                                        RedReturned: 0,
+                                        AddId: this.selectedaddresCard,
                                     })
                                     .then(response => {
                                         console.log('added rent detail');
                                         console.log(response.data);
                                     })
                                 }
+
+                                localStorage.removeItem('books');
+                                const modal = new bootstrap.Modal(document.getElementById('ordersucceful'));
+                                modal.show();
+
+
+                                setTimeout(() => {
+                                    window.location.href = '/userBooks';
+                                }, 6000);
 
 
                             })

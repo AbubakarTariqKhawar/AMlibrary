@@ -5,6 +5,10 @@
           <div class="card">
               <div class="card-body">
                   <h3 class=""><b>Rented Books</b></h3>
+                    <select v-model="selectedMyBook" style="margin-top: 2px; float: left; cursor: pointer;" class="form-select  cartselect arder" name="arder">
+                        <option value="renB">Rented Books</option>
+                        <option value="retB">Returned Books</option>
+                    </select>
               </div>
               <hr style="background-color: black;">
               <div class="table-responsive">
@@ -14,7 +18,7 @@
                         <th scope="col" class="border-0 text-uppercase font-medium">Client</th>
                         <th scope="col" class="border-0 text-uppercase font-medium">Book</th>
                         <th scope="col" class="border-0 text-uppercase font-medium">Name</th>
-  
+
                         <th scope="col" class="border-0 text-uppercase font-medium">Address</th>
                         <th scope="col" class="border-0 text-uppercase font-medium">Renting Date</th>
                         <th scope="col" class="border-0 text-uppercase font-medium">Return Date</th>
@@ -25,15 +29,15 @@
                     <tbody>
 
                       <tr>
-                       
-                            
+
+
                             <td><img src="../../logo/icons8-user-100.png"  style="height: 40px; border-radius: 50%; width: 40px;"/><br><span>name extralargehghggh</span></td>
-                        
+
                         <td class="py-4 pl-5">
                                 <div class="book  justify-content-center mr-5 ">
                                     <div class="front ">
                                         <div class="cover">
-                                            
+
                                                 <img src="../../books/comic.webp" width=" 64" height="90.78" >
                                         </div>
                                     </div>
@@ -44,12 +48,12 @@
                         </td>
                         <td class="py-5">
                             <h5 class="font-medium ">Moon Knightdfsfds</h5>
-                           
+
                         </td>
-  
+
                         <td class="py-5">
                             <span class="text-muted ">Renting Address</span><br>
-                            
+
                         </td>
                         <td class="py-5">
                             <input type="datetime-local" id="rentingDate" name="rentingDate" value="2023-05-14T14:56" class="form-control " readonly>
@@ -58,28 +62,28 @@
                             <input type="datetime-local" id="rentingDate" name="rentingDate"  class="form-control " readonly>
                         </td>
                         <td class="py-5">
-                        <h5 class="font-medium py-2"> 
+                        <h5 class="font-medium py-2">
                                 12 $
 
                             </h5>
                         </td>
                         <td class="py-5" >
-                       
-                        <button type="button" class="btn ">Return Now</button><!--<p>or</p> 
+
+                        <button type="button" class="btn ">Return Now</button><!--<p>or</p>
                         <button type="button" class="btn " disabled>Returned</button>-->
                         </td>
                       </tr>
-  
+
                         <tr>
-                       
-                            
+
+
                             <td><img src="../../logo/icons8-user-100.png"  style="height: 40px; border-radius: 50%; width: 40px;"/><br><span>name extralargehghggh</span></td>
-                        
+
                         <td class="py-4 pl-5">
                                 <div class="book  justify-content-center mr-5 ">
                                     <div class="front ">
                                         <div class="cover">
-                                            
+
                                                 <img src="../../books/comic.webp" width=" 64" height="90.78" >
                                         </div>
                                     </div>
@@ -90,12 +94,12 @@
                         </td>
                         <td class="py-5">
                             <h5 class="font-medium ">Moon Knightdfsfds</h5>
-                           
+
                         </td>
-  
+
                         <td class="py-5">
                             <span class="text-muted ">Renting Address</span><br>
-                            
+
                         </td>
                         <td class="py-5">
                             <input type="datetime-local" id="rentingDate" name="rentingDate" value="2023-05-14T14:56" class="form-control " readonly>
@@ -104,29 +108,29 @@
                             <input type="datetime-local" id="rentingDate" name="rentingDate"  class="form-control " readonly>
                         </td>
                         <td class="py-5">
-                        <h5 class="font-medium py-2"> 
+                        <h5 class="font-medium py-2">
                                 12 $
 
                             </h5>
                         </td>
                         <td class="py-5" >
-                       
-                        <button type="button" class="btn ">Return Now</button><!--<p>or</p> 
+
+                        <button type="button" class="btn ">Return Now</button><!--<p>or</p>
                         <button type="button" class="btn " disabled>Returned</button>-->
                         </td>
                       </tr>
 
 
                       <tr>
-                       
-                            
+
+
                             <td><img src="../../logo/icons8-user-100.png"  style="height: 40px; border-radius: 50%; width: 40px;"/><br><span>name extralargehghggh</span></td>
-                        
+
                         <td class="py-4 pl-5">
                                 <div class="book  justify-content-center mr-5 ">
                                     <div class="front ">
                                         <div class="cover">
-                                            
+
                                                 <img src="../../books/comic.webp" width=" 64" height="90.78" >
                                         </div>
                                     </div>
@@ -137,12 +141,12 @@
                         </td>
                         <td class="py-5">
                             <h5 class="font-medium ">Moon Knightdfsfds</h5>
-                           
+
                         </td>
-  
+
                         <td class="py-5">
                             <span class="text-muted ">Renting Address</span><br>
-                            
+
                         </td>
                         <td class="py-5">
                             <input type="datetime-local" id="rentingDate" name="rentingDate" value="2023-05-14T14:56" class="form-control " readonly>
@@ -151,21 +155,21 @@
                             <input type="datetime-local" id="rentingDate" name="rentingDate"  class="form-control " readonly>
                         </td>
                         <td class="py-5">
-                        <h5 class="font-medium py-2"> 
+                        <h5 class="font-medium py-2">
                                 12 $
 
                             </h5>
                         </td>
                         <td class="py-5" >
-                       
+
                        <!-- <button type="button" class="btn ">Return Now</button>-->
                         <button type="button" class="btn " disabled>Returned</button>
                         </td>
                       </tr>
-  
-  
-                     
-  
+
+
+
+
                     </tbody>
                   </table>
               </div>
@@ -174,14 +178,34 @@
   </div>
   </div>
    </template>
-  
+
       <script>
       export default {
-          name: "AdminBooksRented"
+        name: "AdminBooksRented",
+        data() {
+            return {
+
+                selectedMyBook: 'renB',
+                UseId: null,
+                logedin: false,
+
+
+            };
+        },
+        mounted(){
+            this.logedin = window.Laravel.isLoggedin;
+            if(window.Laravel.isLoggedin){
+                this.UseId = window.Laravel.user.UseId;
+            };
+
+        },
+        methods: {
+
+        },
       }
-  
+
       </script>
-  
+
       <style scoped>
 
 
@@ -215,7 +239,7 @@ height: 62vh;
     margin-left: 1%;
     margin-top: 3px;
     width: 30%;
-} 
+}
 
 
 
@@ -225,7 +249,7 @@ height: 62vh;
 .container .book {
   position: relative;
   display: block;
-  width:64px; 
+  width:64px;
   height:90.78px;
 
   border-radius: 2px 4px 4px 2px;
@@ -316,4 +340,3 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
     }
 }
       </style>
-  

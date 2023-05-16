@@ -52,6 +52,9 @@ Route::post('updateUserRole',[RoleUserController::class,'updateUserRole'])->midd
 Route::post('deleteUserRole',[RoleUserController::class,'deleteUserRole'])->middleware(['auth:sanctum']);
 
 Route::post('rentdetailorder',[RentingDetailController::class,'rentdetailorder'])->middleware(['auth:sanctum']);
+Route::post('getrentedBookByS',[RentingDetailController::class,'getrentedBookByS'])->middleware(['auth:sanctum']);
+Route::post('updateRentDetail',[RentingDetailController::class,'updateRentDetail'])->middleware(['auth:sanctum']);
+Route::post('updateReturnPrice',[RentingDetailController::class,'updateReturnPrice'])->middleware(['auth:sanctum']);
 
 Route::post('rentbookorder',[RentingController::class,'rentbookorder'])->middleware(['auth:sanctum']);
 Route::get('getlastRentId',[RentingController::class,'getlastRentId'])->middleware(['auth:sanctum']);

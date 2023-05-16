@@ -4,17 +4,23 @@
       <div class="col-md-12">
           <div class="card">
               <div class="card-body">
-                  <h3 class=""><b>Rented Books</b></h3>
+                  <h3 class=""><b>My Books</b></h3>
+
+                    <select v-model="selectedMyBook" style="margin-top: 2px; float: left; cursor: pointer;" class="form-select  cartselect arder" name="arder">
+                        <option value="0">Rented Books</option>
+                        <option value="1">Returned Books</option>
+                    </select>
               </div>
+
               <hr style="background-color: black;">
               <div class="table-responsive">
                   <table class="table no-wrap user-table mb-0">
                     <thead>
                       <tr>
-                        
+
                         <th scope="col" class="border-0 text-uppercase font-medium">Book</th>
                         <th scope="col" class="border-0 text-uppercase font-medium">Name</th>
-  
+
                         <th scope="col" class="border-0 text-uppercase font-medium">Address</th>
                         <th scope="col" class="border-0 text-uppercase font-medium">Renting Date</th>
                         <th scope="col" class="border-0 text-uppercase font-medium">Return Date</th>
@@ -24,143 +30,51 @@
                     </thead>
                     <tbody>
 
-                      <tr>
-                        
+                      <tr v-if="allorders" v-for="order in allorders" :key="order.RedId">
+
                         <td class="py-4 pl-5">
                                 <div class="book  justify-content-center mr-5 ">
                                     <div class="front ">
                                         <div class="cover">
-                                            
-                                                <img src="../../books/comic.webp" width=" 64" height="90.78" >
+
+                                                <img :src="`/img/books/${order.BooPicture}`" width=" 64" height="90.78" >
                                         </div>
                                     </div>
                                     <div class="left-side" >
-                                        <img src="../../books/comic.webp" width="25 " height="90.78" >
+                                        <img :src="`/img/books/${order.BooPicture}`" width="25 " height="90.78" >
                                     </div>
                                 </div>
                         </td>
                         <td class="py-5">
-                            <h5 class="font-medium ">Moon Knightdfsfds</h5>
-                           
-                        </td>
-  
-                        <td class="py-5">
-                            <span class="text-muted ">Renting Address</span><br>
-                            
-                        </td>
-                        <td class="py-5">
-                            <input type="datetime-local" id="rentingDate" name="rentingDate" value="2023-05-14T14:56" class="form-control " readonly>
-                        </td>
-                        <td class="py-5">
-                            <input type="datetime-local" id="rentingDate" name="rentingDate"  class="form-control " readonly>
-                        </td>
-                        <td class="py-5">
-                        <h5 class="font-medium py-2"> 
-                                12 $
+                            <h5 class="font-medium ">{{ order.BooName }}</h5>
 
-                            </h5>
+                        </td>
+
+                        <td class="py-5">
+                            <span class="text-muted ">{{ order.AddAddres }}</span>
+
+                        </td>
+                        <td class="py-5">
+                            <span class="text-muted ">{{ order.RedCreatedDate }}</span>
+                        </td>
+                        <td class="py-5">
+                            <span class="text-muted ">{{ order.RedReturnedDate }}</span>
+                        </td>
+                        <td class="py-5">
+                            <h5 class="font-medium py-2">{{ order.RedPrice }}€</h5>
                         </td>
                         <td class="py-5" >
-                       
-                        <button type="button" class="btn ">Return Now</button><!--<p>or</p> 
-                        <button type="button" class="btn " disabled>Returned</button>-->
-                        </td>
-                      </tr>
-  
-                      <tr>
-                        
-                        <td class="py-4 pl-5">
-                                <div class="book  justify-content-center mr-5 ">
-                                    <div class="front ">
-                                        <div class="cover">
-                                            
-                                                <img src="../../books/comic.webp" width=" 64" height="90.78" >
-                                        </div>
-                                    </div>
-                                    <div class="left-side" >
-                                        <img src="../../books/comic.webp" width="25 " height="90.78" >
-                                    </div>
-                                </div>
-                        </td>
-                        <td class="py-5">
-                            <h5 class="font-medium ">Moon Knightdfsfds</h5>
-                           
-                        </td>
-  
-                        <td class="py-5">
-                            <span class="text-muted ">Renting Address</span><br>
-                            
-                        </td>
-                        <td class="py-5">
-                            <input type="datetime-local" id="rentingDate" name="rentingDate" value="2023-05-14T14:56" class="form-control " readonly>
-                        </td>
-                        <td class="py-5">
-                            <input type="datetime-local" id="rentingDate" name="rentingDate"  class="form-control " readonly>
-                        </td>
-                        <td class="py-5">
-                        <h5 class="font-medium py-2"> 
-                                12 $
 
-                            </h5>
+                        <button type="button" class="btn " v-if="order.RedReturned == 0" @click="returnBook(order.RedId)">Return Now</button>
+                        <button type="button" class="btn " v-if="order.RedReturned != 0" disabled>Returned</button>
                         </td>
-                        <td class="py-5" >
-                       
-                        <button type="button" class="btn ">Return Now</button><!--<p>or</p> 
-                        <button type="button" class="btn " disabled>Returned</button>-->
-                        </td>
-                      </tr>
+                    </tr>
 
 
-                      <tr>
-                        
-                        <td class="py-4 pl-5">
-                                <div class="book  justify-content-center mr-5 ">
-                                    <div class="front ">
-                                        <div class="cover">
-                                            
-                                                <img src="../../books/comic.webp" width=" 64" height="90.78" >
-                                        </div>
-                                    </div>
-                                    <div class="left-side" >
-                                        <img src="../../books/comic.webp" width="25 " height="90.78" >
-                                    </div>
-                                </div>
-                        </td>
-                        <td class="py-5">
-                            <h5 class="font-medium ">Moon Knightdfsfds</h5>
-                           
-                        </td>
-  
-                        <td class="py-5">
-                            <span>calle mercadal 12 martorell españa</span><br>
-                            
-                        </td>
-                        <td class="py-5">
-                            <input type="datetime-local" id="rentingDate" name="rentingDate" value="2023-05-14T14:56" class="form-control " readonly>
-                        </td>
-                        <td class="py-5">
-                            <input type="datetime-local" id="rentingDate" name="rentingDate"  class="form-control " readonly>
-                        </td>
-                        <td class="py-5">  
-                        
-                               <h5 class="font-medium py-2"> 
-                                12$
 
-                            </h5> 
 
-                            
-                          
-                        </td>
-                        <td class="py-5" >
-                       
-                        <button type="button" class="btn ">Return Now</button><!--<p>or</p> 
-                        <button type="button" class="btn " disabled>Returned</button>-->
-                        </td>
-                      </tr>
-  
-  
-                     
-  
+
+
                     </tbody>
                   </table>
               </div>
@@ -168,15 +82,111 @@
       </div>
   </div>
   </div>
+
+
+        <!----------------------------Booked returned -------------------------------------------->
+
+        <div class="modal fade " id="returnedBook" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content createbookdiv" style="padding: 3%; border-radius: 20px; overflow: auto;!important">
+
+                    <div class="lgoinbdiv" style="padding: 3%; border: none;">
+                        <div style="text-align: center;">
+                            Book have been returned successfully!
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
    </template>
-  
+
       <script>
       export default {
-          name: "userBooks"
+        name: "userBooks",
+        data() {
+            return {
+
+                selectedMyBook: 0,
+                UseId: null,
+                logedin: false,
+
+                //All order
+                allorders: [],
+
+
+            };
+        },
+        watch: {
+            selectedMyBook(newValue) {
+                this.getrentedBookByS(newValue);
+            },
+        },
+        mounted(){
+            this.logedin = window.Laravel.isLoggedin;
+            if(window.Laravel.isLoggedin){
+                this.UseId = window.Laravel.user.UseId;
+
+                this.getrentedBookByS(this.selectedMyBook);
+            };
+
+        },
+        methods: {
+            returnBook(orderId){
+                this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                    this.$axios.post('api/updateRentDetail', {
+                        rentId: orderId,
+                    })
+                    .then(response => {
+                        console.log('book returned');
+                        console.log(response.data);
+
+                        this.$axios.post('api/updateReturnPrice', {
+                            rentId: orderId,
+                        })
+                        .then(response => {
+                            console.log('book returned Price');
+                            console.log(response.data);
+
+                            this.getrentedBookByS(this.selectedMyBook);
+
+                            const modal = new bootstrap.Modal(document.getElementById('returnedBook'));
+                            modal.show();
+
+                        })
+
+                    })
+
+                })
+
+            },
+            getrentedBookByS(select){
+                console.log('checking select value');
+                console.log(select);
+
+                this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                    this.$axios.post('api/getrentedBookByS', {
+                        userid: this.UseId,
+                        return: select,
+                    })
+                    .then(response => {
+                        this.allorders = response.data.orders;
+                        console.log('checking orders');
+                        console.log(this.allorders);
+                    })
+
+                })
+
+            },
+
+        },
       }
-  
+
       </script>
-  
+
       <style scoped>
       td {  text-align: center;}
       th {  text-align: center; }
@@ -205,7 +215,7 @@ height: 62vh;
     margin-left: 1%;
     margin-top: 3px;
     width: 30%;
-} 
+}
 
 
 
@@ -215,7 +225,7 @@ height: 62vh;
 .container .book {
   position: relative;
   display: block;
-  width:64px; 
+  width:64px;
   height:90.78px;
 
   border-radius: 2px 4px 4px 2px;
@@ -306,4 +316,3 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
     }
 }
       </style>
-  
