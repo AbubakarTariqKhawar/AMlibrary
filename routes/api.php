@@ -55,6 +55,7 @@ Route::post('rentdetailorder',[RentingDetailController::class,'rentdetailorder']
 Route::post('getrentedBookByS',[RentingDetailController::class,'getrentedBookByS'])->middleware(['auth:sanctum']);
 Route::post('updateRentDetail',[RentingDetailController::class,'updateRentDetail'])->middleware(['auth:sanctum']);
 Route::post('updateReturnPrice',[RentingDetailController::class,'updateReturnPrice'])->middleware(['auth:sanctum']);
+Route::post('getrentedBookByAdmin',[RentingDetailController::class,'getrentedBookByAdmin'])->middleware(['auth:sanctum']);
 
 Route::post('rentbookorder',[RentingController::class,'rentbookorder'])->middleware(['auth:sanctum']);
 Route::get('getlastRentId',[RentingController::class,'getlastRentId'])->middleware(['auth:sanctum']);

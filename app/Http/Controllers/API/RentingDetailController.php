@@ -81,6 +81,35 @@ class RentingDetailController extends Controller
     }
 
 
+    public function getrentedBookByAdmin(Request $request){
+
+        try {
+
+            $return = $request->return;
+
+            $orders = Renting_detail::where('RedReturned', $return)
+                                    ->join('book', 'renting_detail.RedBooId', '=', 'book.BooId')
+                                    ->join('address', 'renting_detail.RedAddId', '=', 'address.AddId')
+                                    ->join('users', 'renting_detail.RedUseId', '=', 'users.UseId')
+                                    ->select('renting_detail.*', 'book.BooPicture', 'book.BooName', 'address.AddAddres', 'users.name', 'users.UsePic', 'users.email')
+                                    ->get();
+
+            $data = compact('orders');
+            return response()->json($data);
+
+        } catch(\Illuminate\Database\QueryException $ex) {
+
+            $success = false;
+            $message = $ex->getMessage();
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+            return response()->json($response);
+        }
+    }
+
+
     public function updateRentDetail(Request $request){
 
         try {
